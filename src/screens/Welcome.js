@@ -5,7 +5,14 @@ const Welcome = ({navigation}) => {
   return (
     <View>
       <Text>Welcome</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Button
+        title="Register"
+        onPress={() => navigation.navigate('Register')}
+      />
+      <Button
+        title="Recovery"
+        onPress={() => navigation.navigate('Recovery')}
+      />
     </View>
   );
 };
