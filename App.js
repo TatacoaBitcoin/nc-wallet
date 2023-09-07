@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import React from 'react';
 
-export class App extends Component {
-  render() {
-    return (
-      <View>
-        <Text>App</Text>
-      </View>
-    );
-  }
-}
+import {Home, Welcome} from './src/screens';
+
+const App = () => {
+  return (
+    <>
+      <Welcome />
+    </>
+  );
+};
 
 export default App;
