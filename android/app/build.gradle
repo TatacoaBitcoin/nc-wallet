@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.ncwallet"
+    namespace "com.tatacoabitcoin.ncwallet"
     defaultConfig {
-        applicationId "com.ncwallet"
+        applicationId "com.tatacoabitcoin.ncwallet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

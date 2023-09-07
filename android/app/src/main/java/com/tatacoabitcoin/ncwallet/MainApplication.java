@@ -1,4 +1,4 @@
-package com.ncwallet;
+package com.tatacoabitcoin.ncwallet;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

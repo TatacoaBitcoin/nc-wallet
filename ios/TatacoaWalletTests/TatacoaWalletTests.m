@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface NCWalletTests : XCTestCase
+@interface TatacoaWalletTests : XCTestCase
 
 @end
 
-@implementation NCWalletTests
+@implementation TatacoaWalletTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {
