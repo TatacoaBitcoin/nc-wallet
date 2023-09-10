@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
-  const firstUse = false;
+  const firstUse = true;
 
   return (
     <NavigationContainer>
