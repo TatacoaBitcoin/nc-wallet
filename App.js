@@ -3,14 +3,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useTranslation} from 'react-i18next';
 
+import './i18n.config';
 import {Home, Welcome, Register, Recovery, Settings} from './src/screens';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
-  const firstUse = false;
+  const {t} = useTranslation();
+  const firstUse = true;
 
   return (
     <NavigationContainer>
@@ -24,12 +27,12 @@ const App = () => {
           <Stack.Screen
             name="Register"
             component={Register}
-            options={{title: 'Register'}}
+            options={{title: t('navigation.accountsetupflow.register')}}
           />
           <Stack.Screen
             name="Recovery"
             component={Recovery}
-            options={{title: 'Recovery'}}
+            options={{title: t('navigation.accountsetupflow.recovery')}}
           />
         </Stack.Navigator>
       ) : (
@@ -42,7 +45,7 @@ const App = () => {
             name="Home"
             component={Home}
             options={{
-              tabBarLabel: 'Home',
+              tabBarLabel: t('navigation.mainflow.home'),
               // eslint-disable-next-line react/no-unstable-nested-components
               tabBarIcon: ({color, size}) => (
                 <Icon name="wallet" color={color} size={size} />
@@ -53,7 +56,7 @@ const App = () => {
             name="Settings"
             component={Settings}
             options={{
-              tabBarLabel: 'Settings',
+              tabBarLabel: t('navigation.mainflow.settings'),
               // eslint-disable-next-line react/no-unstable-nested-components
               tabBarIcon: ({color, size}) => (
                 <Icon name="cog" color={color} size={size} />

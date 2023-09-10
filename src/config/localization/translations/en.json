@@ -1,0 +1,13 @@
+{
+  "navigation": {
+    "mainflow": {
+      "home": "Home",
+      "settings": "Settings"
+    },
+    "accountsetupflow": {
+      "welcome": "Welcome",
+      "register": "Create wallet",
+      "recovery": "Recover wallet"
+    }
+  }
+}

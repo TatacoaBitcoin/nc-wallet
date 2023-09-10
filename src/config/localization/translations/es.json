@@ -1,0 +1,13 @@
+{
+  "navigation": {
+    "mainflow": {
+      "home": "Inicio",
+      "settings": "Ajustes"
+    },
+    "accountsetupflow": {
+      "welcome": "Welcome",
+      "register": "Crear billetera",
+      "recovery": "Recuperar billetera"
+    }
+  }
+}
