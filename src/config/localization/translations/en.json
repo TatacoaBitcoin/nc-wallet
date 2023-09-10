@@ -9,5 +9,12 @@
       "register": "Create wallet",
       "recovery": "Recover wallet"
     }
+  },
+  "welcome": {
+    "title": "Welcome",
+    "btn": {
+      "register": "Create wallet",
+      "recovery": "Recover wallet"
+    }
   }
 }
