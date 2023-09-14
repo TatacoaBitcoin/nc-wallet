@@ -1,15 +1,21 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, ScrollView, Button} from 'react-native';
 
 import {useMnemonics} from '../hooks/useMnemonics';
+import {WordList} from '../molecules';
 
 const Register = () => {
   const {randomWords, generateWords} = useMnemonics();
+  const words = randomWords && randomWords.split(' ');
 
   return (
     <View>
-      <Text>{randomWords.toString()}</Text>
-      <Button onPress={generateWords} title="Refresh" />
+      {words && (
+        <ScrollView>
+          <WordList list={words} />
+          <Button onPress={generateWords} title="Refresh" />
+        </ScrollView>
+      )}
     </View>
   );
 };
