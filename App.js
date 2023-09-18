@@ -24,7 +24,10 @@ const App = () => {
             <Stack.Screen
               name="Welcome"
               component={Welcome}
-              options={{headerShown: false}}
+              options={{
+                headerShown: false,
+                title: t('navigation.accountsetupflow.welcome'),
+              }}
             />
             <Stack.Screen
               name="Register"

@@ -16,5 +16,11 @@
       "register": "Create wallet",
       "recovery": "Recover wallet"
     }
+  },
+  "register": {
+    "btn": {
+      "refresh": "Refresh",
+      "continue": "Continue"
+    }
   }
 }
