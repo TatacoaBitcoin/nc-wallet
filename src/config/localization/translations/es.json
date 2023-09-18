@@ -5,7 +5,7 @@
       "settings": "Ajustes"
     },
     "accountsetupflow": {
-      "welcome": "Welcome",
+      "welcome": "Bienvenido",
       "register": "Crear billetera",
       "recovery": "Recuperar billetera"
     }
@@ -15,6 +15,12 @@
     "btn": {
       "register": "Crear billetera",
       "recovery": "Recuperar billetera"
+    }
+  },
+  "register": {
+    "btn": {
+      "refresh": "Refrescar",
+      "continue": "Continuar"
     }
   }
 }

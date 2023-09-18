@@ -1,12 +1,14 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {Text, Button} from 'react-native';
 import {useTranslation} from 'react-i18next';
+
+import {ScreenTemplate} from '../atoms';
 
 const Welcome = ({navigation}) => {
   const {t} = useTranslation();
 
   return (
-    <View>
+    <ScreenTemplate>
       <Text>{t('welcome.title')}</Text>
       <Button
         title={t('welcome.btn.register')}
@@ -16,7 +18,7 @@ const Welcome = ({navigation}) => {
         title={t('welcome.btn.recovery')}
         onPress={() => navigation.navigate('Recovery')}
       />
-    </View>
+    </ScreenTemplate>
   );
 };
 
