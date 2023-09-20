@@ -14,16 +14,13 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
-  const {seedWords} = useAccountState();
+  const {account} = useAccountState();
   const {t} = useTranslation();
-  const firstUse = true;
-
-  console.log(seedWords);
 
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {firstUse ? (
+        {!account ? (
           <Stack.Navigator>
             <Stack.Screen
               name="Welcome"

@@ -1,20 +1,19 @@
 import React, {createContext, useContext} from 'react';
 
-// import {useAccount} from '../hooks/useAccount';
-// import {useBalance} from '../hooks/useBalance';
-// import {useHistory} from '../hooks/useHistory';
+import {useAccount} from '../hooks/useAccount';
 
 export const AccountContext = createContext();
 
 export const useAccountState = () => useContext(AccountContext);
 
 export const AccountProvider = ({children}) => {
-  //   const {account, loadAccount, resetAccount} = useAccount();
-  //   const {balance, isLoading: isBalanceLoading} = useBalance(account?.address);
-  //   const {history, isLoading: isHistoryLoading} = useHistory(account?.address);
+  const {account, saveAccount, loadAccount, resetAccount} = useAccount();
 
   const state = {
-    seedWords: 'word list',
+    account,
+    saveAccount,
+    loadAccount,
+    resetAccount,
   };
 
   return (
