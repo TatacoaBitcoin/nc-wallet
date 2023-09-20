@@ -22,5 +22,10 @@
       "refresh": "Refresh",
       "continue": "Continue"
     }
+  },
+  "settings": {
+    "btn": {
+      "reset": "Remove account"
+    }
   }
 }
