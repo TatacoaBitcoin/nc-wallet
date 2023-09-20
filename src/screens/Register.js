@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, ScrollView, Button} from 'react-native';
+import {ScrollView, Button} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {useMnemonics} from '../hooks/useMnemonics';
 import {useAccountState} from '../context/account.provider';
 import {WordList} from '../molecules';
+import {ScreenTemplate} from '../atoms';
 
 const Register = ({navigation}) => {
   const {t} = useTranslation();
@@ -13,7 +14,7 @@ const Register = ({navigation}) => {
   const {saveAccount} = useAccountState();
 
   return (
-    <View>
+    <ScreenTemplate>
       {words && (
         <ScrollView>
           <WordList list={words} />
@@ -24,7 +25,7 @@ const Register = ({navigation}) => {
           />
         </ScrollView>
       )}
-    </View>
+    </ScreenTemplate>
   );
 };
 
