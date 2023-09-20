@@ -8,18 +8,19 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import './i18n.config';
 import {Home, Welcome, Register, Recovery, Settings} from './src/screens';
+import {useAccountState} from './src/context/account.provider';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
+  const {account} = useAccountState();
   const {t} = useTranslation();
-  const firstUse = true;
 
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {firstUse ? (
+        {!account ? (
           <Stack.Navigator>
             <Stack.Screen
               name="Welcome"

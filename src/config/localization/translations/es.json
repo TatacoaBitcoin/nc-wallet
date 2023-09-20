@@ -22,5 +22,10 @@
       "refresh": "Refrescar",
       "continue": "Continuar"
     }
+  },
+  "settings": {
+    "btn": {
+      "reset": "Eliminar cuenta"
+    }
   }
 }
