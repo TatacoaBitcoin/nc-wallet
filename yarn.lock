@@ -1151,6 +1151,11 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@breeztech/react-native-breez-sdk@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@breeztech/react-native-breez-sdk/-/react-native-breez-sdk-0.2.3.tgz#ba32505dadb8f19c16e1cf765a54856d9ad46146"
+  integrity sha512-yQhu3ES8YVVEQB/a3GUoPVzxovhYTBb3n7AQLWjUsaxHAbHQkPul0iWeAR2DBQXx/OEtyObu5OZuyaN9eFHXow==
+
 "@craftzdog/react-native-buffer@^6.0.4", "@craftzdog/react-native-buffer@^6.0.5":
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/@craftzdog/react-native-buffer/-/react-native-buffer-6.0.5.tgz#0d4fbe0dd104186d2806655e3c0d25cebdae91d3"
