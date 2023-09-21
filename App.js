@@ -7,7 +7,15 @@ import {useTranslation} from 'react-i18next';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import './i18n.config';
-import {Home, Welcome, Register, Recovery, Settings} from './src/screens';
+import {
+  Home,
+  Welcome,
+  Register,
+  Recovery,
+  Settings,
+  Send,
+  Receive,
+} from './src/screens';
 import {useAccountState} from './src/context/account.provider';
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +63,28 @@ const App = () => {
                 // eslint-disable-next-line react/no-unstable-nested-components
                 tabBarIcon: ({color, size}) => (
                   <Icon name="wallet" color={color} size={size} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Send"
+              component={Send}
+              options={{
+                tabBarLabel: 'Send',
+                // eslint-disable-next-line react/no-unstable-nested-components
+                tabBarIcon: ({color, size}) => (
+                  <Icon name="send" color={color} size={size} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Receive"
+              component={Receive}
+              options={{
+                tabBarLabel: 'Receive',
+                // eslint-disable-next-line react/no-unstable-nested-components
+                tabBarIcon: ({color, size}) => (
+                  <Icon name="hand-extended" color={color} size={size} />
                 ),
               }}
             />
