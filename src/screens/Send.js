@@ -1,11 +1,14 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
+import {Scanner, ScreenTemplate} from '../atoms';
+
 const Send = () => {
   return (
-    <View>
+    <ScreenTemplate>
       <Text>Send</Text>
-    </View>
+      <Scanner />
+    </ScreenTemplate>
   );
 };
 
