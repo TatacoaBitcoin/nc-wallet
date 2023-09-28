@@ -3,6 +3,7 @@ import {StyleSheet, View, Pressable, Text} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {parseInput} from '@breeztech/react-native-breez-sdk';
 
 const Controls = ({action, flash, navigation}) => {
   return (
@@ -21,28 +22,23 @@ const Controls = ({action, flash, navigation}) => {
   );
 };
 
-const Scanner = ({navigation, action}) => {
+const Scanner = ({navigation}) => {
   const [flash, setFlash] = useState(false);
 
-  const onSuccess = e => {
+  const onSuccess = async e => {
     const data = e.data;
-    if (data.startsWith('lnbc')) {
-      navigation.navigate('Send', {
-        mode: 'send',
-        data,
-      });
-      action();
-    } else if (data.startsWith('lightning:')) {
-      navigation.navigate('Send', {
-        mode: 'send',
-        data: data.replace('lightning:', ''),
-      });
-      action();
-    } else if (data.startsWith('lnurl')) {
-      navigation.navigate('Receive', {mode: 'receive', lnurl: data});
-      action();
-    } else {
-      console.log('invalid data');
+
+    try {
+      const response = await parseInput(data);
+      switch (response.type) {
+        case 'bolt11':
+          navigation.navigate('Send', {data: response.data});
+          break;
+        default:
+          console.log('unsupported format');
+      }
+    } catch (error) {
+      console.log('qr scan error: ', error);
     }
   };
 
