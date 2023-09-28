@@ -14,7 +14,7 @@ const ScreenTemplate = ({children}) => {
         paddingBottom: insets.bottom + 10,
         paddingLeft: insets.left + 20,
         paddingRight: insets.right + 20,
-        backgroundColor: 'white',
+        backgroundColor: 'gray',
       }}>
       {children}
     </View>
