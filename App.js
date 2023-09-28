@@ -7,11 +7,37 @@ import {useTranslation} from 'react-i18next';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import './i18n.config';
-import {Home, Welcome, Register, Recovery, Settings} from './src/screens';
+import {
+  Home,
+  Welcome,
+  Register,
+  Recovery,
+  Settings,
+  Send,
+  Receive,
+  Scanner,
+} from './src/screens';
 import {useAccountState} from './src/context/account.provider';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const WalletFlow = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+    <Stack.Screen
+      name="Scanner"
+      component={Scanner}
+      options={{headerShown: false}}
+    />
+    <Stack.Screen name="Send" component={Send} options={{headerShown: false}} />
+    <Stack.Screen
+      name="Receive"
+      component={Receive}
+      options={{headerShown: false}}
+    />
+  </Stack.Navigator>
+);
 
 const App = () => {
   const {account} = useAccountState();
@@ -43,13 +69,12 @@ const App = () => {
           </Stack.Navigator>
         ) : (
           <Tab.Navigator
-            initialRouteName="Home"
             screenOptions={{
               headerShown: false,
             }}>
             <Tab.Screen
-              name="Home"
-              component={Home}
+              name="Wallet"
+              component={WalletFlow}
               options={{
                 tabBarLabel: t('navigation.mainflow.home'),
                 // eslint-disable-next-line react/no-unstable-nested-components
