@@ -10,7 +10,7 @@ import {
 
 import {BREEZ_API_KEY, BREEZ_INVITE_CODE, MNEMONIC_WORDS} from '@env';
 
-const initNode = async (words) => {
+const initNode = async words => {
   //TODO: use real words
   const seed = await mnemonicToSeed(MNEMONIC_WORDS);
 
@@ -43,13 +43,13 @@ const getBalance = async () => {
     const nodeInformation = await nodeInfo();
     const lnBalance = nodeInformation.channelsBalanceMsat;
     const onchainBalance = nodeInformation.onchainBalanceMsat;
-    return({
+    return {
       lightning: lnBalance,
       btc: onchainBalance,
-    });
+    };
   } catch (error) {
     console.log(error);
   }
 };
 
-export {getBalance, initNode}
+export {getBalance, initNode};

@@ -1,12 +1,30 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, Button} from 'react-native';
+import {sendPayment} from '@breeztech/react-native-breez-sdk';
 
 import {ScreenTemplate} from '../atoms';
 
-const Send = () => {
+const Send = ({route}) => {
+  const {data} = route.params;
+
+  const payInvoice = async () => {
+    try {
+      await sendPayment(data);
+    } catch (error) {
+      console.log('handle payment error: ', error);
+    }
+  };
+
   return (
     <ScreenTemplate>
-      <Text>Send</Text>
+      {data && (
+        <>
+          <Text>Amount: {data.amountMsat}mSat</Text>
+          <Text>Expiry: {data.expiry}</Text>
+          <Text>Timestamp: {data.timestamp}</Text>
+          <Button title="Pay Invoice" onPress={payInvoice} />
+        </>
+      )}
     </ScreenTemplate>
   );
 };

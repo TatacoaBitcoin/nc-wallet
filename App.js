@@ -22,25 +22,42 @@ import {useAccountState} from './src/context/account.provider';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const WalletFlow = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
-    <Stack.Screen
-      name="Scanner"
-      component={Scanner}
-      options={{headerShown: false}}
-    />
-    <Stack.Screen name="Send" component={Send} options={{headerShown: false}} />
-    <Stack.Screen
-      name="Receive"
-      component={Receive}
-      options={{headerShown: false}}
-    />
-  </Stack.Navigator>
-);
+const MainFlow = () => {
+  const {t} = useTranslation();
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Main"
+        component={TabFlow}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Scanner"
+        component={Scanner}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Send"
+        component={Send}
+        options={{
+          title: t('navigation.mainflow.send'),
+        }}
+      />
+      <Stack.Screen
+        name="Receive"
+        component={Receive}
+        options={{
+          title: t('navigation.mainflow.receive'),
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const AccountSetupFlow = () => {
   const {t} = useTranslation();
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -48,7 +65,6 @@ const AccountSetupFlow = () => {
         component={Welcome}
         options={{
           headerShown: false,
-          title: t('navigation.accountsetupflow.welcome'),
         }}
       />
       <Stack.Screen
@@ -65,8 +81,9 @@ const AccountSetupFlow = () => {
   );
 };
 
-const MainFlow = () => {
+const TabFlow = () => {
   const {t} = useTranslation();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -74,9 +91,9 @@ const MainFlow = () => {
       }}>
       <Tab.Screen
         name="Wallet"
-        component={WalletFlow}
+        component={Home}
         options={{
-          tabBarLabel: t('navigation.mainflow.home'),
+          tabBarLabel: t('navigation.tabflow.wallet'),
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({color, size}) => (
             <Icon name="wallet" color={color} size={size} />
@@ -87,7 +104,7 @@ const MainFlow = () => {
         name="Settings"
         component={Settings}
         options={{
-          tabBarLabel: t('navigation.mainflow.settings'),
+          tabBarLabel: t('navigation.tabflow.settings'),
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({color, size}) => (
             <Icon name="cog" color={color} size={size} />
