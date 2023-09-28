@@ -12,7 +12,7 @@ const Home = ({navigation}) => {
       <Text>LN: {balance.lightning} msats</Text>
       <Text>BTC: {balance.btc} sats</Text>
       <Button title="Scan QR" onPress={() => navigation.navigate('Scanner')} />
-      <Button title="Send" onPress={() => navigation.navigate('Send')} />
+      <Button title="Send" onPress={() => navigation.navigate('Scanner')} />
       <Button title="Receive" onPress={() => navigation.navigate('Receive')} />
     </ScreenTemplate>
   );
