@@ -1,14 +1,10 @@
-import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, Dimensions} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import {RNCamera} from 'react-native-camera';
 import {useNavigation} from '@react-navigation/native';
-
-// import {FlashButton} from '../atoms';
 
 const Scanner = ({action}) => {
   const navigation = useNavigation();
-  const [flash, setFlash] = useState(false);
 
   const onSuccess = e => {
     const data = e.data;
@@ -32,36 +28,28 @@ const Scanner = ({action}) => {
     }
   };
 
-  const handleFlash = () => {
-    setFlash(!flash);
-  };
-
-  const FlashMode = flash
-    ? RNCamera.Constants.FlashMode.torch
-    : RNCamera.Constants.FlashMode.off;
-
   return (
-    <View>
-      <QRCodeScanner
-        onRead={onSuccess}
-        reactivate={true}
-        showMarker={true}
-        containerStyle={styles.container}
-        flashMode={FlashMode}
-        // topContent={<FlashButton action={handleFlash} flash={flash} />}
-        topViewStyle={styles.top}
-      />
-    </View>
+    <QRCodeScanner
+      onRead={onSuccess}
+      reactivate={true}
+      showMarker={true}
+      containerStyle={styles.container}
+      topViewStyle={styles.zeroContainer}
+      cameraStyle={styles.cameraContainer}
+    />
   );
 };
 
 export {Scanner};
 
 const styles = StyleSheet.create({
-  container: {
-    zIndex: 1,
+  zeroContainer: {
+    height: 0,
+    flex: 0,
   },
-  top: {
-    zIndex: 99,
+  cameraContainer: {
+    height: Dimensions.get('window').height,
+    top: -10,
+    position: 'relative',
   },
 });

@@ -6,7 +6,6 @@ import {Scanner, ScreenTemplate} from '../atoms';
 const Send = () => {
   return (
     <ScreenTemplate>
-      <Text>Send</Text>
       <Scanner />
     </ScreenTemplate>
   );
