@@ -1,7 +1,11 @@
 {
   "navigation": {
     "mainflow": {
-      "home": "Home",
+      "send": "Send Bitcoin",
+      "receive": "Receive Bitcoin"
+    },
+    "tabflow": {
+      "wallet": "Wallet",
       "settings": "Settings"
     },
     "accountsetupflow": {

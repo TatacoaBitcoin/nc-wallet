@@ -1,7 +1,11 @@
 {
   "navigation": {
     "mainflow": {
-      "home": "Inicio",
+      "send": "Enviar Bitcoin",
+      "receive": "Recibir Bitcoin"
+    },
+    "tabflow": {
+      "wallet": "Billetera",
       "settings": "Ajustes"
     },
     "accountsetupflow": {
