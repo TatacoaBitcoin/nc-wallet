@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, Button} from 'react-native';
-import {ScreenTemplate} from '../atoms';
+import {BalanceCard, ScreenTemplate} from '../atoms';
 import {useAccountState} from '../context/account.provider';
 
 const Home = ({navigation}) => {
@@ -8,9 +8,7 @@ const Home = ({navigation}) => {
 
   return (
     <ScreenTemplate>
-      <Text>Balance</Text>
-      <Text>LN: {balance.lightning} msats</Text>
-      <Text>BTC: {balance.btc} sats</Text>
+      <BalanceCard balance={balance} />
       <Button title="Scan QR" onPress={() => navigation.navigate('Scanner')} />
       <Button title="Send" onPress={() => navigation.navigate('Scanner')} />
       <Button title="Receive" onPress={() => navigation.navigate('Receive')} />
