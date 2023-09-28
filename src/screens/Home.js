@@ -3,8 +3,7 @@ import {Text, Button} from 'react-native';
 import {ScreenTemplate} from '../atoms';
 import {useAccountState} from '../context/account.provider';
 
-
-const Home = () => {
+const Home = ({navigation}) => {
   const {balance} = useAccountState();
 
   return (

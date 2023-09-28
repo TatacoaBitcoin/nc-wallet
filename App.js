@@ -39,63 +39,72 @@ const WalletFlow = () => (
   </Stack.Navigator>
 );
 
+const AccountSetupFlow = () => {
+  const {t} = useTranslation();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{
+          headerShown: false,
+          title: t('navigation.accountsetupflow.welcome'),
+        }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{title: t('navigation.accountsetupflow.register')}}
+      />
+      <Stack.Screen
+        name="Recovery"
+        component={Recovery}
+        options={{title: t('navigation.accountsetupflow.recovery')}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const MainFlow = () => {
+  const {t} = useTranslation();
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Tab.Screen
+        name="Wallet"
+        component={WalletFlow}
+        options={{
+          tabBarLabel: t('navigation.mainflow.home'),
+          // eslint-disable-next-line react/no-unstable-nested-components
+          tabBarIcon: ({color, size}) => (
+            <Icon name="wallet" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          tabBarLabel: t('navigation.mainflow.settings'),
+          // eslint-disable-next-line react/no-unstable-nested-components
+          tabBarIcon: ({color, size}) => (
+            <Icon name="cog" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
 const App = () => {
   const {account} = useAccountState();
-  const {t} = useTranslation();
 
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {!account ? (
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Welcome"
-              component={Welcome}
-              options={{
-                headerShown: false,
-                title: t('navigation.accountsetupflow.welcome'),
-              }}
-            />
-            <Stack.Screen
-              name="Register"
-              component={Register}
-              options={{title: t('navigation.accountsetupflow.register')}}
-            />
-            <Stack.Screen
-              name="Recovery"
-              component={Recovery}
-              options={{title: t('navigation.accountsetupflow.recovery')}}
-            />
-          </Stack.Navigator>
-        ) : (
-          <Tab.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}>
-            <Tab.Screen
-              name="Wallet"
-              component={WalletFlow}
-              options={{
-                tabBarLabel: t('navigation.mainflow.home'),
-                // eslint-disable-next-line react/no-unstable-nested-components
-                tabBarIcon: ({color, size}) => (
-                  <Icon name="wallet" color={color} size={size} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Settings"
-              component={Settings}
-              options={{
-                tabBarLabel: t('navigation.mainflow.settings'),
-                // eslint-disable-next-line react/no-unstable-nested-components
-                tabBarIcon: ({color, size}) => (
-                  <Icon name="cog" color={color} size={size} />
-                ),
-              }}
-            />
-          </Tab.Navigator>
-        )}
+        {account ? <MainFlow /> : <AccountSetupFlow />}
       </NavigationContainer>
     </SafeAreaProvider>
   );
