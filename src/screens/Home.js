@@ -1,11 +1,16 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, Button} from 'react-native';
 
-const Home = () => {
+import {ScreenTemplate} from '../atoms';
+
+const Home = ({navigation}) => {
   return (
-    <View>
+    <ScreenTemplate>
       <Text>Home</Text>
-    </View>
+      <Button title="Scan QR" onPress={() => navigation.navigate('Scanner')} />
+      <Button title="Send" onPress={() => navigation.navigate('Send')} />
+      <Button title="Receive" onPress={() => navigation.navigate('Receive')} />
+    </ScreenTemplate>
   );
 };
 

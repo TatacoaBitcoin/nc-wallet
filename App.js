@@ -15,11 +15,29 @@ import {
   Settings,
   Send,
   Receive,
+  Scanner,
 } from './src/screens';
 import {useAccountState} from './src/context/account.provider';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const WalletFlow = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+    <Stack.Screen
+      name="Scanner"
+      component={Scanner}
+      options={{headerShown: false}}
+    />
+    <Stack.Screen name="Send" component={Send} options={{headerShown: false}} />
+    <Stack.Screen
+      name="Receive"
+      component={Receive}
+      options={{headerShown: false}}
+    />
+  </Stack.Navigator>
+);
 
 const App = () => {
   const {account} = useAccountState();
@@ -51,40 +69,17 @@ const App = () => {
           </Stack.Navigator>
         ) : (
           <Tab.Navigator
-            initialRouteName="Home"
             screenOptions={{
               headerShown: false,
             }}>
             <Tab.Screen
-              name="Home"
-              component={Home}
+              name="Wallet"
+              component={WalletFlow}
               options={{
                 tabBarLabel: t('navigation.mainflow.home'),
                 // eslint-disable-next-line react/no-unstable-nested-components
                 tabBarIcon: ({color, size}) => (
                   <Icon name="wallet" color={color} size={size} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Send"
-              component={Send}
-              options={{
-                tabBarLabel: 'Send',
-                // eslint-disable-next-line react/no-unstable-nested-components
-                tabBarIcon: ({color, size}) => (
-                  <Icon name="send" color={color} size={size} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Receive"
-              component={Receive}
-              options={{
-                tabBarLabel: 'Receive',
-                // eslint-disable-next-line react/no-unstable-nested-components
-                tabBarIcon: ({color, size}) => (
-                  <Icon name="hand-extended" color={color} size={size} />
                 ),
               }}
             />

@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-import {Scanner, ScreenTemplate} from '../atoms';
+import {ScreenTemplate} from '../atoms';
 
 const Send = () => {
   return (
     <ScreenTemplate>
-      <Scanner />
+      <Text>Send</Text>
     </ScreenTemplate>
   );
 };
