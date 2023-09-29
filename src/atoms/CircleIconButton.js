@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const CircleIconButton = ({onPress, icon}) => (
   <View>
     <Pressable style={styles.circle} onPress={onPress} activeOpacity={0.8}>
-      <Icon name={icon} color="green" size={30} />
+      <Icon name={icon} color="purple" size={30} />
     </Pressable>
   </View>
 );
@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     borderRadius: 80,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'grey',
-    borderColor: 'green',
+    backgroundColor: 'lightgrey',
+    borderColor: 'purple',
     borderWidth: 1,
   },
 });

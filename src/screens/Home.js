@@ -33,7 +33,7 @@ export {Home};
 
 const styles = StyleSheet.create({
   topContainer: {
-    backgroundColor: 'green',
+    backgroundColor: 'purple',
     paddingTop: 20,
     paddingBottom: 0,
     borderBottomRightRadius: 50,
