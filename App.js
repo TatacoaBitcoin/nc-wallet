@@ -88,6 +88,26 @@ const TabFlow = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        indicatorStyle: {
+            width: 0, height: 0, elevation: 0,
+        },
+        tabBarStyle: {
+          elevation: 0,
+          shadowOffset: {
+            width: 0, height: 0,
+          },
+          backgroundColor: 'lightgray',
+          paddingBottom: 10,
+          paddingTop: 10,
+          height: 70,
+        },
+        tabBarLabelStyle: {
+          fontSize: 15,
+        },
+        tabBarIconStyle: {
+          color: 'red',
+        },
+        tabBarActiveTintColor: 'purple',
       }}>
       <Tab.Screen
         name="Wallet"
