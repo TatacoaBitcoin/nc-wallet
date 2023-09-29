@@ -10,12 +10,12 @@ export const useAccount = () => {
   });
 
   useEffect(() => {
-    if(!account) return;
+    if (!account) return;
 
     async function fetchBalance() {
       const nodeBalance = await getBalance();
       setBalance(nodeBalance);
-    };
+    }
 
     fetchBalance();
   }, [account]);
@@ -31,7 +31,7 @@ export const useAccount = () => {
     // retrieves seed words
   };
 
-  const resetAccount = async() => setAccount(null);
+  const resetAccount = async () => setAccount(null);
 
   return {account, balance, saveAccount, loadAccount, resetAccount};
 };
