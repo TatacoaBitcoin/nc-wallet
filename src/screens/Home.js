@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text, Button} from 'react-native';
-import {BalanceCard, ScreenTemplate} from '../atoms';
+import {StyleSheet, View} from 'react-native';
+import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
 import {useAccountState} from '../context/account.provider';
 
 const Home = ({navigation}) => {
@@ -8,12 +8,43 @@ const Home = ({navigation}) => {
 
   return (
     <ScreenTemplate>
-      <BalanceCard balance={balance} />
-      <Button title="Scan QR" onPress={() => navigation.navigate('Scanner')} />
-      <Button title="Send" onPress={() => navigation.navigate('Scanner')} />
-      <Button title="Receive" onPress={() => navigation.navigate('Receive')} />
+      <View style={styles.topContainer}>
+        <BalanceCard balance={balance} />
+        <View style={styles.buttonsContainer}>
+          <CircleIconButton
+            icon="arrow-collapse-up"
+            onPress={() => navigation.navigate('Scanner')}
+          />
+          <CircleIconButton
+            icon="qrcode-scan"
+            onPress={() => navigation.navigate('Scanner')}
+          />
+          <CircleIconButton
+            icon="arrow-collapse-down"
+            onPress={() => navigation.navigate('Receive')}
+          />
+        </View>
+      </View>
     </ScreenTemplate>
   );
 };
 
 export {Home};
+
+const styles = StyleSheet.create({
+  topContainer: {
+    backgroundColor: 'green',
+    paddingTop: 20,
+    paddingBottom: 0,
+    borderBottomRightRadius: 50,
+    borderBottomLeftRadius: 50,
+  },
+  buttonsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 30,
+    position: 'relative',
+    top: 40,
+  }
+});

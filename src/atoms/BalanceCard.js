@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: 'green'
   },
   totalBalanceContainer: {
     display: 'flex',
