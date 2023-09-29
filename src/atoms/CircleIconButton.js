@@ -13,9 +13,9 @@ const CircleIconButton = ({onPress, icon}) => (
 
 const styles = StyleSheet.create({
   circle: {
-    width: 80,
-    height: 80,
-    borderRadius: 80,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'lightgrey',

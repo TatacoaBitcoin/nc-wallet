@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: 30,
+    gap: 40,
     position: 'relative',
-    top: 40,
+    top: 35,
   }
 });
