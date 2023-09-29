@@ -13,7 +13,7 @@ import {
   Register,
   Recovery,
   Settings,
-  Send,
+  SendLightning,
   Receive,
   Scanner,
 } from './src/screens';
@@ -38,8 +38,8 @@ const MainFlow = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="Send"
-        component={Send}
+        name="SendLightning"
+        component={SendLightning}
         options={{
           title: t('navigation.mainflow.send'),
         }}
@@ -89,12 +89,15 @@ const TabFlow = () => {
       screenOptions={{
         headerShown: false,
         indicatorStyle: {
-            width: 0, height: 0, elevation: 0,
+          width: 0,
+          height: 0,
+          elevation: 0,
         },
         tabBarStyle: {
           elevation: 0,
           shadowOffset: {
-            width: 0, height: 0,
+            width: 0,
+            height: 0,
           },
           backgroundColor: 'lightgray',
           paddingBottom: 10,
