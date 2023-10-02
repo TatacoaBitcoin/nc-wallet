@@ -46,5 +46,5 @@ const styles = StyleSheet.create({
     gap: 40,
     position: 'relative',
     top: 35,
-  }
+  },
 });
