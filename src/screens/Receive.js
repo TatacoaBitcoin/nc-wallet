@@ -42,7 +42,9 @@ const Receive = () => {
       />
       {isLoading && <Text style={styles.text}>Creating invoice ...</Text>}
       {invoice && (
-        <QRCode value={invoice} size={250} backgroundColor="transparent" />
+        <View style={styles.qrContainer}>
+          <QRCode value={invoice} size={300} backgroundColor="transparent" />
+        </View>
       )}
     </View>
   );
@@ -57,5 +59,9 @@ const styles = StyleSheet.create({
   input: {
     color: 'black',
     marginBottom: 20,
+  },
+  qrContainer: {
+    alignItems: 'center',
+    marginVertical: 20,
   },
 });
