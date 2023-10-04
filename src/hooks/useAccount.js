@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import * as Keychain from 'react-native-keychain';
 import {mnemonicToSeedHex, entropyToMnemonic, Wordlists} from '@dreson4/react-native-quick-bip39';
 
-import {getBalance, getNodeConfig, getSeed, initNode} from '../breez';
+import {getBalance, initNode} from '../breez';
 
 const secureStore = async words => {
   const seed = mnemonicToSeedHex(words);
@@ -23,7 +23,9 @@ const secureRetrieve = async () => {
   }
 };
 
-// await Keychain.resetGenericPassword();
+const secureReset = async () => {
+  return await Keychain.resetGenericPassword();
+};
 
 export const useAccount = () => {
   const [account, setAccount] = useState(null);
@@ -48,9 +50,7 @@ export const useAccount = () => {
   }, [account]);
 
   const saveAccount = async words => {
-    const seed = await getSeed(words);    
-    const config = await getNodeConfig();
-    const nodeIsOk = await initNode(config, seed);
+    const nodeIsOk = await initNode(words);
     if (nodeIsOk) {
       await secureStore(words);
       setAccount(true);
@@ -58,21 +58,22 @@ export const useAccount = () => {
   };
 
   const loadAccount = async () => {
-    const words = secureRetrieve();
+    const words = await secureRetrieve();
     if (!words) {
       setAccount(null)
       return;
     }
 
-    const seed = await getSeed(words);
-    const config = await getNodeConfig();
-    const nodeIsOk = await initNode(config, seed);
+    const nodeIsOk = await initNode(words);
     if (nodeIsOk) {
       setAccount(true);
     };
   };
 
-  const resetAccount = async () => setAccount(null);
+  const resetAccount = async () => {
+    await secureReset();
+    setAccount(null);
+  };
 
   return {account, balance, saveAccount, loadAccount, resetAccount};
 };

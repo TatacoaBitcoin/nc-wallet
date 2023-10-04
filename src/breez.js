@@ -10,28 +10,23 @@ import {
 
 import {BREEZ_API_KEY, BREEZ_INVITE_CODE, MNEMONIC_WORDS} from '@env';
 
-const getSeed = async words => {
-  // TODO: use real words
+const initNode = async words => {
+  //TODO: use real words
   const seed = await mnemonicToSeed(MNEMONIC_WORDS);
-  return seed;
-};
 
-const getNodeConfig = async () => {
   const nodeConfig = {
     type: NodeConfigType.GREENLIGHT,
     config: {
       inviteCode: BREEZ_INVITE_CODE,
     },
   };
-  const config = await defaultConfig(
+
+  let config = await defaultConfig(
     EnvironmentType.PRODUCTION,
     BREEZ_API_KEY,
     nodeConfig,
   );
-  return config;
-};
 
-const initNode = async (config, seed) => {
   try {
     // Connect to the Breez SDK make it ready for use
     await connect(config, seed);
@@ -39,6 +34,7 @@ const initNode = async (config, seed) => {
     console.log(error);
     return false;
   }
+
   return true;
 };
 
@@ -56,4 +52,4 @@ const getBalance = async () => {
   }
 };
 
-export {getBalance, getNodeConfig, getSeed, initNode};
+export {getBalance, initNode};
