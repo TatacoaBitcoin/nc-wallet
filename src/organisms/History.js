@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {listPayments} from '@breeztech/react-native-breez-sdk';
 
 import {TxCard} from '../atoms';
+
+const TxsList = ({list}) => {
+  const data = list && list.slice(0, 5);
+  return data && data.map(item => <TxCard key={item.id} data={item} />);
+};
 
 const History = () => {
   const [txs, setTxs] = useState([]);
@@ -13,7 +18,7 @@ const History = () => {
   const fetchHistory = async () => {
     try {
       const response = await listPayments('all');
-      setTxs(response.slice(0, 3));
+      setTxs(response);
     } catch (error) {
       console.log('fetch history error', error);
     }
@@ -21,9 +26,8 @@ const History = () => {
 
   return (
     <View style={styles.container}>
-      {txs.map(item => (
-        <TxCard key={item.id} data={item} />
-      ))}
+      <TxsList list={txs} />
+      {txs.length > 5 && <Text>See full history</Text>}
     </View>
   );
 };

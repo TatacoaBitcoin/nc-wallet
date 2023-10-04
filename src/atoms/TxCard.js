@@ -16,7 +16,9 @@ const TxCard = ({data}) => {
           size={25}
         />
         <View>
-          <Text>{description}</Text>
+          <Text numberOfLines={1} style={{width: 150}}>
+            {description ? description : 'No memo'}
+          </Text>
           <Text>{parseDate(paymentTime)}</Text>
         </View>
       </View>
