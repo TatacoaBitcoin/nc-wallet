@@ -1,7 +1,9 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+
 import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
 import {useAccountState} from '../context/account.provider';
+import {History} from '../organisms';
 
 const Home = ({navigation}) => {
   const {balance} = useAccountState();
@@ -25,6 +27,7 @@ const Home = ({navigation}) => {
           />
         </View>
       </View>
+      <History />
     </ScreenTemplate>
   );
 };
