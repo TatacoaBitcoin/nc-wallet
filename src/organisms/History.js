@@ -1,18 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {listPayments} from '@breeztech/react-native-breez-sdk';
+
+import {TxCard} from '../atoms';
 
 const History = () => {
   const [txs, setTxs] = useState([]);
-  //   useEffect(() => {
-  //     fetchHistory();
-  //   }, []);
+  useEffect(() => {
+    fetchHistory();
+  }, []);
 
   const fetchHistory = async () => {
     try {
       const response = await listPayments('all');
       setTxs(response.slice(0, 3));
-      console.log(response.slice(0, 3));
     } catch (error) {
       console.log('fetch history error', error);
     }
@@ -20,15 +21,8 @@ const History = () => {
 
   return (
     <View style={styles.container}>
-      <Button title="History" onPress={fetchHistory} />
       {txs.map(item => (
-        <View key={item.id}>
-          <Text>PaymentType: {item.paymentType}</Text>
-          <Text>Type: {item.details.type}</Text>
-          <Text>Amount: {item.amountMsat / 1000} sats</Text>
-          <Text>Pending: {item.pending.toString()}</Text>
-          <Text>Date: {item.paymentTime}</Text>
-        </View>
+        <TxCard key={item.id} data={item} />
       ))}
     </View>
   );
@@ -38,6 +32,7 @@ export {History};
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+    marginTop: 60,
+    paddingHorizontal: 20,
   },
 });
