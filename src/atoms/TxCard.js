@@ -13,7 +13,7 @@ const TxCard = ({data}) => {
   return (
     <Pressable
       style={styles.container}
-      onPress={() => navigation.navigate('Details')}>
+      onPress={() => navigation.navigate('Details', {data})}>
       <View style={styles.content}>
         <Icon
           name={details.type === 'ln' ? 'lightning-bolt' : 'bitcoin'}
