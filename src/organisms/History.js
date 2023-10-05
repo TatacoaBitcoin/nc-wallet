@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {listPayments} from '@breeztech/react-native-breez-sdk';
 import {useNavigation} from '@react-navigation/native';
 
-import {TxCard} from '../atoms';
+import {TxCard, Text} from '../atoms';
 
 const TxsList = ({list}) => {
   const data = list && list.slice(0, 5);
