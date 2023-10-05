@@ -7,7 +7,9 @@ const BalanceCard = ({balance}) => {
     <View style={styles.container}>
       <View style={styles.totalBalanceContainer}>
         <Icon name="swap-vertical" color="white" size={20} />
-        <Text style={styles.totalAmount}>{balance.lightning / 1000 + balance.btc}</Text>
+        <Text style={styles.totalAmount}>
+          {balance.lightning / 1000 + balance.btc}
+        </Text>
         <Text>sats</Text>
       </View>
       <View style={styles.balanceContainer}>

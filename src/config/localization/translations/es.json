@@ -1,8 +1,10 @@
 {
   "navigation": {
     "mainflow": {
-      "send": "Enviar Bitcoin",
-      "receive": "Recibir Bitcoin"
+      "send": "Enviar Lightning",
+      "receive": "Recibir Lightning",
+      "list": "Historial de transacciones",
+      "details": "Detalles"
     },
     "tabflow": {
       "wallet": "Billetera",
