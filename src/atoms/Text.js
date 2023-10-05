@@ -1,20 +1,26 @@
 import React from 'react';
 import {Text as RText} from 'react-native';
 
-// import Colors from '../styles/colors';
+import Colors from '../styles/colors';
+import {fonts} from '../styles/spacing';
 
 const VARIANTS = {
   primary: {
-    color: 'red',
+    color: Colors.purple,
     fontFamily: 'Inter-Regular',
   },
   title: {
-    color: 'blue',
+    color: Colors.purple,
     fontFamily: 'Inter-SemiBold',
   },
 };
 
-const Text = ({children, variant = 'primary', size = 16, align = 'left'}) => {
+const Text = ({
+  children,
+  variant = 'primary',
+  size = fonts.sm,
+  align = 'left',
+}) => {
   return (
     <RText
       style={{
