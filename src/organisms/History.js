@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Pressable} from 'react-native';
 import {listPayments} from '@breeztech/react-native-breez-sdk';
 import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
 import {TxCard, Text} from '../atoms';
 
@@ -11,6 +12,7 @@ const TxsList = ({list}) => {
 };
 
 const History = () => {
+  const {t} = useTranslation();
   const [txs, setTxs] = useState([]);
   const navigation = useNavigation();
 
@@ -31,13 +33,11 @@ const History = () => {
     <View style={styles.container}>
       <TxsList list={txs} />
       {txs.length > 5 && (
-        <Text
-          variant="title"
-          align="center"
-          style={styles.button}
-          onPress={() => navigation.navigate('List', {data: txs})}>
-          See full history
-        </Text>
+        <Pressable onPress={() => navigation.navigate('List', {data: txs})}>
+          <Text variant="title" align="center" size={20} style={styles.button}>
+            {t('home.history.full')}
+          </Text>
+        </Pressable>
       )}
     </View>
   );

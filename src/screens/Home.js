@@ -4,6 +4,7 @@ import {StyleSheet, View} from 'react-native';
 import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
 import {useAccountState} from '../context/account.provider';
 import {History} from '../organisms';
+import colors from '../styles/colors';
 
 const Home = ({navigation}) => {
   const {balance} = useAccountState();
@@ -36,7 +37,7 @@ export {Home};
 
 const styles = StyleSheet.create({
   topContainer: {
-    backgroundColor: 'purple',
+    backgroundColor: colors.purple,
     paddingTop: 20,
     paddingBottom: 0,
     borderBottomRightRadius: 50,

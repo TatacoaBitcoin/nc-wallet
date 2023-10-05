@@ -1,23 +1,24 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import colors from '../styles/colors';
 
 const BalanceCard = ({balance}) => {
   return (
     <View style={styles.container}>
       <View style={styles.totalBalanceContainer}>
-        <Icon name="swap-vertical" color="white" size={20} />
+        <Icon name="swap-vertical" color={colors.yellow} size={20} />
         <Text style={styles.totalAmount}>
           {balance.lightning / 1000 + balance.btc}
         </Text>
-        <Text>sats</Text>
+        <Text style={styles.amount}>sats</Text>
       </View>
       <View style={styles.balanceContainer}>
-        <Icon name="lightning-bolt-circle" color="white" size={20} />
+        <Icon name="lightning-bolt-circle" color={colors.yellow} size={20} />
         <Text style={styles.amount}>{balance.lightning / 1000} sats</Text>
       </View>
       <View style={styles.balanceContainer}>
-        <Icon name="bitcoin" color="white" size={20} />
+        <Icon name="bitcoin" color={colors.yellow} size={20} />
         <Text style={styles.amount}>{balance.btc} sats</Text>
       </View>
     </View>
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
   },
   totalAmount: {
     fontSize: 50,
+    color: 'white',
   },
   balanceContainer: {
     display: 'flex',
@@ -49,5 +51,6 @@ const styles = StyleSheet.create({
   },
   amount: {
     fontSize: 20,
+    color: 'white',
   },
 });

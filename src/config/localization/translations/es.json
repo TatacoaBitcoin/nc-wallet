@@ -33,5 +33,10 @@
     "btn": {
       "reset": "Eliminar cuenta"
     }
+  },
+  "home": {
+    "history": {
+      "full": "Ver historial"
+    }
   }
 }
