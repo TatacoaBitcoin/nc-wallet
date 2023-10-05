@@ -1,14 +1,27 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 
-const TxList = () => {
+import {TxCard} from '../atoms';
+
+const TxList = ({route}) => {
+  const {data} = route.params;
+
   return (
-    <View>
-      <Text>TxList</Text>
+    <View style={styles.container}>
+      <FlatList
+        data={data}
+        renderItem={({item}) => <TxCard data={item} />}
+        keyExtractor={item => item.id}
+      />
     </View>
   );
 };
 
 export {TxList};
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    paddingHorizontal: 10,
+  },
+});

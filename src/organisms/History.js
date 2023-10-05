@@ -31,7 +31,9 @@ const History = () => {
     <View style={styles.container}>
       <TxsList list={txs} />
       {txs.length > 5 && (
-        <Text style={styles.button} onPress={() => navigation.navigate('List')}>
+        <Text
+          style={styles.button}
+          onPress={() => navigation.navigate('List', {data: txs})}>
           See full history
         </Text>
       )}
