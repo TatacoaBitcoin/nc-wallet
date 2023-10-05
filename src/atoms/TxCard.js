@@ -1,14 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
 
 import {parseDate} from '../utils/parsing';
 
 const TxCard = ({data}) => {
+  const navigation = useNavigation();
   const {paymentType, details, amountMsat, pending, paymentTime, description} =
     data;
+
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.navigate('Details')}>
       <View style={styles.content}>
         <Icon
           name={details.type === 'ln' ? 'lightning-bolt' : 'bitcoin'}
@@ -37,7 +42,7 @@ const TxCard = ({data}) => {
           size={15}
         />
       </View>
-    </View>
+    </Pressable>
   );
 };
 

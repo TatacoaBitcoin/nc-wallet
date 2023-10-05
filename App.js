@@ -16,6 +16,8 @@ import {
   SendLightning,
   Receive,
   Scanner,
+  TxDetails,
+  TxList,
 } from './src/screens';
 import {useAccountState} from './src/context/account.provider';
 
@@ -49,6 +51,20 @@ const MainFlow = () => {
         component={Receive}
         options={{
           title: t('navigation.mainflow.receive'),
+        }}
+      />
+      <Stack.Screen
+        name="List"
+        component={TxList}
+        options={{
+          title: t('navigation.mainflow.list'),
+        }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={TxDetails}
+        options={{
+          title: t('navigation.mainflow.details'),
         }}
       />
     </Stack.Navigator>
