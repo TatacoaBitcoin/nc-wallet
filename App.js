@@ -41,11 +41,21 @@ const TAB_CONFIG = {
   tabBarActiveTintColor: colors.purple,
 };
 
+const STACK_CONFIG = {
+  headerStyle: {
+    backgroundColor: colors.black,
+  },
+  headerTintColor: colors.yellow,
+  headerTitleStyle: {
+    fontFamily: 'Inter-SemiBold',
+  },
+};
+
 const MainFlow = () => {
   const {t} = useTranslation();
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={STACK_CONFIG}>
       <Stack.Screen
         name="Main"
         component={TabFlow}

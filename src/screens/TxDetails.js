@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 
 import {parseTime} from '../utils/parsing';
 import {ScreenTemplate, Text} from '../atoms';
-import {padding} from '../styles/spacing';
+import {fonts, padding} from '../styles/spacing';
 
 const TxDetails = ({route}) => {
   const {data} = route.params;
@@ -20,11 +20,15 @@ const TxDetails = ({route}) => {
   return (
     <ScreenTemplate>
       <View style={styles.container}>
-        <Text>
-          {paymentType === 'received' ? '+' : '-'}
-          {amountMsat / 1000}
-        </Text>
-        <Text>sats</Text>
+        <View>
+          <Text variant="title" size={fonts.xl} align="center">
+            {paymentType === 'received' ? '+' : '-'}
+            {amountMsat / 1000}
+          </Text>
+          <Text variant="title" align="center" size={fonts.md}>
+            sats
+          </Text>
+        </View>
         <Text>Time: {parseTime(paymentTime)}</Text>
         <Text>Status: {pending ? 'PENDING' : 'PAID'}</Text>
         <Text>
@@ -45,5 +49,6 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: padding.md,
     paddingHorizontal: padding.sm,
+    gap: 15,
   },
 });
