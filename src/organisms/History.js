@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {listPayments} from '@breeztech/react-native-breez-sdk';
 import {useNavigation} from '@react-navigation/native';
 
-import {TxCard} from '../atoms';
+import {TxCard, Text} from '../atoms';
 
 const TxsList = ({list}) => {
   const data = list && list.slice(0, 5);
@@ -32,6 +32,8 @@ const History = () => {
       <TxsList list={txs} />
       {txs.length > 5 && (
         <Text
+          variant="title"
+          align="center"
           style={styles.button}
           onPress={() => navigation.navigate('List', {data: txs})}>
           See full history
@@ -49,8 +51,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   button: {
-    textAlign: 'center',
     padding: 10,
-    fontWeight: 'bold',
   },
 });
