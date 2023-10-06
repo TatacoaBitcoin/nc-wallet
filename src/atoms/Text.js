@@ -6,11 +6,11 @@ import {fonts} from '../styles/spacing';
 
 const VARIANTS = {
   primary: {
-    color: Colors.purple,
+    color: Colors.gray,
     fontFamily: 'Inter-Regular',
   },
   title: {
-    color: Colors.purple,
+    color: Colors.blue,
     fontFamily: 'Inter-SemiBold',
   },
 };

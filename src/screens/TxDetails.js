@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import {parseTime} from '../utils/parsing';
+import {ScreenTemplate, Text} from '../atoms';
 
 const TxDetails = ({route}) => {
   const {data} = route.params;
@@ -16,7 +17,7 @@ const TxDetails = ({route}) => {
   } = data;
 
   return (
-    <View>
+    <ScreenTemplate>
       <Text>
         {paymentType === 'received' ? '+' : '-'}
         {amountMsat / 1000}
@@ -31,7 +32,7 @@ const TxDetails = ({route}) => {
       <Text>Note: {description}</Text>
       <Text>Invoice: {details.bolt11}</Text>
       <Text>Payment hash: {details.paymentHash}</Text>
-    </View>
+    </ScreenTemplate>
   );
 };
 

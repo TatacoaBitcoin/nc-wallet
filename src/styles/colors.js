@@ -1,7 +1,11 @@
 export default Colors = {
-  purple: '#592A56',
-  violet: '#4B3991',
-  magenta: '#D672F2',
-  blue: '#83A2C3',
-  black: '#282828',
+  purple: '#aa0ca2',
+  lightpurple: '#d48cd2',
+  blue: '#073366',
+  lightblue: '#316bac',
+  gray: '#999999',
+  yellow: '#fcb963',
+  black: '#202020',
 };
+
+// https://paletton.com/#uid=34X1u0kw0w0jyC+oRxVy4oIDfjr

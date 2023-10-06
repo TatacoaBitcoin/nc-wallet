@@ -1,9 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {StyleSheet, View, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
 import {parseDate} from '../utils/parsing';
+import {Text} from './Text';
+import colors from '../styles/colors';
 
 const TxCard = ({data}) => {
   const navigation = useNavigation();
@@ -17,8 +19,8 @@ const TxCard = ({data}) => {
       <View style={styles.content}>
         <Icon
           name={details.type === 'ln' ? 'lightning-bolt' : 'bitcoin'}
-          color="black"
-          size={25}
+          color={colors.yellow}
+          size={28}
         />
         <View>
           <Text numberOfLines={1} style={{width: 150}}>
@@ -38,7 +40,7 @@ const TxCard = ({data}) => {
               ? 'checkbox-blank-circle-outline'
               : 'checkbox-marked-circle-outline'
           }
-          color="black"
+          color={colors.yellow}
           size={15}
         />
       </View>
