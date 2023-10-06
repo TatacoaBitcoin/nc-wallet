@@ -20,9 +20,26 @@ import {
   TxList,
 } from './src/screens';
 import {useAccountState} from './src/context/account.provider';
+import colors from './src/styles/colors';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const TAB_CONFIG = {
+  headerShown: false,
+  tabBarStyle: {
+    borderColor: colors.black,
+    backgroundColor: colors.black,
+    paddingBottom: 10,
+    paddingTop: 10,
+    height: 70,
+  },
+  tabBarLabelStyle: {
+    fontSize: 15,
+    fontFamily: 'Inter-Regular',
+  },
+  tabBarActiveTintColor: colors.purple,
+};
 
 const MainFlow = () => {
   const {t} = useTranslation();
@@ -101,33 +118,7 @@ const TabFlow = () => {
   const {t} = useTranslation();
 
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        indicatorStyle: {
-          width: 0,
-          height: 0,
-          elevation: 0,
-        },
-        tabBarStyle: {
-          elevation: 0,
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          backgroundColor: 'lightgray',
-          paddingBottom: 10,
-          paddingTop: 10,
-          height: 70,
-        },
-        tabBarLabelStyle: {
-          fontSize: 15,
-        },
-        tabBarIconStyle: {
-          color: 'red',
-        },
-        tabBarActiveTintColor: 'purple',
-      }}>
+    <Tab.Navigator screenOptions={TAB_CONFIG}>
       <Tab.Screen
         name="Wallet"
         component={Home}
