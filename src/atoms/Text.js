@@ -10,7 +10,7 @@ const VARIANTS = {
     fontFamily: 'Inter-Regular',
   },
   title: {
-    color: Colors.blue,
+    color: Colors.yellow,
     fontFamily: 'Inter-SemiBold',
   },
 };
