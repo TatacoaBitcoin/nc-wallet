@@ -8,6 +8,10 @@
     {
       "path": "src/assets/fonts/Inter-SemiBold.ttf",
       "sha1": "5e0c44e57e7e090252d79f622899e67585bb892c"
+    },
+    {
+      "path": "src/assets/fonts/vcr_osd_mono.ttf",
+      "sha1": "6843782cf331dc53b5913c15bf3ee67ceef83705"
     }
   ]
 }
