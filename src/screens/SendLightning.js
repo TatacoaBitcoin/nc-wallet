@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {sendPayment} from '@breeztech/react-native-breez-sdk';
 
-import {ScreenTemplate, Text} from '../atoms';
+import {ScreenTemplate, Text, Button} from '../atoms';
 import {useLoading} from '../hooks/useLoading';
 import {fonts, margin} from '../styles/spacing';
 import {parseTime, invoiceDuration} from '../utils/parsing';
@@ -44,8 +44,16 @@ const SendLightning = ({navigation, route}) => {
               </Text>
             </View>
             <View style={styles.buttonContainer}>
-              <Button title="Pay Invoice" onPress={payInvoice} />
-              <Button title="Cancel" onPress={() => navigation.goBack()} />
+              <Button
+                text="Pay Invoice"
+                variant="primary"
+                onPress={payInvoice}
+              />
+              <Button
+                text="Cancel"
+                variant="outline"
+                onPress={() => navigation.goBack()}
+              />
               {isLoading && <Text>Payment is being processed...</Text>}
               {!pending && <Text>Payment successful</Text>}
             </View>
@@ -60,14 +68,17 @@ export {SendLightning};
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-around',
-    flex: 1,
+    flex: 6,
     marginHorizontal: margin.md,
   },
   content: {
     gap: margin.md,
+    flex: 4,
+    justifyContent: 'center',
   },
   buttonContainer: {
     gap: margin.md,
+    flex: 2,
+    justifyContent: 'center',
   },
 });
