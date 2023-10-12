@@ -1,9 +1,9 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, Button} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {ScreenTemplate} from '../atoms';
+import {Button, ScreenTemplate} from '../atoms';
 import colors from '../styles/colors';
 import {margin} from '../styles/spacing';
 import Logo from '../assets/images/logo.png';
@@ -23,11 +23,13 @@ const Welcome = ({navigation}) => {
         </View>
         <View style={styles.buttonsContainer}>
           <Button
-            title={t('welcome.btn.register')}
+            text={t('welcome.btn.register')}
+            variant="primary"
             onPress={() => navigation.navigate('Register')}
           />
           <Button
-            title={t('welcome.btn.recovery')}
+            text={t('welcome.btn.recovery')}
+            variant="outline"
             onPress={() => navigation.navigate('Recovery')}
           />
         </View>
@@ -56,5 +58,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flex: 1,
     gap: margin.md,
+    alignItems: 'center',
+    width: '100%',
   }
 });
