@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {sendPayment} from '@breeztech/react-native-breez-sdk';
+import {useTranslation} from 'react-i18next';
 
 import {ScreenTemplate, Text, Button} from '../atoms';
 import {useLoading} from '../hooks/useLoading';
@@ -11,6 +12,7 @@ const SendLightning = ({navigation, route}) => {
   const {data} = route.params;
   const [isLoading, withLoading] = useLoading();
   const [pending, setPending] = useState(true);
+  const {t} = useTranslation();
 
   const payInvoice = () =>
     withLoading(async () => {
@@ -36,21 +38,21 @@ const SendLightning = ({navigation, route}) => {
                   {data.amountMsat / 1000} sats
                 </Text>
                 <Text size={fonts.md} align="center">
-                  {data.note ? data.description : 'No description'}
+                  {data.note ? data.description : t('sendln.nodescription')}
                 </Text>
               </View>
               <Text size={fonts.sm} align="center">
-                Expiry: {invoiceDuration(data.expiry)}
+                {t('sendln.expiry')}: {invoiceDuration(data.expiry)}
               </Text>
             </View>
             <View style={styles.buttonContainer}>
               <Button
-                text="Pay Invoice"
+                text={t('sendln.paybtn')}
                 variant="primary"
                 onPress={payInvoice}
               />
               <Button
-                text="Cancel"
+                text={t('sendln.cancelbtn')}
                 variant="outline"
                 onPress={() => navigation.goBack()}
               />

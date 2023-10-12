@@ -41,5 +41,11 @@
   },
   "scanner": {
     "title": "Escanea código QR"
+  },
+  "sendln": {
+    "nodescription": "Sin descripción",
+    "expiry": "Expiración",
+    "paybtn": "Pagar",
+    "cancelbtn": "Cancelar"
   }
 }

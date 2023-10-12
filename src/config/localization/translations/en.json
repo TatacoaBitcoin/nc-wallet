@@ -41,5 +41,11 @@
   },
   "scanner": {
     "title": "Scan QR Code"
+  },
+  "sendln": {
+    "nodescription": "No description",
+    "expiry": "Expiry",
+    "paybtn": "Pay invoice",
+    "cancelbtn": "Cancel"
   }
 }
