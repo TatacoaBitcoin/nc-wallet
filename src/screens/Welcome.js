@@ -49,10 +49,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 4,
+    gap: margin.md,
   },
   text: {
     color: colors.lightPurple,
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'vcr_osd_mono',
     fontSize: 40,
   },
   buttonsContainer: {
