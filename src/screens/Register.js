@@ -1,11 +1,12 @@
 import React from 'react';
-import {ScrollView, Button} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {useMnemonics} from '../hooks/useMnemonics';
 import {useAccountState} from '../context/account.provider';
 import {WordList} from '../molecules';
-import {ScreenTemplate} from '../atoms';
+import {Button, ScreenTemplate} from '../atoms';
+import {margin} from '../styles/spacing';
 
 const Register = ({navigation}) => {
   const {t} = useTranslation();
@@ -18,11 +19,18 @@ const Register = ({navigation}) => {
       {words && (
         <ScrollView>
           <WordList list={words} />
-          <Button onPress={generateWords} title={t('register.btn.refresh')} />
-          <Button
-            onPress={() => saveAccount(words)}
-            title={t('register.btn.continue')}
-          />
+          <View style={styles.buttonsContainer}>
+            <Button
+              onPress={() => saveAccount(words)}
+              text={t('register.btn.continue')}
+              variant="primary"
+            />
+            <Button
+              onPress={generateWords}
+              text={t('register.btn.refresh')}
+              variant="outline"
+            />
+          </View>
         </ScrollView>
       )}
     </ScreenTemplate>
@@ -30,3 +38,9 @@ const Register = ({navigation}) => {
 };
 
 export {Register};
+
+const styles = StyleSheet.create({
+  buttonsContainer: {
+    gap: margin.md,
+  },
+});
