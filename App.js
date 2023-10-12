@@ -102,7 +102,7 @@ const AccountSetupFlow = () => {
   const {t} = useTranslation();
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={STACK_CONFIG}>
       <Stack.Screen
         name="Welcome"
         component={Welcome}
