@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Pressable, Text} from 'react-native';
+import {StyleSheet, View, Pressable} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {parseInput} from '@breeztech/react-native-breez-sdk';
+import {useTranslation} from 'react-i18next';
+
+import {Text} from '../atoms';
+import colors from '../styles/colors';
+import {fonts} from '../styles/spacing';
 
 const Controls = ({action, flash, navigation}) => {
   return (
@@ -11,18 +16,19 @@ const Controls = ({action, flash, navigation}) => {
       <Pressable style={styles.button} onPress={action}>
         <Icon
           name={flash ? 'brightness-7' : 'brightness-5'}
-          color={'red'}
+          color={colors.yellow}
           size={26}
         />
       </Pressable>
       <Pressable style={styles.button} onPress={() => navigation.goBack()}>
-        <Icon name={'close'} color={'red'} size={26} />
+        <Icon name={'close'} color={colors.yellow} size={26} />
       </Pressable>
     </View>
   );
 };
 
 const Scanner = ({navigation}) => {
+  const {t} = useTranslation();
   const [flash, setFlash] = useState(false);
 
   const onSuccess = async e => {
@@ -56,13 +62,15 @@ const Scanner = ({navigation}) => {
       reactivate={true}
       showMarker={true}
       flashMode={FlashMode}
-      topContent={<Text style={styles.textContainer}>Scan QR Code</Text>}
+      topContent={
+        <Text variant="title" size={fonts.md}>
+          {t('scanner.title')}
+        </Text>
+      }
       bottomContent={
         <Controls action={handleFlash} flash={flash} navigation={navigation} />
       }
-      // topViewStyle={styles.topView}
-      // cameraStyle={styles.cameraContainer}
-      containerStyle={{backgroundColor: 'black'}}
+      containerStyle={{backgroundColor: colors.black}}
     />
   );
 };
@@ -83,11 +91,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 1,
     borderRadius: 25,
-    borderColor: 'red',
-  },
-  textContainer: {
-    padding: 10,
-    color: 'red',
-    fontSize: 15,
+    borderColor: colors.yellow,
   },
 });

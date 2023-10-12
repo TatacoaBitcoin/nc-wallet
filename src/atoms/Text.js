@@ -9,6 +9,10 @@ const VARIANTS = {
     color: Colors.gray,
     fontFamily: 'Inter-Regular',
   },
+  secondary: {
+    color: Colors.lightblue,
+    fontFamily: 'Inter-Regular',
+  },
   title: {
     color: Colors.yellow,
     fontFamily: 'Inter-SemiBold',
@@ -16,7 +20,11 @@ const VARIANTS = {
   lightPurple: {
     color: Colors.lightPurple,
     fontFamily: 'Inter-SemiBold',
-  }
+  },
+  title2: {
+    color: Colors.purple,
+    fontFamily: 'Inter-SemiBold',
+  },
 };
 
 const Text = ({
