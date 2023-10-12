@@ -9,10 +9,11 @@ import {fonts, margin} from '../styles/spacing';
 import {parseTime, invoiceDuration} from '../utils/parsing';
 
 const SendLightning = ({navigation, route}) => {
+  const {t} = useTranslation();
   const {data} = route.params;
   const [isLoading, withLoading] = useLoading();
   const [pending, setPending] = useState(true);
-  const {t} = useTranslation();
+  const isExpired = Date.now() / 1000 - data.timestamp > data.expiry;
 
   const payInvoice = () =>
     withLoading(async () => {
@@ -42,7 +43,9 @@ const SendLightning = ({navigation, route}) => {
                 </Text>
               </View>
               <Text size={fonts.sm} align="center">
-                {t('sendln.expiry')}: {invoiceDuration(data.expiry)}
+                {isExpired
+                  ? t('sendln.expired')
+                  : `${t('sendln.expiry')}: ${invoiceDuration(data.expiry)}`}
               </Text>
             </View>
             <View style={styles.buttonContainer}>
@@ -50,6 +53,7 @@ const SendLightning = ({navigation, route}) => {
                 text={t('sendln.paybtn')}
                 variant="primary"
                 onPress={payInvoice}
+                disabled={isExpired}
               />
               <Button
                 text={t('sendln.cancelbtn')}
