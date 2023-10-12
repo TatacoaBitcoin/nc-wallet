@@ -13,6 +13,10 @@ const VARIANTS = {
     color: Colors.yellow,
     fontFamily: 'Inter-SemiBold',
   },
+  lightPurple: {
+    color: Colors.lightPurple,
+    fontFamily: 'Inter-SemiBold',
+  }
 };
 
 const Text = ({
@@ -20,6 +24,7 @@ const Text = ({
   variant = 'primary',
   size = fonts.sm,
   align = 'left',
+  bold = false,
 }) => {
   return (
     <RText
@@ -28,6 +33,7 @@ const Text = ({
         fontFamily: VARIANTS[variant].fontFamily,
         fontSize: size,
         textAlign: align,
+        fontWeight: bold ? 'bold' : 'regular',
       }}>
       {children}
     </RText>

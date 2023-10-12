@@ -17,22 +17,20 @@ const Register = ({navigation}) => {
   return (
     <ScreenTemplate>
       {words && (
-        <ScrollView>
-          <WordList list={words} />
-          <View style={styles.buttonsContainer}>
-            <Button
-              onPress={() => saveAccount(words)}
-              text={t('register.btn.continue')}
-              variant="primary"
-            />
-            <Button
-              onPress={generateWords}
-              text={t('register.btn.refresh')}
-              variant="outline"
-            />
-          </View>
-        </ScrollView>
+        <ScrollView><WordList list={words} /></ScrollView>
       )}
+      <View style={styles.buttonsContainer}>
+        <Button
+          onPress={() => saveAccount(words)}
+          text={t('register.btn.continue')}
+          variant="primary"
+        />
+        <Button
+          onPress={generateWords}
+          text={t('register.btn.refresh')}
+          variant="outline"
+        />
+      </View>
     </ScreenTemplate>
   );
 };
@@ -42,5 +40,6 @@ export {Register};
 const styles = StyleSheet.create({
   buttonsContainer: {
     gap: margin.md,
+    marginBottom: margin.xxl,
   },
 });
