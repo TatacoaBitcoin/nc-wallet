@@ -1,4 +1,5 @@
 export * from './BalanceCard';
+export * from './Button';
 export * from './CircleIconButton';
 export * from './Chip';
 export * from './ScreenTemplate';

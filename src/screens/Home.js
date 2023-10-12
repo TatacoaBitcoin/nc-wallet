@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
 import {useAccountState} from '../context/account.provider';
@@ -11,7 +12,10 @@ const Home = ({navigation}) => {
 
   return (
     <ScreenTemplate>
-      <View style={styles.topContainer}>
+      <LinearGradient
+        style={styles.topContainer}
+        colors={[colors.purple, colors.black]}
+      >
         <BalanceCard balance={balance} />
         <View style={styles.buttonsContainer}>
           <CircleIconButton
@@ -27,7 +31,7 @@ const Home = ({navigation}) => {
             onPress={() => navigation.navigate('Receive')}
           />
         </View>
-      </View>
+      </LinearGradient>
       <History />
     </ScreenTemplate>
   );
@@ -42,6 +46,8 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
     borderBottomRightRadius: 50,
     borderBottomLeftRadius: 50,
+    borderColor: colors.purple,
+    borderWidth: 1,
   },
   buttonsContainer: {
     display: 'flex',
