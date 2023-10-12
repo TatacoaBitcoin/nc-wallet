@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import {Text, Button} from 'react-native';
+import {Button} from 'react-native';
 import {sendPayment} from '@breeztech/react-native-breez-sdk';
 
-import {ScreenTemplate} from '../atoms';
+import {ScreenTemplate, Text} from '../atoms';
 import {useLoading} from '../hooks/useLoading';
+import {fonts} from '../styles/spacing';
+import {parseTime, invoiceDuration} from '../utils/parsing';
 
 const SendLightning = ({route}) => {
   const {data} = route.params;
@@ -24,9 +26,13 @@ const SendLightning = ({route}) => {
     <ScreenTemplate>
       {data && (
         <>
-          <Text>Amount: {data.amountMsat}mSat</Text>
-          <Text>Expiry: {data.expiry}</Text>
-          <Text>Timestamp: {data.timestamp}</Text>
+          <Text align="center">Amount</Text>
+          <Text variant="title" size={fonts.lg} align="center">
+            {data.amountMsat / 1000} sats
+          </Text>
+          <Text>Note: {data.note ? data.description : 'No description'}</Text>
+          <Text>Date: {parseTime(data.timestamp)}</Text>
+          <Text>Expiry: {invoiceDuration(data.expiry)}</Text>
           <Button title="Pay Invoice" onPress={payInvoice} />
           {isLoading && <Text>Payment is being processed...</Text>}
           {!pending && <Text>Payment successful</Text>}
