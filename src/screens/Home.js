@@ -6,16 +6,17 @@ import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
 import {useAccountState} from '../context/account.provider';
 import {History} from '../organisms';
 import colors from '../styles/colors';
+import {ResponseModal} from '../molecules';
 
 const Home = ({navigation}) => {
   const {balance} = useAccountState();
 
   return (
     <ScreenTemplate>
+      <ResponseModal />
       <LinearGradient
         style={styles.topContainer}
-        colors={[colors.purple, colors.black]}
-      >
+        colors={[colors.purple, colors.black]}>
         <BalanceCard balance={balance} />
         <View style={styles.buttonsContainer}>
           <CircleIconButton
