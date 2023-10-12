@@ -38,5 +38,15 @@
     "history": {
       "full": "See full history"
     }
+  },
+  "scanner": {
+    "title": "Scan QR Code"
+  },
+  "sendln": {
+    "nodescription": "No description",
+    "expired": "Expired",
+    "expiry": "Expiry",
+    "paybtn": "Pay invoice",
+    "cancelbtn": "Cancel"
   }
 }

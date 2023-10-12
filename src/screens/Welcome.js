@@ -15,8 +15,7 @@ const Welcome = ({navigation}) => {
     <ScreenTemplate>
       <LinearGradient
         colors={[colors.purple, colors.black]}
-        style={styles.container}
-      >
+        style={styles.container}>
         <View style={styles.logoContainer}>
           <Image source={Logo} />
           <Text style={styles.text}>Tatacoa Wallet</Text>
@@ -61,5 +60,5 @@ const styles = StyleSheet.create({
     gap: margin.md,
     alignItems: 'center',
     width: '100%',
-  }
+  },
 });

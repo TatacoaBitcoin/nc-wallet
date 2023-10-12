@@ -38,5 +38,15 @@
     "history": {
       "full": "Ver historial"
     }
+  },
+  "scanner": {
+    "title": "Escanea código QR"
+  },
+  "sendln": {
+    "nodescription": "Sin descripción",
+    "expired": "Factura vencida",
+    "expiry": "Expiración",
+    "paybtn": "Pagar",
+    "cancelbtn": "Cancelar"
   }
 }
