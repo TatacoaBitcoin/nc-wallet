@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
 import {TxCard, Text} from '../atoms';
+import {padding} from '../styles/spacing';
 
 const TxsList = ({list}) => {
   const data = list && list.slice(0, 5);
@@ -48,9 +49,9 @@ export {History};
 const styles = StyleSheet.create({
   container: {
     marginTop: 60,
-    paddingHorizontal: 20,
+    paddingHorizontal: padding.sm,
   },
   button: {
-    padding: 10,
+    padding: padding.sm,
   },
 });
