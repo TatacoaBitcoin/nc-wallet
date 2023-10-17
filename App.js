@@ -14,7 +14,7 @@ import {
   Recovery,
   Settings,
   SendLightning,
-  Receive,
+  ReceiveLightning,
   Scanner,
   TxDetails,
   TxList,
@@ -75,7 +75,7 @@ const MainFlow = () => {
       />
       <Stack.Screen
         name="Receive"
-        component={Receive}
+        component={ReceiveLightning}
         options={{
           title: t('navigation.mainflow.receive'),
         }}
