@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet, Keyboard} from 'react-native';
 import {receivePayment} from '@breeztech/react-native-breez-sdk';
 import QRCode from 'react-native-qrcode-svg';
 
@@ -13,7 +13,8 @@ const ReceiveLightning = ({navigation}) => {
   const [invoice, setInvoice] = useState();
   const [amount, setAmount] = useState('');
 
-  const getInvoice = sats => {
+  const getInvoice = async sats => {
+    Keyboard.dismiss();
     withLoading(async () => {
       try {
         const response = await receivePayment({
@@ -30,45 +31,79 @@ const ReceiveLightning = ({navigation}) => {
   return (
     <ScreenTemplate>
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <Text style={styles.text} align="center">
-            Enter amount
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="0"
-            placeholderTextColor={colors.gray}
-            inputMode="numeric"
-            value={amount}
-            onChangeText={setAmount}
-            caretHidden={true}
-          />
-          <Text
-            style={styles.text}
-            variant={'title2'}
-            size={fonts.md}
-            align="center">
-            sats
-          </Text>
-        </View>
-        <View style={styles.btnContainer}>
-          <Button
-            text="Generate QR Code"
-            variant="primary"
-            onPress={() => getInvoice(Number(amount))}
-            disabled={!amount}
-          />
-          <Button
-            text={'Cancel'}
-            variant="outline"
-            onPress={() => navigation.goBack()}
-          />
-        </View>
-        {isLoading && <Text style={styles.text}>Creating invoice ...</Text>}
-        {invoice && (
-          <View style={styles.qrContainer}>
-            <QRCode value={invoice} size={300} backgroundColor="transparent" />
-          </View>
+        {invoice ? (
+          <>
+            <View style={styles.header}>
+              <Text
+                style={styles.text}
+                variant={'title2'}
+                size={50}
+                align="center">
+                {amount}
+              </Text>
+              <Text
+                style={styles.text}
+                variant={'title2'}
+                size={fonts.md}
+                align="center">
+                sats
+              </Text>
+            </View>
+            <View style={styles.qrContainer}>
+              <QRCode
+                value={invoice}
+                size={300}
+                backgroundColor="transparent"
+              />
+            </View>
+          </>
+        ) : (
+          <>
+            <View style={styles.inputContainer}>
+              <Text style={styles.text} align="center">
+                Enter amount
+              </Text>
+              <TextInput
+                style={styles.input}
+                placeholder="0"
+                placeholderTextColor={colors.gray}
+                inputMode="numeric"
+                value={amount}
+                onChangeText={setAmount}
+                caretHidden={true}
+              />
+              <Text
+                style={styles.text}
+                variant={'title2'}
+                size={fonts.md}
+                align="center">
+                sats
+              </Text>
+            </View>
+            <View style={styles.btnContainer}>
+              {isLoading ? (
+                <Text
+                  style={styles.text}
+                  variant={'title2'}
+                  size={fonts.md}
+                  align="center">
+                  Loading...
+                </Text>
+              ) : (
+                <Button
+                  text="Generate invoice"
+                  variant="primary"
+                  onPress={() => getInvoice(Number(amount))}
+                  // disabled={!amount}
+                />
+              )}
+              <Button
+                text={'Cancel'}
+                variant="outline"
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+          </>
         )}
       </View>
     </ScreenTemplate>
@@ -104,5 +139,10 @@ const styles = StyleSheet.create({
   qrContainer: {
     alignItems: 'center',
     marginVertical: 20,
+    flex: 4,
+    justifyContent: 'center',
+  },
+  header: {
+    flex: 1,
   },
 });
