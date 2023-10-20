@@ -31,7 +31,7 @@ const Home = ({navigation}) => {
           />
         </View>
       </LinearGradient>
-      {/* <History /> */}
+      <History />
     </ScreenTemplate>
   );
 };
