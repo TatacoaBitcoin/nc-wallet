@@ -14,8 +14,7 @@ const Home = ({navigation}) => {
     <ScreenTemplate>
       <LinearGradient
         style={styles.topContainer}
-        colors={[colors.purple, colors.black]}
-      >
+        colors={[colors.purple, colors.black]}>
         <BalanceCard balance={balance} />
         <View style={styles.buttonsContainer}>
           <CircleIconButton
@@ -32,7 +31,7 @@ const Home = ({navigation}) => {
           />
         </View>
       </LinearGradient>
-      <History />
+      {/* <History /> */}
     </ScreenTemplate>
   );
 };
