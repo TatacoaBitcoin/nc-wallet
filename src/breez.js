@@ -1,7 +1,6 @@
 import {
-  // addEventListener,
   mnemonicToSeed,
-  NodeConfigType,
+  NodeConfigVariant,
   defaultConfig,
   EnvironmentType,
   connect,
@@ -11,11 +10,15 @@ import {
 import {BREEZ_API_KEY, BREEZ_INVITE_CODE, MNEMONIC_WORDS} from '@env';
 
 const initNode = async words => {
+  const onBreezEvent = event => {
+    console.log(`received event ${event.type}`);
+  };
+
   //TODO: use real words
   const seed = await mnemonicToSeed(MNEMONIC_WORDS);
 
   const nodeConfig = {
-    type: NodeConfigType.GREENLIGHT,
+    type: NodeConfigVariant.GREENLIGHT,
     config: {
       inviteCode: BREEZ_INVITE_CODE,
     },
@@ -29,7 +32,7 @@ const initNode = async words => {
 
   try {
     // Connect to the Breez SDK make it ready for use
-    await connect(config, seed);
+    await connect(config, seed, onBreezEvent);
   } catch (error) {
     console.log(error);
     return false;
