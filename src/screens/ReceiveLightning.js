@@ -50,7 +50,9 @@ const ReceiveLightning = ({navigation}) => {
               </Text>
             </View>
             <View style={styles.qrContainer}>
-              <QRCode value={invoice} size={300} backgroundColor="white" />
+              <View style={styles.qrBox}>
+                <QRCode value={invoice} size={300} backgroundColor="white" />
+              </View>
             </View>
             <View style={styles.btnContainer}>
               <Button text={'Copy'} variant="primary" onPress={() => {}} />
@@ -141,6 +143,11 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     flex: 4,
     justifyContent: 'center',
+  },
+  qrBox: {
+    backgroundColor: 'white',
+    padding: padding.md,
+    borderRadius: padding.md,
   },
   header: {
     flex: 1,
