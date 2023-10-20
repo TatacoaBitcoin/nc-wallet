@@ -50,11 +50,11 @@ const ReceiveLightning = ({navigation}) => {
               </Text>
             </View>
             <View style={styles.qrContainer}>
-              <QRCode
-                value={invoice}
-                size={300}
-                backgroundColor="transparent"
-              />
+              <QRCode value={invoice} size={300} backgroundColor="white" />
+            </View>
+            <View style={styles.btnContainer}>
+              <Button text={'Copy'} variant="primary" onPress={() => {}} />
+              <Button text={'Share'} variant="outline" onPress={() => {}} />
             </View>
           </>
         ) : (
