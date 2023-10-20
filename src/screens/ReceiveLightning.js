@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, TextInput, StyleSheet, Keyboard} from 'react-native';
 import {receivePayment} from '@breeztech/react-native-breez-sdk';
 import QRCode from 'react-native-qrcode-svg';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 import {useLoading} from '../hooks/useLoading';
 import {ScreenTemplate, Button, Text} from '../atoms';
@@ -12,6 +13,10 @@ const ReceiveLightning = ({navigation}) => {
   const [isLoading, withLoading] = useLoading();
   const [invoice, setInvoice] = useState();
   const [amount, setAmount] = useState('');
+
+  const copyToClipboard = string => {
+    Clipboard.setString(string);
+  };
 
   const getInvoice = async sats => {
     Keyboard.dismiss();
@@ -55,7 +60,12 @@ const ReceiveLightning = ({navigation}) => {
               </View>
             </View>
             <View style={styles.btnContainer}>
-              <Button text={'Copy'} variant="primary" onPress={() => {}} />
+              <Button
+                text={'Copy'}
+                variant="primary"
+                onPress={() => copyToClipboard(invoice)}
+              />
+              {/* TODO: implement share button */}
               <Button text={'Share'} variant="outline" onPress={() => {}} />
             </View>
           </>
