@@ -30,6 +30,7 @@ const Welcome = ({navigation}) => {
             text={t('welcome.btn.recovery')}
             variant="outline"
             onPress={() => navigation.navigate('Recovery')}
+            disabled={true}
           />
         </View>
       </LinearGradient>

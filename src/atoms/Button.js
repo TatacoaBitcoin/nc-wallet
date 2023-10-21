@@ -24,6 +24,11 @@ const VARIANTS = {
     color: colors.black,
     paddingHorizontal: padding.xxl,
   },
+  disabled: {
+    backgroundColor: colors.gray,
+    color: colors.blue,
+    paddingHorizontal: padding.xxl,
+  },
 };
 
 const Button = ({text, onPress, variant, disabled = false, icon}) => (
