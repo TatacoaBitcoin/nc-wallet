@@ -38,7 +38,7 @@ const Scanner = ({navigation}) => {
       const response = await parseInput(data);
       switch (response.type) {
         case 'bolt11':
-          navigation.replace('SendLightning', {data: response.data});
+          navigation.replace('SendLightning', {data: response.invoice});
           break;
         default:
           console.log('unsupported format');
