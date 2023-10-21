@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, Pressable} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {MaterialIndicator} from 'react-native-indicators';
 
 import colors from '../styles/colors';
 import {padding, fonts} from '../styles/spacing';
@@ -18,6 +18,11 @@ const VARIANTS = {
     borderColor: colors.yellow,
     borderWidth: 1,
     borderStyle: 'dashed',
+  },
+  loading: {
+    backgroundColor: colors.yellow,
+    color: colors.black,
+    paddingHorizontal: padding.xxl,
   },
 };
 
@@ -45,12 +50,11 @@ const Button = ({text, onPress, variant, disabled = false, icon}) => (
           fontWeight: VARIANTS[variant].fontWeight,
         },
       ]}>
-      {icon && (
-        <>
-          <Icon name={icon} color={VARIANTS[variant].color} size={18} />{' '}
-        </>
+      {variant === 'loading' ? (
+        <MaterialIndicator color={colors.purple} size={fonts.lg} />
+      ) : (
+        text
       )}
-      {text}
     </Text>
   </Pressable>
 );
