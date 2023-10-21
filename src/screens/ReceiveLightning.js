@@ -8,8 +8,10 @@ import {useLoading} from '../hooks/useLoading';
 import {ScreenTemplate, Button, Text} from '../atoms';
 import {margin, padding, fonts} from '../styles/spacing';
 import colors from '../styles/colors';
+import {useTranslation} from 'react-i18next';
 
 const ReceiveLightning = ({navigation}) => {
+  const {t} = useTranslation();
   const [isLoading, withLoading] = useLoading();
   const [invoice, setInvoice] = useState();
   const [amount, setAmount] = useState('');
@@ -61,19 +63,23 @@ const ReceiveLightning = ({navigation}) => {
             </View>
             <View style={styles.btnContainer}>
               <Button
-                text={'Copy'}
+                text={t('receiveln.copybtn')}
                 variant="primary"
                 onPress={() => copyToClipboard(invoice)}
               />
               {/* TODO: implement share button */}
-              <Button text={'Share'} variant="outline" onPress={() => {}} />
+              <Button
+                text={t('receiveln.sharebtn')}
+                variant="outline"
+                onPress={() => {}}
+              />
             </View>
           </>
         ) : (
           <>
             <View style={styles.inputContainer}>
               <Text style={styles.text} align="center">
-                Enter amount
+                {t('receiveln.header')}
               </Text>
               <TextInput
                 style={styles.input}
@@ -103,14 +109,14 @@ const ReceiveLightning = ({navigation}) => {
                 </Text>
               ) : (
                 <Button
-                  text="Generate invoice"
+                  text={t('receiveln.generatebtn')}
                   variant="primary"
                   onPress={() => getInvoice(Number(amount))}
                   // disabled={!amount}
                 />
               )}
               <Button
-                text={'Cancel'}
+                text={t('receiveln.cancelbtn')}
                 variant="outline"
                 onPress={() => navigation.goBack()}
               />

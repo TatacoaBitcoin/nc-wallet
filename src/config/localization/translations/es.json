@@ -48,5 +48,12 @@
     "expiry": "Expiración",
     "paybtn": "Pagar",
     "cancelbtn": "Cancelar"
+  },
+  "receiveln": {
+    "header": "Ingresar cantidad",
+    "generatebtn": "Generar factura",
+    "cancelbtn": "Cancelar",
+    "copybtn": "Copiar",
+    "sharebtn": "Compartir"
   }
 }

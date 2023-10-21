@@ -48,5 +48,12 @@
     "expiry": "Expiry",
     "paybtn": "Pay invoice",
     "cancelbtn": "Cancel"
+  },
+  "receiveln": {
+    "header": "Enter amount",
+    "generatebtn": "Generate invoice",
+    "cancelbtn": "Cancel",
+    "copybtn": "Copy",
+    "sharebtn": "Share"
   }
 }
