@@ -99,22 +99,12 @@ const ReceiveLightning = ({navigation}) => {
               </Text>
             </View>
             <View style={styles.btnContainer}>
-              {isLoading ? (
-                <Text
-                  style={styles.text}
-                  variant={'title2'}
-                  size={fonts.md}
-                  align="center">
-                  Loading...
-                </Text>
-              ) : (
-                <Button
-                  text={t('receiveln.generatebtn')}
-                  variant="primary"
-                  onPress={() => getInvoice(Number(amount))}
-                  // disabled={!amount}
-                />
-              )}
+              <Button
+                text={t('receiveln.generatebtn')}
+                variant={isLoading ? 'loading' : 'primary'}
+                onPress={() => getInvoice(Number(amount))}
+                disabled={isLoading || !amount}
+              />
               <Button
                 text={t('receiveln.cancelbtn')}
                 variant="outline"

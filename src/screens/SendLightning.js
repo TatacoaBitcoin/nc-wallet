@@ -51,7 +51,7 @@ const SendLightning = ({navigation, route}) => {
             <View style={styles.buttonContainer}>
               <Button
                 text={t('sendln.paybtn')}
-                variant="primary"
+                variant={isExpired ? 'disabled' : 'primary'}
                 onPress={payInvoice}
                 disabled={isExpired}
               />
