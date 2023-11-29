@@ -18,7 +18,7 @@ const SendLightning = ({navigation, route}) => {
   const payInvoice = () =>
     withLoading(async () => {
       try {
-        const response = await sendPayment(data['bolt11']);
+        const response = await sendPayment({bolt11: data.bolt11});
         setPending(response.pending);
       } catch (error) {
         console.log('invoice payment error: ', error);
