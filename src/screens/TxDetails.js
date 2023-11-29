@@ -36,8 +36,8 @@ const TxDetails = ({route}) => {
         </Text>
         <Text>Fee: {feeMsat / 1000} sats</Text>
         <Text>Note: {description}</Text>
-        <Text>Invoice: {details.bolt11}</Text>
-        <Text>Payment hash: {details.paymentHash}</Text>
+        <Text>Invoice: {details.data.bolt11}</Text>
+        <Text>Payment hash: {details.data.paymentHash}</Text>
       </View>
     </ScreenTemplate>
   );

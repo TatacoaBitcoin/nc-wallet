@@ -23,7 +23,10 @@ const History = () => {
 
   const fetchHistory = async () => {
     try {
-      const response = await listPayments({filter: 'all'});
+      const response = await listPayments({
+        filter: ['sent', 'received'],
+        includeFailures: true,
+      });
       setTxs(response);
     } catch (error) {
       console.log('fetch history error', error);
