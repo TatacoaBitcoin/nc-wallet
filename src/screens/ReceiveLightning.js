@@ -25,7 +25,7 @@ const ReceiveLightning = ({navigation}) => {
     withLoading(async () => {
       try {
         const response = await receivePayment({
-          amountSats: sats,
+          amountMsat: sats * 1000,
           description: `Invoice for ${sats} sats`,
         });
         setInvoice(response['lnInvoice']['bolt11']);
