@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     gap: margin.md,
   },
   text: {
-    color: colors.lightPurple,
+    color: 'white',
     fontFamily: 'vcr_osd_mono',
     fontSize: 40,
   },
