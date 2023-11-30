@@ -35,7 +35,7 @@ const initNode = async words => {
     await connect(config, seed, onBreezEvent);
   } catch (error) {
     console.log(error);
-    return false;
+    throw new Error('errors.initNode');
   }
 
   return true;
