@@ -7,6 +7,7 @@ import colors from '../styles/colors';
 import {fonts, margin, padding} from '../styles/spacing';
 
 const sizes = {
+  xs: 0.3,
   sm: 0.5,
   md: 0.8,
   lg: 1,
@@ -21,7 +22,7 @@ const VARIANTS = {
 
 const Modal = ({
   isVisible,
-  close,
+  onClose,
   children,
   size = 'sm',
   variant = 'primary',
@@ -40,12 +41,11 @@ const Modal = ({
           },
         ]}>
         <View style={styles.closeButton}>
-          <Pressable onPress={close}>
+          <Pressable onPress={onClose}>
             <Icon
               name="close"
               color={VARIANTS[variant].iconColor}
-              size={fonts.lg}
-              style={styles.icon}
+              size={fonts.md}
             />
           </Pressable>
         </View>
@@ -59,19 +59,16 @@ export {Modal};
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: margin.xxl,
     borderTopStartRadius: padding.md,
     borderTopEndRadius: padding.md,
-    padding: padding.lg,
+    padding: padding.md,
   },
   closeButton: {
     alignSelf: 'flex-end',
   },
   content: {
+    marginVertical: margin.sm,
     alignItems: 'center',
-    flex: 1,
-  },
-  icon: {
-    marginRight: margin.sm,
+    flexGrow: 1,
   },
 });

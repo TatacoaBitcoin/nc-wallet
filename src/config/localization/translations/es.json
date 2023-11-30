@@ -66,5 +66,8 @@
       "invoice": "Factura",
       "hash": "Hash de pago"
     }
-  }
+  },
+  "errors": {
+    "initNode": "No se pudo conectar al nodo",
+  },
 }

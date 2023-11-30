@@ -12,10 +12,15 @@ const Register = ({navigation}) => {
   const {t} = useTranslation();
   const {randomWords, generateWords} = useMnemonics();
   const words = randomWords && randomWords.split(' ');
-  const {isSavingAccount, saveAccount} = useAccountState();
+  const {
+    clearSavingError,
+    isSavingAccount,
+    saveAccount,
+    savingAccountError,
+  } = useAccountState();
 
   return (
-    <ScreenTemplate>
+    <ScreenTemplate clearError={clearSavingError} error={savingAccountError}>
       {words && (
         <ScrollView><WordList list={words} /></ScrollView>
       )}
