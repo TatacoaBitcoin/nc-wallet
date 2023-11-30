@@ -1,12 +1,16 @@
 import {useEffect, useState} from 'react';
 import * as Keychain from 'react-native-keychain';
-import {mnemonicToSeedHex, entropyToMnemonic, Wordlists} from '@dreson4/react-native-quick-bip39';
+import {
+  mnemonicToSeedHex,
+  entropyToMnemonic,
+  Wordlists,
+} from '@dreson4/react-native-quick-bip39';
 
 import {getBalance, initNode} from '../breez';
 
 const secureStore = async words => {
   const seed = mnemonicToSeedHex(words);
-  await Keychain.setGenericPassword("seed", seed);
+  await Keychain.setGenericPassword('seed', seed);
 };
 
 const secureRetrieve = async () => {
@@ -54,20 +58,20 @@ export const useAccount = () => {
     if (nodeIsOk) {
       await secureStore(words);
       setAccount(true);
-    };
+    }
   };
 
   const loadAccount = async () => {
     const words = await secureRetrieve();
     if (!words) {
-      setAccount(null)
+      setAccount(null);
       return;
     }
 
     const nodeIsOk = await initNode(words);
     if (nodeIsOk) {
       setAccount(true);
-    };
+    }
   };
 
   const resetAccount = async () => {
