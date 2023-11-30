@@ -26,12 +26,12 @@ const Welcome = ({navigation}) => {
             variant="primary"
             onPress={() => navigation.navigate('Register')}
           />
-          <Button
+          {/*<Button
             text={t('welcome.btn.recovery')}
             variant="outline"
             onPress={() => navigation.navigate('Recovery')}
             disabled={true}
-          />
+          />*/}
         </View>
       </LinearGradient>
     </ScreenTemplate>
