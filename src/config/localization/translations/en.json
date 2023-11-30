@@ -55,5 +55,16 @@
     "cancelbtn": "Cancel",
     "copybtn": "Copy",
     "sharebtn": "Share"
+  },
+  "history": {
+    "details": {
+      "time": "Time",
+      "status": "Status",
+      "type": "Type",
+      "fee": "Fee",
+      "note": "Note",
+      "invoice": "Invoice",
+      "hash": "Payment hash"
+    }
   }
 }

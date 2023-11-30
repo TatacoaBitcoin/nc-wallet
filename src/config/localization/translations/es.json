@@ -55,5 +55,16 @@
     "cancelbtn": "Cancelar",
     "copybtn": "Copiar",
     "sharebtn": "Compartir"
+  },
+  "history": {
+    "details": {
+      "time": "Fecha",
+      "status": "Estatus",
+      "type": "Tipo",
+      "fee": "Comisión",
+      "note": "Nota",
+      "invoice": "Factura",
+      "hash": "Hash de pago"
+    }
   }
 }
