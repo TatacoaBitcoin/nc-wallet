@@ -33,6 +33,7 @@ export const useAccount = () => {
     lightning: null,
     btc: null,
   });
+  const [isSavingAccount, setIsSavingAccount] = useState(false);
 
   useEffect(() => {
     loadAccount();
@@ -50,11 +51,13 @@ export const useAccount = () => {
   }, [account]);
 
   const saveAccount = async words => {
+    setIsSavingAccount(true);
     const nodeIsOk = await initNode(words);
     if (nodeIsOk) {
       await secureStore(words);
       setAccount(true);
     };
+    setIsSavingAccount(false);
   };
 
   const loadAccount = async () => {
@@ -75,5 +78,12 @@ export const useAccount = () => {
     setAccount(null);
   };
 
-  return {account, balance, saveAccount, loadAccount, resetAccount};
+  return {
+    account,
+    balance,
+    isSavingAccount,
+    loadAccount,
+    resetAccount,
+    saveAccount,
+  };
 };

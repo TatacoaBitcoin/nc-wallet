@@ -8,12 +8,13 @@ export const useAccountState = () => useContext(AccountContext);
 
 export const AccountProvider = ({children}) => {
   const {
-    account, balance, saveAccount, loadAccount, resetAccount
+    account, balance, isSavingAccount, saveAccount, loadAccount, resetAccount,
   } = useAccount();
 
   const state = {
     account,
     balance,
+    isSavingAccount,
     saveAccount,
     loadAccount,
     resetAccount,

@@ -12,7 +12,7 @@ const Register = ({navigation}) => {
   const {t} = useTranslation();
   const {randomWords, generateWords} = useMnemonics();
   const words = randomWords && randomWords.split(' ');
-  const {saveAccount} = useAccountState();
+  const {isSavingAccount, saveAccount} = useAccountState();
 
   return (
     <ScreenTemplate>
@@ -23,7 +23,7 @@ const Register = ({navigation}) => {
         <Button
           onPress={() => saveAccount(words)}
           text={t('register.btn.continue')}
-          variant="primary"
+          variant={isSavingAccount ? "loading" : "primary"}
         />
         <Button
           onPress={generateWords}
