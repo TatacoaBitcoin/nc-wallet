@@ -1,11 +1,13 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 import {parseTime} from '../utils/parsing';
 import {ScreenTemplate, Text} from '../atoms';
 import {fonts, padding} from '../styles/spacing';
 
 const TxDetails = ({route}) => {
+  const {t} = useTranslation();
   const {data} = route.params;
   const {
     amountMsat,
@@ -29,15 +31,28 @@ const TxDetails = ({route}) => {
             sats
           </Text>
         </View>
-        <Text>Time: {parseTime(paymentTime)}</Text>
-        <Text>Status: {pending ? 'PENDING' : 'PAID'}</Text>
         <Text>
-          Type: {details.type === 'ln' ? 'Lightning Network' : 'Bitcoin'}
+          {t('history.details.time')}: {parseTime(paymentTime)}
         </Text>
-        <Text>Fee: {feeMsat / 1000} sats</Text>
-        <Text>Note: {description}</Text>
-        <Text>Invoice: {details.data.bolt11}</Text>
-        <Text>Payment hash: {details.data.paymentHash}</Text>
+        <Text>
+          {t('history.details.status')}: {pending ? 'PENDING' : 'PAID'}
+        </Text>
+        <Text>
+          {t('history.details.type')}:{' '}
+          {details.type === 'ln' ? 'Lightning Network' : 'Bitcoin'}
+        </Text>
+        <Text>
+          {t('history.details.fee')}: {feeMsat / 1000} sats
+        </Text>
+        <Text>
+          {t('history.details.note')}: {description}
+        </Text>
+        <Text>
+          {t('history.details.invoice')}: {details.data.bolt11}
+        </Text>
+        <Text>
+          {t('history.details.hash')}: {details.data.paymentHash}
+        </Text>
       </View>
     </ScreenTemplate>
   );
