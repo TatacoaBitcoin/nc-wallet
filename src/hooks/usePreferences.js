@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const usePreferences = () => {
   const {i18n} = useTranslation(); //i18n instance
-  const [isloadingConfig, setIsLoadingConfig] = useState(false);
+  const [isloadingPreferences, setIsLoadingPreferences] = useState(false);
   const [currency, setCurrency] = useState({});
   const [lang, setLang] = useState('');
 
@@ -36,7 +36,7 @@ export const usePreferences = () => {
   );
 
   const configSetup = useCallback(async () => {
-    setIsLoadingConfig(true);
+    setIsLoadingPreferences(true);
     try {
       const value = await AsyncStorage.multiGet([
         'settings.currency.value',
@@ -55,7 +55,7 @@ export const usePreferences = () => {
     } catch (error) {
       console.log('Error reading settings', error);
     } finally {
-      setIsLoadingConfig(false);
+      setIsLoadingPreferences(false);
     }
   }, [languageSetup]);
 
@@ -66,7 +66,7 @@ export const usePreferences = () => {
   }, [currency.value, configSetup]);
 
   return {
-    isloadingConfig,
+    isloadingPreferences,
     currency,
     lang,
     currencySetup,
