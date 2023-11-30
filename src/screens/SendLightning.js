@@ -49,18 +49,19 @@ const SendLightning = ({navigation, route}) => {
               </Text>
             </View>
             <View style={styles.buttonContainer}>
-              <Button
-                text={t('sendln.paybtn')}
-                variant={isExpired ? 'disabled' : 'primary'}
-                onPress={payInvoice}
-                disabled={isExpired}
-              />
+              {!isExpired && (
+                <Button
+                  text={t('sendln.paybtn')}
+                  variant={isLoading ? 'loading' : 'primary'}
+                  onPress={payInvoice}
+                  disabled={isLoading}
+                />
+              )}
               <Button
                 text={t('sendln.cancelbtn')}
                 variant="outline"
                 onPress={() => navigation.goBack()}
               />
-              {isLoading && <Text>Payment is being processed...</Text>}
               {!pending && <Text>Payment successful</Text>}
             </View>
           </>
