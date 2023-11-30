@@ -3,25 +3,18 @@ import {View, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Colors from '../styles/colors';
 
-const Dropdown = () => {
+const Dropdown = ({data, value, setValue, placeholder}) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Apple', value: 'apple'},
-    {label: 'Banana', value: 'banana'},
-    {label: 'Pear', value: 'pear'},
-  ]);
 
   return (
     <View style={styles.container}>
       <DropDownPicker
         open={open}
         value={value}
-        items={items}
+        items={data}
         setOpen={setOpen}
         setValue={setValue}
-        setItems={setItems}
-        placeholder={'Choose a fruit.'}
+        placeholder={placeholder}
         {...dropdownStyles}
       />
     </View>
