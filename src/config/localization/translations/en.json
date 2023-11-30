@@ -1,7 +1,13 @@
 {
   "navigation": {
     "mainflow": {
-      "home": "Home",
+      "send": "Send Lightning",
+      "receive": "Receive Lightning",
+      "list": "Transaction history",
+      "details": "Details"
+    },
+    "tabflow": {
+      "wallet": "Wallet",
       "settings": "Settings"
     },
     "accountsetupflow": {
@@ -26,6 +32,39 @@
   "settings": {
     "btn": {
       "reset": "Remove account"
+    }
+  },
+  "home": {
+    "history": {
+      "full": "See full history"
+    }
+  },
+  "scanner": {
+    "title": "Scan QR Code"
+  },
+  "sendln": {
+    "nodescription": "No description",
+    "expired": "Expired",
+    "expiry": "Expiry",
+    "paybtn": "Pay invoice",
+    "cancelbtn": "Cancel"
+  },
+  "receiveln": {
+    "header": "Enter amount",
+    "generatebtn": "Generate invoice",
+    "cancelbtn": "Cancel",
+    "copybtn": "Copy",
+    "sharebtn": "Share"
+  },
+  "history": {
+    "details": {
+      "time": "Time",
+      "status": "Status",
+      "type": "Type",
+      "fee": "Fee",
+      "note": "Note",
+      "invoice": "Invoice",
+      "hash": "Payment hash"
     }
   }
 }

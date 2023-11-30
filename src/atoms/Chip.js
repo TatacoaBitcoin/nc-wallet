@@ -1,10 +1,17 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-const Chip = ({children}) => {
+import {Text} from '../atoms';
+import {margin, fonts, padding} from '../styles/spacing';
+import colors from '../styles/colors';
+
+const Chip = ({children, number}) => {
   return (
     <View style={styles.container}>
-      <Text>{children}</Text>
+      <View style={styles.chip}>
+        <Text variant="primary" size={fonts.sm} bold={false}>{number}</Text>
+        <Text variant="lightPurple" size={fonts.md} bold={true}>{children}</Text>
+      </View>
     </View>
   );
 };
@@ -13,9 +20,16 @@ export {Chip};
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomWidth: 0.5,
-    borderColor: 'black',
-    marginVertical: 10,
-    padding: 5,
+    flexDirection: 'row',
+  },
+  chip: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    paddingHorizontal: padding.md,
+    paddingVertical: padding.xs,
+    borderRadius: margin.lg,
+    borderColor: colors.gray,
+    alignItems: 'center',
+    gap: margin.sm,
   },
 });

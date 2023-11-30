@@ -3,3 +3,8 @@ export * from './Welcome';
 export * from './Register';
 export * from './Recovery';
 export * from './Settings';
+export * from './SendLightning';
+export * from './ReceiveLightning';
+export * from './Scanner';
+export * from './TxList';
+export * from './TxDetails';

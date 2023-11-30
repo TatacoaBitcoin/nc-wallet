@@ -1,7 +1,13 @@
 {
   "navigation": {
     "mainflow": {
-      "home": "Inicio",
+      "send": "Enviar Lightning",
+      "receive": "Recibir Lightning",
+      "list": "Historial de transacciones",
+      "details": "Detalles"
+    },
+    "tabflow": {
+      "wallet": "Billetera",
       "settings": "Ajustes"
     },
     "accountsetupflow": {
@@ -26,6 +32,39 @@
   "settings": {
     "btn": {
       "reset": "Eliminar cuenta"
+    }
+  },
+  "home": {
+    "history": {
+      "full": "Ver historial"
+    }
+  },
+  "scanner": {
+    "title": "Escanea código QR"
+  },
+  "sendln": {
+    "nodescription": "Sin descripción",
+    "expired": "Factura vencida",
+    "expiry": "Expiración",
+    "paybtn": "Pagar",
+    "cancelbtn": "Cancelar"
+  },
+  "receiveln": {
+    "header": "Ingresar cantidad",
+    "generatebtn": "Generar factura",
+    "cancelbtn": "Cancelar",
+    "copybtn": "Copiar",
+    "sharebtn": "Compartir"
+  },
+  "history": {
+    "details": {
+      "time": "Fecha",
+      "status": "Estatus",
+      "type": "Tipo",
+      "fee": "Comisión",
+      "note": "Nota",
+      "invoice": "Factura",
+      "hash": "Hash de pago"
     }
   }
 }
