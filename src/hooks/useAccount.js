@@ -9,15 +9,14 @@ import {
 import {getBalance, initNode} from '../breez';
 
 const secureStore = async words => {
-  const seed = mnemonicToSeedHex(words);
-  await Keychain.setGenericPassword('seed', seed);
+  await Keychain.setGenericPassword("words", words);
 };
 
 const secureRetrieve = async () => {
   try {
     const credentials = await Keychain.getGenericPassword();
     if (credentials) {
-      return entropyToMnemonic(credentials.password, Wordlists['en']);
+      return credentials.password;
     } else {
       return false;
     }

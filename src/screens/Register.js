@@ -11,20 +11,19 @@ import {margin} from '../styles/spacing';
 const Register = ({navigation}) => {
   const {t} = useTranslation();
   const {randomWords, generateWords} = useMnemonics();
-  const words = randomWords && randomWords.split(' ');
   const {clearSavingError, isSavingAccount, saveAccount, savingAccountError} =
     useAccountState();
 
   return (
     <ScreenTemplate clearError={clearSavingError} error={savingAccountError}>
-      {words && (
+      {randomWords && (
         <ScrollView>
-          <WordList list={words} />
+          <WordList list={randomWords.split(' ')} />
         </ScrollView>
       )}
       <View style={styles.buttonsContainer}>
         <Button
-          onPress={() => saveAccount(words)}
+          onPress={() => saveAccount(randomWords)}
           text={t('register.btn.continue')}
           variant={isSavingAccount ? 'loading' : 'primary'}
         />
