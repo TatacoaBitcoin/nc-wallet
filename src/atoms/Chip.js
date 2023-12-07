@@ -9,8 +9,12 @@ const Chip = ({children, number}) => {
   return (
     <View style={styles.container}>
       <View style={styles.chip}>
-        <Text variant="primary" size={fonts.sm} bold={false}>{number}</Text>
-        <Text variant="lightPurple" size={fonts.md} bold={true}>{children}</Text>
+        <Text variant="primary" size={fonts.md} bold={false}>
+          {number}.
+        </Text>
+        <Text variant="primary" size={fonts.md} bold={true}>
+          {children}
+        </Text>
       </View>
     </View>
   );

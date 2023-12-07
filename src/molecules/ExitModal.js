@@ -3,30 +3,37 @@ import {StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTranslation} from 'react-i18next';
 
-import {Modal, Text} from '../atoms';
+import {Modal, Text, Button} from '../atoms';
 import {fonts, margin} from '../styles/spacing';
+import {useAccountState} from '../context/account.provider';
 
-const AlertModal = ({isVisible, onClose, message}) => {
+const ExitModal = ({isVisible, onClose}) => {
   const {t} = useTranslation();
+  const {resetAccount} = useAccountState();
 
   return (
-    <Modal isVisible={isVisible} onClose={onClose} size="xs">
+    <Modal isVisible={isVisible} onClose={onClose} size="sm">
       <View style={styles.container}>
         <Icon name="alert-decagram-outline" color={'red'} size={fonts.xxxl} />
         <Text size={fonts.md} align="center">
-          {t(message)}
+          {t('settings.exitModal')}
         </Text>
+        <Button
+          text={t('settings.btn.reset')}
+          variant="primary"
+          onPress={() => resetAccount()}
+        />
       </View>
     </Modal>
   );
 };
 
-export {AlertModal};
+export {ExitModal};
 
 const styles = StyleSheet.create({
   container: {
     marginTop: margin.md,
     alignItems: 'center',
-    gap: margin.sm,
+    gap: margin.xl,
   },
 });

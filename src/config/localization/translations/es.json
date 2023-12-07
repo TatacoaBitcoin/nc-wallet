@@ -31,8 +31,13 @@
   },
   "settings": {
     "btn": {
+      "show": "Mostrar palabras semilla",
       "reset": "Eliminar cuenta"
-    }
+    },
+    "currency": "Divisa",
+    "lang": "Idioma",
+    "exitModal": "Desea eliminar su cuenta? Asegurese de guardar sus palabras semilla.",
+    "seedModal": "Sus palabras semilla son la única forma de recuperar su billetera en caso que pierda su teléfono o que desintale la app. Perder su semilla hace irrecuperable sus fondos."
   },
   "home": {
     "history": {
@@ -68,6 +73,6 @@
     }
   },
   "errors": {
-    "initNode": "No se pudo conectar al nodo",
-  },
+    "initNode": "No se pudo conectar al nodo"
+  }
 }
