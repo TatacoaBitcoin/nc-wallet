@@ -10,23 +10,25 @@ export const AccountProvider = ({children}) => {
   const {
     account,
     balance,
-    clearSavingError,
+    savingAccountError,
     isSavingAccount,
+    clearSavingError,
     loadAccount,
     resetAccount,
     saveAccount,
-    savingAccountError,
+    secureRetrieve,
   } = useAccount();
 
   const state = {
     account,
     balance,
-    clearSavingError,
-    isSavingAccount,
-    saveAccount,
     savingAccountError,
+    isSavingAccount,
+    clearSavingError,
     loadAccount,
     resetAccount,
+    saveAccount,
+    secureRetrieve,
   };
 
   return (

@@ -62,7 +62,7 @@ export const useAccount = () => {
       if (nodeIsOk) {
         await secureStore(words);
         setAccount(true);
-      };
+      }
     } catch (error) {
       setSavingAccountError(error);
     }
@@ -89,16 +89,17 @@ export const useAccount = () => {
 
   const clearSavingError = () => {
     setSavingAccountError('');
-  }
+  };
 
   return {
     account,
     balance,
-    clearSavingError,
+    savingAccountError,
     isSavingAccount,
+    clearSavingError,
     loadAccount,
     resetAccount,
     saveAccount,
-    savingAccountError,
+    secureRetrieve,
   };
 };
