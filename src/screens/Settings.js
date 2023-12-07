@@ -7,19 +7,23 @@ import {LANGUAGES} from '../config/localization/languages';
 import {CURRENCIES} from '../config/localization/currencies';
 import {usePreferencesState} from '../context/preferences.provider';
 import {margin, padding} from '../styles/spacing';
-import {ExitModal} from '../molecules';
+import {ExitModal, SeedModal} from '../molecules';
 
 const Settings = () => {
   const {lang, currency} = usePreferencesState();
   const {t} = useTranslation();
   const [isExitModalVisible, setIsExitModalVisible] = useState(false);
+  const [isSeedModalVisible, setIsSeedModalVisible] = useState(false);
 
   const openExitModal = () => setIsExitModalVisible(true);
   const closeExitModal = () => setIsExitModalVisible(false);
+  const openSeedModal = () => setIsSeedModalVisible(true);
+  const closeSeedModal = () => setIsSeedModalVisible(false);
 
   return (
     <ScreenTemplate>
       <ExitModal isVisible={isExitModalVisible} onClose={closeExitModal} />
+      <SeedModal isVisible={isSeedModalVisible} onClose={closeSeedModal} />
       <View style={styles.container}>
         <View style={styles.content}>
           <Text variant="title">Currency</Text>
@@ -38,7 +42,11 @@ const Settings = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button text="Show seed words" variant="primary" onPress={() => {}} />
+          <Button
+            text="Show seed words"
+            variant="primary"
+            onPress={openSeedModal}
+          />
           <Button
             text={t('settings.btn.reset')}
             variant="outline"
