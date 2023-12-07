@@ -6,21 +6,30 @@ import {
   connect,
   nodeInfo,
 } from '@breeztech/react-native-breez-sdk';
+import { toByteArray } from 'react-native-quick-base64';
 
-import {BREEZ_API_KEY, BREEZ_INVITE_CODE, MNEMONIC_WORDS} from '@env';
+import {
+  BREEZ_API_KEY,
+  DEVICE_CERTIFICATE_BASE64,
+  DEVICE_KEY_BASE64,
+} from '@env';
 
 const initNode = async words => {
   const onBreezEvent = event => {
     console.log(`received event ${event.type}`);
   };
 
-  //TODO: use real words
-  const seed = await mnemonicToSeed(MNEMONIC_WORDS);
+  const seed = await mnemonicToSeed(words);
+
+  const greenlightCredentials = {
+    deviceKey: Array.from(toByteArray(DEVICE_KEY_BASE64)),
+    deviceCert: Array.from(toByteArray(DEVICE_CERTIFICATE_BASE64)),
+  };
 
   const nodeConfig = {
     type: NodeConfigVariant.GREENLIGHT,
     config: {
-      inviteCode: BREEZ_INVITE_CODE,
+      partnerCredentials: greenlightCredentials,
     },
   };
 
