@@ -3,13 +3,16 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {Button, ScreenTemplate} from '../atoms';
+import {Button, ScreenTemplate, Dropdown} from '../atoms';
 import colors from '../styles/colors';
 import {margin} from '../styles/spacing';
 import Logo from '../assets/images/logo.png';
+import {LANGUAGES} from '../config/localization/languages';
+import {usePreferencesState} from '../context/preferences.provider';
 
 const Welcome = ({navigation}) => {
   const {t} = useTranslation();
+  const {lang} = usePreferencesState();
 
   return (
     <ScreenTemplate>
@@ -32,6 +35,13 @@ const Welcome = ({navigation}) => {
             onPress={() => navigation.navigate('Recovery')}
             disabled={true}
           />*/}
+          <Dropdown
+            id="lang"
+            data={LANGUAGES}
+            placeholder={'Select language'}
+            selectedValue={lang}
+            width="80%"
+          />
         </View>
       </LinearGradient>
     </ScreenTemplate>
