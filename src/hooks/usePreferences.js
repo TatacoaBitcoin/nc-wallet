@@ -30,11 +30,11 @@ export const usePreferences = () => {
     [i18n],
   );
 
-  const configSetup = useCallback(async () => {
+  const loadPreferences = useCallback(async () => {
     setIsLoadingPreferences(true);
     try {
       const value = await AsyncStorage.multiGet(['currency', 'lang']);
-      if (value[1][1]) {
+      if (value[0][1]) {
         languageSetup(value[1][1]);
         setCurrency(JSON.parse(value[0][1]));
       } else {
@@ -50,10 +50,8 @@ export const usePreferences = () => {
   }, [languageSetup]);
 
   useEffect(() => {
-    if (!currency.value) {
-      configSetup();
-    }
-  }, [currency.value, configSetup]);
+    loadPreferences();
+  }, []);
 
   return {
     isloadingPreferences,

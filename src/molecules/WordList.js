@@ -18,8 +18,8 @@ export {WordList};
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: margin.xl,
-    marginVertical: margin.xxl,
+    marginHorizontal: margin.md,
+    marginVertical: margin.md,
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
