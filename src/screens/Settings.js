@@ -14,7 +14,7 @@ const Settings = () => {
   return (
     <ScreenTemplate>
       <Text variant="title">Language</Text>
-      <Dropdown data={LANGUAGES} placeholder={'Select language'} />
+      <Dropdown id="lang" data={LANGUAGES} placeholder={'Select language'} />
       <Text variant="title">Currency</Text>
       <Dropdown
         id="currency"

@@ -7,11 +7,15 @@ import {usePreferencesState} from '../context/preferences.provider';
 const Dropdown = ({id, data, placeholder}) => {
   const [open, setOpen] = useState(false);
   const [item, setItem] = useState(null);
-  const {currencySetup} = usePreferencesState();
+  const {currencySetup, languageSetup} = usePreferencesState();
 
   const valueHandler = selectedItem => {
     if (id === 'currency') {
       currencySetup(selectedItem);
+      return;
+    }
+    if (id === 'lang') {
+      languageSetup(selectedItem.value);
       return;
     }
   };

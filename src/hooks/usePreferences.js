@@ -34,7 +34,6 @@ export const usePreferences = () => {
     setIsLoadingPreferences(true);
     try {
       const value = await AsyncStorage.multiGet(['currency', 'lang']);
-      console.log(value);
       if (value[1][1]) {
         languageSetup(value[1][1]);
         setCurrency(JSON.parse(value[0][1]));
