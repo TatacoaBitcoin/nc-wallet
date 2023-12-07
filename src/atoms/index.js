@@ -6,3 +6,4 @@ export * from './ScreenTemplate';
 export * from './TxCard';
 export * from './Text';
 export * from './Modal';
+export * from './Dropdown';
