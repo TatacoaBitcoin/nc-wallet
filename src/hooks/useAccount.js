@@ -1,6 +1,10 @@
 import {useEffect, useState} from 'react';
 import * as Keychain from 'react-native-keychain';
-import {mnemonicToSeedHex, entropyToMnemonic, Wordlists} from '@dreson4/react-native-quick-bip39';
+import {
+  mnemonicToSeedHex,
+  entropyToMnemonic,
+  Wordlists,
+} from '@dreson4/react-native-quick-bip39';
 
 import {getBalance, initNode} from '../breez';
 
@@ -67,14 +71,14 @@ export const useAccount = () => {
   const loadAccount = async () => {
     const words = await secureRetrieve();
     if (!words) {
-      setAccount(null)
+      setAccount(null);
       return;
     }
 
     const nodeIsOk = await initNode(words);
     if (nodeIsOk) {
       setAccount(true);
-    };
+    }
   };
 
   const resetAccount = async () => {

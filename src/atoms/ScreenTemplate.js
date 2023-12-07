@@ -30,7 +30,6 @@ const ScreenTemplate = ({children, clearError, error}) => {
         paddingBottom: insets.bottom,
         paddingLeft: insets.left,
         paddingRight: insets.right,
-        backgroundColor: '',
         backgroundColor: colors.black,
       }}>
       {children}
