@@ -21,7 +21,7 @@ const Dropdown = ({id, data, placeholder, selectedValue}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[open ? {zIndex: 9, height: '100%'} : {zIndex: 1}]}>
       <DropDownPicker
         open={open}
         value={selectedValue}
@@ -38,20 +38,12 @@ const Dropdown = ({id, data, placeholder, selectedValue}) => {
 
 export {Dropdown};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 15,
-  },
-});
-
 const dropdownStyles = StyleSheet.create({
   dropDownContainerStyle: {
     borderWidth: 1,
     borderColor: Colors.gray,
     backgroundColor: Colors.black,
+    flex: 1,
   },
   placeholderStyle: {
     color: Colors.gray,
