@@ -1,21 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {useAccountState} from '../context/account.provider';
 import {ScreenTemplate, Dropdown, Text, Button} from '../atoms';
 import {LANGUAGES} from '../config/localization/languages';
 import {CURRENCIES} from '../config/localization/currencies';
 import {usePreferencesState} from '../context/preferences.provider';
 import {margin, padding} from '../styles/spacing';
+import {ExitModal} from '../molecules';
 
 const Settings = () => {
   const {lang, currency} = usePreferencesState();
-  const {resetAccount} = useAccountState();
   const {t} = useTranslation();
+  const [isExitModalVisible, setIsExitModalVisible] = useState(false);
+
+  const openExitModal = () => setIsExitModalVisible(true);
+  const closeExitModal = () => setIsExitModalVisible(false);
 
   return (
     <ScreenTemplate>
+      <ExitModal isVisible={isExitModalVisible} onClose={closeExitModal} />
       <View style={styles.container}>
         <View style={styles.content}>
           <Text variant="title">Currency</Text>
@@ -34,15 +38,11 @@ const Settings = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button
-            text="Show seed words"
-            variant="primary"
-            onPress={() => resetAccount()}
-          />
+          <Button text="Show seed words" variant="primary" onPress={() => {}} />
           <Button
             text={t('settings.btn.reset')}
             variant="outline"
-            onPress={() => resetAccount()}
+            onPress={openExitModal}
           />
         </View>
       </View>
