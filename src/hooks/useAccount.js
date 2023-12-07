@@ -37,6 +37,8 @@ export const useAccount = () => {
     lightning: null,
     btc: null,
   });
+  const [isSavingAccount, setIsSavingAccount] = useState(false);
+  const [savingAccountError, setSavingAccountError] = useState('');
 
   useEffect(() => {
     loadAccount();
@@ -54,11 +56,17 @@ export const useAccount = () => {
   }, [account]);
 
   const saveAccount = async words => {
-    const nodeIsOk = await initNode(words);
-    if (nodeIsOk) {
-      await secureStore(words);
-      setAccount(true);
+    setIsSavingAccount(true);
+    try {
+      const nodeIsOk = await initNode(words);
+      if (nodeIsOk) {
+        await secureStore(words);
+        setAccount(true);
+      };
+    } catch (error) {
+      setSavingAccountError(error);
     }
+    setIsSavingAccount(false);
   };
 
   const loadAccount = async () => {
@@ -79,5 +87,18 @@ export const useAccount = () => {
     setAccount(null);
   };
 
-  return {account, balance, saveAccount, loadAccount, resetAccount};
+  const clearSavingError = () => {
+    setSavingAccountError('');
+  }
+
+  return {
+    account,
+    balance,
+    clearSavingError,
+    isSavingAccount,
+    loadAccount,
+    resetAccount,
+    saveAccount,
+    savingAccountError,
+  };
 };
