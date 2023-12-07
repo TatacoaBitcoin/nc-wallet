@@ -8,15 +8,10 @@ export const usePreferences = () => {
   const [currency, setCurrency] = useState({});
   const [lang, setLang] = useState('');
 
-  const currencySetup = useCallback(async (value, useDecimals) => {
+  const currencySetup = useCallback(async selectedCurrency => {
     try {
-      let updatedCurrency = {value: value, decimals: useDecimals};
-      console.log(updatedCurrency);
-      //   setCurrency(currency => ({...currency, ...updatedCurrency}));
-      //   await AsyncStorage.multiSet([
-      //     ['preferences.currency.value', value],
-      //     ['preferences.currency.decimals', useDecimals],
-      //   ]);
+      setCurrency(selectedCurrency);
+      await AsyncStorage.setItem('currency', JSON.stringify(selectedCurrency));
     } catch (error) {
       console.log('Error setting currency preference', error);
     }
@@ -26,7 +21,7 @@ export const usePreferences = () => {
     async value => {
       try {
         setLang(value);
-        await AsyncStorage.setItem('preferences.lang', value);
+        await AsyncStorage.setItem('lang', value);
         await i18n.changeLanguage(value); //changes the app language
       } catch (error) {
         console.log('Error setting language preference', error);
@@ -38,19 +33,15 @@ export const usePreferences = () => {
   const configSetup = useCallback(async () => {
     setIsLoadingPreferences(true);
     try {
-      const value = await AsyncStorage.multiGet([
-        'settings.currency.value',
-        'settings.currency.decimals',
-        'settings.lang',
-      ]);
-      if (value[5][1]) {
-        let updatedCurrency = {value: value[2][1], decimals: value[3][1]};
-        languageSetup(value[4][1]);
-        setCurrency(currency => ({...currency, ...updatedCurrency}));
+      const value = await AsyncStorage.multiGet(['currency', 'lang']);
+      console.log(value);
+      if (value[1][1]) {
+        languageSetup(value[1][1]);
+        setCurrency(JSON.parse(value[0][1]));
       } else {
         let defaultCurrency = {value: 'COP', decimals: 'false'};
-        setCurrency(currency => ({...currency, ...defaultCurrency}));
-        setLang('es');
+        setCurrency(defaultCurrency);
+        languageSetup('es');
       }
     } catch (error) {
       console.log('Error reading settings', error);

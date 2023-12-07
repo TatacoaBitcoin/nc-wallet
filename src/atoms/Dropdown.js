@@ -2,19 +2,30 @@ import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Colors from '../styles/colors';
+import {usePreferencesState} from '../context/preferences.provider';
 
-const Dropdown = ({data, value, setValue, placeholder}) => {
+const Dropdown = ({id, data, placeholder}) => {
   const [open, setOpen] = useState(false);
+  const [item, setItem] = useState(null);
+  const {currencySetup} = usePreferencesState();
+
+  const valueHandler = selectedItem => {
+    if (id === 'currency') {
+      currencySetup(selectedItem);
+      return;
+    }
+  };
 
   return (
     <View style={styles.container}>
       <DropDownPicker
         open={open}
-        value={value}
+        value={item}
         items={data}
         setOpen={setOpen}
-        setValue={setValue}
+        setValue={setItem}
         placeholder={placeholder}
+        onSelectItem={valueHandler}
         {...dropdownStyles}
       />
     </View>
