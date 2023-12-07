@@ -31,8 +31,13 @@
   },
   "settings": {
     "btn": {
+      "show": "Show seed words",
       "reset": "Remove account"
-    }
+    },
+    "currency": "Currency",
+    "lang": "Language",
+    "exitModal": "Are you sure you want to delete your account? Make sure to save your seed words.",
+    "seedModal": "Your seed words are the only mean to recover you account in case you lose your phone or uninstall the app. Losing your seed will make your funds unrecoverable."
   },
   "home": {
     "history": {
@@ -68,6 +73,6 @@
     }
   },
   "errors": {
-    "initNode": "Cannot stablish a connection with the node",
-  },
+    "initNode": "Cannot stablish a connection with the node"
+  }
 }

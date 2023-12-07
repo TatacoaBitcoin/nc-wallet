@@ -26,14 +26,14 @@ const Settings = () => {
       <SeedModal isVisible={isSeedModalVisible} onClose={closeSeedModal} />
       <View style={styles.container}>
         <View style={styles.content}>
-          <Text variant="title">Currency</Text>
+          <Text variant="title">{t('settings.currency')}</Text>
           <Dropdown
             id="currency"
             data={CURRENCIES}
             placeholder={'Select currency'}
             selectedValue={currency.value}
           />
-          <Text variant="title">Language</Text>
+          <Text variant="title">{t('settings.lang')}</Text>
           <Dropdown
             id="lang"
             data={LANGUAGES}
@@ -43,7 +43,7 @@ const Settings = () => {
         </View>
         <View style={styles.buttonContainer}>
           <Button
-            text="Show seed words"
+            text={t('settings.btn.show')}
             variant="primary"
             onPress={openSeedModal}
           />

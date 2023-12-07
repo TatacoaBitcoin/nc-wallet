@@ -16,8 +16,7 @@ const ExitModal = ({isVisible, onClose}) => {
       <View style={styles.container}>
         <Icon name="alert-decagram-outline" color={'red'} size={fonts.xxxl} />
         <Text size={fonts.md} align="center">
-          Are you sure you want to delete your account? Make sure to save your
-          seed words.
+          {t('settings.exitModal')}
         </Text>
         <Button
           text={t('settings.btn.reset')}

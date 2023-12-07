@@ -31,7 +31,7 @@ const SeedModal = ({isVisible, onClose}) => {
       <View style={styles.container}>
         <Icon name="alert-decagram-outline" color={'red'} size={fonts.xxxl} />
         <Text variant="primary" size={fonts.md}>
-          Currency
+          {t('settings.seedModal')}
         </Text>
         {seed && <WordList list={seed} />}
       </View>
