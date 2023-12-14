@@ -23,24 +23,25 @@ const Welcome = ({navigation}) => {
           <Image source={Logo} />
           <Text style={styles.text}>Tatacoa Wallet</Text>
         </View>
-        <View style={styles.buttonsContainer}>
-          <Button
-            text={t('welcome.btn.register')}
-            variant="primary"
-            onPress={() => navigation.navigate('Register')}
-          />
-          {/*<Button
-            text={t('welcome.btn.recovery')}
-            variant="outline"
-            onPress={() => navigation.navigate('Recovery')}
-            disabled={true}
-          />*/}
+        <View style={styles.dropdownContainer}>
           <Dropdown
             id="lang"
             data={LANGUAGES}
             placeholder={'Select language'}
             selectedValue={lang}
             width="80%"
+          />
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Button
+            text={t('welcome.btn.register')}
+            variant="primary"
+            onPress={() => navigation.navigate('Register')}
+          />
+          <Button
+            text={t('welcome.btn.recovery')}
+            variant="outline"
+            onPress={() => navigation.navigate('Recovery')}
           />
         </View>
       </LinearGradient>
@@ -54,12 +55,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'space-between'
   },
   logoContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 4,
     gap: margin.md,
+  },
+  dropdownContainer: {
+    alignItems: 'center',
+    flex: 1,
   },
   text: {
     color: 'white',

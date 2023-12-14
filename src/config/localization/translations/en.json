@@ -74,5 +74,10 @@
   },
   "errors": {
     "initNode": "Cannot stablish a connection with the node"
-  }
+  },
+  "recovery": {
+    "btn": {
+      "recover": "Recover",
+    },
+  },
 }
