@@ -29,7 +29,7 @@ const Welcome = ({navigation}) => {
             data={LANGUAGES}
             placeholder={'Select language'}
             selectedValue={lang}
-            width="50%"
+            width="80%"
           />
         </View>
         <View style={styles.buttonsContainer}>

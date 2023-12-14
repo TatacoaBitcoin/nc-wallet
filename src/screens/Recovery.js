@@ -20,8 +20,9 @@ const RECOVERY_WORD_COUNT = 12;
 const Recovery = () => {
   const {t} = useTranslation();
   const {lang} = usePreferencesState();
-  const {saveAccount} = useAccountState();
   const [words, setWords] = useState(Array(RECOVERY_WORD_COUNT).fill(''));
+  const {clearSavingError, isSavingAccount, saveAccount, savingAccountError} =
+    useAccountState();
 
   const handleInputChange = (value, index) => {
     const updatedWords = [...words];
@@ -30,7 +31,7 @@ const Recovery = () => {
   };
 
   const wordsAreComplete = () => {
-    return words.filter(item => item !== '').length < RECOVERY_WORD_COUNT;
+    return words.filter(item => item !== '').length == RECOVERY_WORD_COUNT;
   };
 
   const onContinue = () => {
@@ -39,15 +40,22 @@ const Recovery = () => {
   };
 
   const isValidWord = word => {
-    if (Wordlists[lang].includes(word)) {
+    // TODO: add support for spanish words
+    if (Wordlists['en'].includes(word)) {
       return true;
     } else {
       return false;
     }
   };
 
+  getButtonVariant = () => {
+    return !wordsAreComplete()
+      ? 'disabled'
+      : isSavingAccount ? 'loading' : 'primary';
+  };
+
   return (
-    <ScreenTemplate>
+    <ScreenTemplate clearError={clearSavingError} error={savingAccountError}>
       <View style={styles.screenContainer}>
         <ScrollView
           style={styles.scrollView}
@@ -57,7 +65,7 @@ const Recovery = () => {
               key={idx}
               style={[
                 styles.inputContainer,
-                word.length > 3
+                word.length > 2
                   ? isValidWord(word)
                     ? styles.inputContainerValid
                     : styles.inputContainerInvalid
@@ -77,9 +85,8 @@ const Recovery = () => {
         <Button
           text={t('recovery.btn.recover')}
           onPress={onContinue}
-          disabled={wordsAreComplete()}
-          // variant={isSavingAccount ? 'loading' : 'primary'}
-          variant={'primary'}
+          disabled={!wordsAreComplete()}
+          variant={getButtonVariant()}
         />
       </View>
     </ScreenTemplate>

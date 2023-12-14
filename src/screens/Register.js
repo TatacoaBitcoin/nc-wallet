@@ -2,6 +2,7 @@ import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
+import {usePreferencesState} from '../context/preferences.provider';
 import {useMnemonics} from '../hooks/useMnemonics';
 import {useAccountState} from '../context/account.provider';
 import {WordList} from '../molecules';
@@ -10,6 +11,8 @@ import {margin} from '../styles/spacing';
 
 const Register = ({navigation}) => {
   const {t} = useTranslation();
+  const {lang} = usePreferencesState();
+  // TODO: add support for spanish words
   const {randomWords, generateWords} = useMnemonics();
   const {clearSavingError, isSavingAccount, saveAccount, savingAccountError} =
     useAccountState();
