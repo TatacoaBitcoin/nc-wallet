@@ -6,10 +6,15 @@ import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
 import {useAccountState} from '../context/account.provider';
 import {History} from '../organisms';
 import colors from '../styles/colors';
+import {useRate} from '../hooks/useRate';
+import {usePreferences} from '../hooks/usePreferences';
 
 const Home = ({navigation}) => {
   const {balance} = useAccountState();
+  const {currency} = usePreferences();
+  const {rate} = useRate(currency.value);
 
+  console.log(rate);
   return (
     <ScreenTemplate>
       <LinearGradient
