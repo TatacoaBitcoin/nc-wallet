@@ -14,13 +14,12 @@ const Home = ({navigation}) => {
   const {currency} = usePreferences();
   const {rate} = useRate(currency.value);
 
-  console.log(rate);
   return (
     <ScreenTemplate>
       <LinearGradient
         style={styles.topContainer}
         colors={[colors.purple, colors.black]}>
-        <BalanceCard balance={balance} />
+        <BalanceCard balance={balance} rate={rate} currency={currency} />
         <View style={styles.buttonsContainer}>
           <CircleIconButton
             icon="arrow-collapse-up"
