@@ -74,5 +74,10 @@
   },
   "errors": {
     "initNode": "No se pudo conectar al nodo"
-  }
+  },
+  "recovery": {
+    "btn": {
+      "recover": "Recuperar",
+    },
+  },
 }
