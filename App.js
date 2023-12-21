@@ -18,6 +18,7 @@ import {
   Scanner,
   TxDetails,
   TxList,
+  Splash,
 } from './src/screens';
 import {useAccountState} from './src/context/account.provider';
 import colors from './src/styles/colors';
@@ -104,6 +105,13 @@ const AccountSetupFlow = () => {
 
   return (
     <Stack.Navigator screenOptions={STACK_CONFIG}>
+      <Stack.Screen
+        name="Splash"
+        component={Splash}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="Welcome"
         component={Welcome}

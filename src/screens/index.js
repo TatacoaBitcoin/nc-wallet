@@ -8,3 +8,4 @@ export * from './ReceiveLightning';
 export * from './Scanner';
 export * from './TxList';
 export * from './TxDetails';
+export * from './Splash';
