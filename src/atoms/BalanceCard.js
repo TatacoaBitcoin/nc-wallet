@@ -1,18 +1,40 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import colors from '../styles/colors';
 
-const BalanceCard = ({balance}) => {
+import colors from '../styles/colors';
+import {fiatConversion} from '../utils/parsing';
+import {useRate} from '../hooks/useRate';
+import {useBreezState} from '../context/breez.provider';
+import {usePreferencesState} from '../context/preferences.provider';
+
+const BalanceCard = () => {
+  const {balance} = useBreezState();
+  const {currency} = usePreferencesState();
+  const {rate} = useRate(currency.value);
+  const [isFiat, setIsFiat] = useState(false);
+  const totalBalance = balance.lightning / 1000 + balance.btc;
+
+  const toggleCurrency = () => setIsFiat(!isFiat);
+
   return (
     <View style={styles.container}>
-      <View style={styles.totalBalanceContainer}>
+      <Pressable style={styles.totalBalanceContainer} onPress={toggleCurrency}>
         <Icon name="swap-vertical" color={colors.yellow} size={20} />
-        <Text style={styles.totalAmount}>
-          {balance.lightning / 1000 + balance.btc}
-        </Text>
-        <Text style={styles.amount}>sats</Text>
-      </View>
+        {isFiat ? (
+          <>
+            <Text style={styles.totalAmount}>
+              {fiatConversion(totalBalance, rate, currency.decimals)}
+            </Text>
+            <Text style={styles.amount}>{currency.value}</Text>
+          </>
+        ) : (
+          <>
+            <Text style={styles.totalAmount}>{totalBalance}</Text>
+            <Text style={styles.amount}>sats</Text>
+          </>
+        )}
+      </Pressable>
       <View style={styles.balanceContainer}>
         <Icon name="lightning-bolt-circle" color={colors.yellow} size={20} />
         <Text style={styles.amount}>{balance.lightning / 1000} sats</Text>

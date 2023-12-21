@@ -8,14 +8,12 @@ import {History} from '../organisms';
 import colors from '../styles/colors';
 
 const Home = ({navigation}) => {
-  const {balance} = useBreezState();
-
   return (
     <ScreenTemplate>
       <LinearGradient
         style={styles.topContainer}
         colors={[colors.purple, colors.black]}>
-        <BalanceCard balance={balance} />
+        <BalanceCard />
         <View style={styles.buttonsContainer}>
           <CircleIconButton
             icon="arrow-collapse-up"
