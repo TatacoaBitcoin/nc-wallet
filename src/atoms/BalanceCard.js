@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import colors from '../styles/colors';
 import {fiatConversion} from '../utils/parsing';
+import {useRate} from '../hooks/useRate';
+import {usePreferences} from '../hooks/usePreferences';
+import {useAccountState} from '../context/account.provider';
 
-const BalanceCard = ({balance, rate, currency}) => {
+const BalanceCard = () => {
+  const {balance} = useAccountState();
+  const {currency} = usePreferences();
+  const {rate} = useRate(currency.value);
   const [isFiat, setIsFiat] = useState(false);
   const totalBalance = balance.lightning / 1000 + balance.btc;
 

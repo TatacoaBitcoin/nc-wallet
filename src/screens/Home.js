@@ -3,23 +3,16 @@ import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
-import {useAccountState} from '../context/account.provider';
 import {History} from '../organisms';
 import colors from '../styles/colors';
-import {useRate} from '../hooks/useRate';
-import {usePreferences} from '../hooks/usePreferences';
 
 const Home = ({navigation}) => {
-  const {balance} = useAccountState();
-  const {currency} = usePreferences();
-  const {rate} = useRate(currency.value);
-
   return (
     <ScreenTemplate>
       <LinearGradient
         style={styles.topContainer}
         colors={[colors.purple, colors.black]}>
-        <BalanceCard balance={balance} rate={rate} currency={currency} />
+        <BalanceCard />
         <View style={styles.buttonsContainer}>
           <CircleIconButton
             icon="arrow-collapse-up"

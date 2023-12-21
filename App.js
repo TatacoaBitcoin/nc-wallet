@@ -39,6 +39,7 @@ const TAB_CONFIG = {
     fontFamily: 'Inter-Regular',
   },
   tabBarActiveTintColor: colors.purple,
+  unmountOnBlur: true,
 };
 
 const STACK_CONFIG = {
