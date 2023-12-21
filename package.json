@@ -11,7 +11,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@breeztech/react-native-breez-sdk": "^0.2.10",
+    "@breeztech/react-native-breez-sdk": "^0.2.12",
     "@craftzdog/react-native-buffer": "^6.0.5",
     "@dreson4/react-native-quick-bip39": "^0.0.5",
     "@nandorojo/swr-react-native": "^1.2.0",
