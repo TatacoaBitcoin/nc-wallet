@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
+import {useBreezState} from '../context/breez.provider';
 import {History} from '../organisms';
 import colors from '../styles/colors';
 
