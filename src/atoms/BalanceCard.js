@@ -13,35 +13,50 @@ const BalanceCard = () => {
   const {currency} = usePreferencesState();
   const {rate} = useRate(currency.value);
   const [isFiat, setIsFiat] = useState(false);
-  const totalBalance = balance.lightning / 1000 + balance.btc;
+  const lnBalance = balance.lightning / 1000;
+  const btcBalance = balance.btc / 1000;
+  const totalBalance = lnBalance + btcBalance;
 
   const toggleCurrency = () => setIsFiat(!isFiat);
+
+  const getTotalBalance = () => {
+    return isFiat
+      ? fiatConversion(totalBalance, rate, currency.decimals)
+      : totalBalance.toFixed(0);
+  };
+
+  const getLnBalance = () => {
+    return isFiat
+      ? fiatConversion(lnBalance, rate, currency.decimals)
+      : lnBalance.toFixed(0);
+  };
+
+  const getBtcBalance = () => {
+    return isFiat
+      ? fiatConversion(btcBalance, rate, currency.decimals)
+      : btcBalance.toFixed(0);
+  };
+
+  const getUnit = () => {
+    return isFiat ? currency.value : 'sats';
+  };
 
   return (
     <View style={styles.container}>
       <Pressable style={styles.totalBalanceContainer} onPress={toggleCurrency}>
         <Icon name="swap-vertical" color={colors.yellow} size={20} />
-        {isFiat ? (
-          <>
-            <Text style={styles.totalAmount}>
-              {fiatConversion(totalBalance, rate, currency.decimals)}
-            </Text>
-            <Text style={styles.amount}>{currency.value}</Text>
-          </>
-        ) : (
-          <>
-            <Text style={styles.totalAmount}>{totalBalance}</Text>
-            <Text style={styles.amount}>sats</Text>
-          </>
-        )}
+        <>
+          <Text style={styles.totalAmount}>{getTotalBalance()}</Text>
+          <Text style={styles.amount}>{getUnit()}</Text>
+        </>
       </Pressable>
       <View style={styles.balanceContainer}>
         <Icon name="lightning-bolt-circle" color={colors.yellow} size={20} />
-        <Text style={styles.amount}>{balance.lightning / 1000} sats</Text>
+        <Text style={styles.amount}>{`${getLnBalance()} ${getUnit()}`}</Text>
       </View>
       <View style={styles.balanceContainer}>
         <Icon name="bitcoin" color={colors.yellow} size={20} />
-        <Text style={styles.amount}>{balance.btc} sats</Text>
+        <Text style={styles.amount}>{`${getBtcBalance()} ${getUnit()}`}</Text>
       </View>
     </View>
   );
