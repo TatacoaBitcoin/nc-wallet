@@ -43,14 +43,13 @@ export const useAccount = () => {
     loadAccount();
   }, []);
 
+  const fetchBalance = async () => {
+    const nodeBalance = await getBalance();
+    setBalance(nodeBalance);
+  };
+
   useEffect(() => {
     if (!account) return;
-
-    async function fetchBalance() {
-      const nodeBalance = await getBalance();
-      setBalance(nodeBalance);
-    }
-
     fetchBalance();
   }, [account]);
 
@@ -91,7 +90,9 @@ export const useAccount = () => {
   };
 
   const eventCallback = event => {
-    console.log(event);
+    if (['invoicePaid', 'paymentSucceed'].includes(event.type)) {
+      fetchBalance();
+    }
   };
 
   return {
