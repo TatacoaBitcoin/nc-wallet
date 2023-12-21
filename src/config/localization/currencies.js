@@ -1,282 +1,282 @@
 export const CURRENCIES = [
   {
-    value: 'CNY',
-    label: 'CNY - Yuan Renminbi',
     decimals: true,
-  },
-  {
-    value: 'AUD',
-    label: 'AUD - Australian Dollar',
-    decimals: true,
-  },
-  {
-    value: 'CHF',
-    label: 'CHF - Swiss Franc',
-    decimals: true,
-  },
-  {
-    value: 'SGD',
-    label: 'SGD - Singapore Dollar',
-    decimals: true,
-  },
-  {
-    value: 'RON',
-    label: 'RON - Romanian Leu',
-    decimals: true,
-  },
-  {
-    value: 'JPY',
-    label: 'JPY - 円',
-    decimals: false,
-  },
-  {
-    value: 'USD',
-    label: 'USD - US Dollar',
-    decimals: true,
-  },
-  {
-    value: 'THB',
-    label: 'THB - Baht',
-    decimals: true,
-  },
-  {
-    value: 'DOP',
-    label: 'DOP - Peso Dominicano',
-    decimals: true,
-  },
-  {
-    value: 'ILS',
-    label: 'ILS - New Israeli Shekel',
-    decimals: true,
-  },
-  {
-    value: 'HUF',
-    label: 'HUF - Forint',
-    decimals: false,
-  },
-  {
-    value: 'PAB',
-    label: 'PAB - Balboa',
-    decimals: true,
-  },
-  {
-    value: 'ZAR',
-    label: 'ZAR - Rand',
-    decimals: true,
-  },
-  {
-    value: 'INR',
-    label: 'INR - Indian Rupee',
-    decimals: true,
-  },
-  {
-    value: 'ANG',
-    label: 'ANG - Netherlands Antillean Guilder',
-    decimals: true,
-  },
-  {
-    value: 'NOK',
-    label: 'NOK - Norwegian Krone',
-    decimals: true,
-  },
-  {
-    value: 'XOF',
-    label: 'XOF - CFA Franc BCEAO',
-    decimals: false,
-  },
-  {
-    value: 'CAD',
-    label: 'CAD - Canadian Dollar',
-    decimals: true,
-  },
-  {
-    value: 'BRL',
-    label: 'BRL - Real',
-    decimals: true,
-  },
-  {
-    value: 'MYR',
-    label: 'MYR - Malaysian Ringgit',
-    decimals: true,
-  },
-  {
-    value: 'GBP',
-    label: 'GBP - Pound Sterling',
-    decimals: true,
-  },
-  {
-    value: 'EUR',
-    label: 'EUR - Euro',
-    decimals: true,
-  },
-  {
-    value: 'RUB',
-    label: 'RUB - Russian Ruble',
-    decimals: true,
-  },
-  {
-    value: 'TRY',
-    label: 'TRY - Turkish Lira',
-    decimals: true,
-  },
-  {
-    value: 'PLN',
-    label: 'PLN - Zloty',
-    decimals: true,
-  },
-  {
-    value: 'NZD',
-    label: 'NZD - New Zealand Dollar',
-    decimals: true,
-  },
-  {
-    value: 'IDR',
-    label: 'IDR - Rupiah',
-    decimals: true,
-  },
-  {
-    value: 'PEN',
-    label: 'PEN - Sol',
-    decimals: true,
-  },
-  {
-    value: 'CZK',
-    label: 'CZK - Czech Koruna',
-    decimals: true,
-  },
-  {
-    value: 'SEK',
-    label: 'SEK - Swedish Krona',
-    decimals: true,
-  },
-  {
-    value: 'TWD',
-    label: 'TWD - New Taiwan Dollar',
-    decimals: false,
-  },
-  {
-    value: 'COP',
-    label: 'COP - Peso Colombiano',
-    decimals: false,
-  },
-  {
-    value: 'HKD',
-    label: 'HKD - Hong Kong Dollar',
-    decimals: true,
-  },
-  {
-    value: 'UYU',
-    label: 'UYU - Peso Uruguayo',
-    decimals: false,
-  },
-  {
-    value: 'CLP',
-    label: 'CLP - Peso Chileno',
-    decimals: false,
-  },
-  {
-    value: 'PYG',
-    label: 'PYG - Guaraní',
-    decimals: false,
-  },
-  {
-    value: 'JMD',
-    label: 'JMD - Jamaican Dollar',
-    decimals: true,
-  },
-  {
-    value: 'VES',
-    label: 'VES - Bolivar Soberano',
-    decimals: true,
-  },
-  {
-    value: 'NAD',
-    label: 'NAD - Namibia Dollar',
-    decimals: true,
-  },
-  {
-    value: 'PHP',
-    label: 'PHP - Piso',
-    decimals: true,
-  },
-  {
-    value: 'NGN',
-    label: 'NGN - Naira',
-    decimals: true,
-  },
-  {
-    value: 'KES',
-    label: 'KES - Kenyan Shilling',
-    decimals: true,
-  },
-  {
-    value: 'VND',
-    label: 'VND - Dong',
-    decimals: false,
-  },
-  {
-    value: 'AED',
     label: 'AED - UAE Dirham',
+    value: 'AED',
+  },
+  {
     decimals: true,
+    label: 'ANG - Netherlands Antillean Guilder',
+    value: 'ANG',
   },
   {
-    value: 'HNL',
-    label: 'HNL - Lempira',
     decimals: true,
-  },
-  {
-    value: 'TTD',
-    label: 'TTD - Trinidad and Tobago Dollar',
-    decimals: true,
-  },
-  {
-    value: 'MXN',
-    label: 'MXN - Peso Mexicano',
-    decimals: true,
-  },
-  {
-    value: 'KRW',
-    label: 'KRW - 원',
-    decimals: false,
-  },
-  {
-    value: 'DKK',
-    label: 'DKK - Danish Krone',
-    decimals: true,
-  },
-  {
-    value: 'BGN',
-    label: 'BGN - Bulgarian Lev',
-    decimals: true,
-  },
-  {
-    value: 'BOB',
-    label: 'BOB - Boliviano',
-    decimals: true,
-  },
-  {
-    value: 'GTQ',
-    label: 'GTQ - Quetzal',
-    decimals: true,
-  },
-  {
-    value: 'LBP',
-    label: 'LBP - Lebanese Pound',
-    decimals: true,
-  },
-  {
-    value: 'PKR',
-    label: 'PKR - Pakistan Rupee',
-    decimals: true,
-  },
-  {
-    value: 'CRC',
-    label: 'CRC - Cost Rican Colon',
-    decimals: true,
-  },
-  {
-    value: 'ARS',
     label: 'ARS - Peso Argentino',
+    value: 'ARS',
+  },
+  {
     decimals: true,
+    label: 'AUD - Australian Dollar',
+    value: 'AUD',
+  },
+  {
+    decimals: true,
+    label: 'BGN - Bulgarian Lev',
+    value: 'BGN',
+  },
+  {
+    decimals: true,
+    label: 'BOB - Boliviano',
+    value: 'BOB',
+  },
+  {
+    decimals: true,
+    label: 'BRL - Real',
+    value: 'BRL',
+  },
+  {
+    decimals: true,
+    label: 'CAD - Canadian Dollar',
+    value: 'CAD',
+  },
+  {
+    decimals: true,
+    label: 'CHF - Swiss Franc',
+    value: 'CHF',
+  },
+  {
+    decimals: false,
+    label: 'CLP - Peso Chileno',
+    value: 'CLP',
+  },
+  {
+    decimals: true,
+    label: 'CNY - Yuan Renminbi',
+    value: 'CNY',
+  },
+  {
+    decimals: false,
+    label: 'COP - Peso Colombiano',
+    value: 'COP',
+  },
+  {
+    decimals: true,
+    label: 'CRC - Cost Rican Colon',
+    value: 'CRC',
+  },
+  {
+    decimals: true,
+    label: 'CZK - Czech Koruna',
+    value: 'CZK',
+  },
+  {
+    decimals: true,
+    label: 'DKK - Danish Krone',
+    value: 'DKK',
+  },
+  {
+    decimals: true,
+    label: 'DOP - Peso Dominicano',
+    value: 'DOP',
+  },
+  {
+    decimals: true,
+    label: 'EUR - Euro',
+    value: 'EUR',
+  },
+  {
+    decimals: true,
+    label: 'GBP - Pound Sterling',
+    value: 'GBP',
+  },
+  {
+    decimals: true,
+    label: 'GTQ - Quetzal',
+    value: 'GTQ',
+  },
+  {
+    decimals: true,
+    label: 'HKD - Hong Kong Dollar',
+    value: 'HKD',
+  },
+  {
+    decimals: true,
+    label: 'HNL - Lempira',
+    value: 'HNL',
+  },
+  {
+    decimals: false,
+    label: 'HUF - Forint',
+    value: 'HUF',
+  },
+  {
+    decimals: true,
+    label: 'IDR - Rupiah',
+    value: 'IDR',
+  },
+  {
+    decimals: true,
+    label: 'ILS - New Israeli Shekel',
+    value: 'ILS',
+  },
+  {
+    decimals: true,
+    label: 'INR - Indian Rupee',
+    value: 'INR',
+  },
+  {
+    decimals: true,
+    label: 'JMD - Jamaican Dollar',
+    value: 'JMD',
+  },
+  {
+    decimals: false,
+    label: 'JPY - 円',
+    value: 'JPY',
+  },
+  {
+    decimals: true,
+    label: 'KES - Kenyan Shilling',
+    value: 'KES',
+  },
+  {
+    decimals: false,
+    label: 'KRW - 원',
+    value: 'KRW',
+  },
+  {
+    decimals: true,
+    label: 'LBP - Lebanese Pound',
+    value: 'LBP',
+  },
+  {
+    decimals: true,
+    label: 'MXN - Peso Mexicano',
+    value: 'MXN',
+  },
+  {
+    decimals: true,
+    label: 'MYR - Malaysian Ringgit',
+    value: 'MYR',
+  },
+  {
+    decimals: true,
+    label: 'NAD - Namibia Dollar',
+    value: 'NAD',
+  },
+  {
+    decimals: true,
+    label: 'NGN - Naira',
+    value: 'NGN',
+  },
+  {
+    decimals: true,
+    label: 'NOK - Norwegian Krone',
+    value: 'NOK',
+  },
+  {
+    decimals: true,
+    label: 'NZD - New Zealand Dollar',
+    value: 'NZD',
+  },
+  {
+    decimals: true,
+    label: 'PAB - Balboa',
+    value: 'PAB',
+  },
+  {
+    decimals: true,
+    label: 'PEN - Sol',
+    value: 'PEN',
+  },
+  {
+    decimals: true,
+    label: 'PHP - Piso',
+    value: 'PHP',
+  },
+  {
+    decimals: true,
+    label: 'PKR - Pakistan Rupee',
+    value: 'PKR',
+  },
+  {
+    decimals: true,
+    label: 'PLN - Zloty',
+    value: 'PLN',
+  },
+  {
+    decimals: false,
+    label: 'PYG - Guaraní',
+    value: 'PYG',
+  },
+  {
+    decimals: true,
+    label: 'RON - Romanian Leu',
+    value: 'RON',
+  },
+  {
+    decimals: true,
+    label: 'RUB - Russian Ruble',
+    value: 'RUB',
+  },
+  {
+    decimals: true,
+    label: 'SEK - Swedish Krona',
+    value: 'SEK',
+  },
+  {
+    decimals: true,
+    label: 'SGD - Singapore Dollar',
+    value: 'SGD',
+  },
+  {
+    decimals: true,
+    label: 'THB - Baht',
+    value: 'THB',
+  },
+  {
+    decimals: true,
+    label: 'TRY - Turkish Lira',
+    value: 'TRY',
+  },
+  {
+    decimals: true,
+    label: 'TTD - Trinidad and Tobago Dollar',
+    value: 'TTD',
+  },
+  {
+    decimals: false,
+    label: 'TWD - New Taiwan Dollar',
+    value: 'TWD',
+  },
+  {
+    decimals: true,
+    label: 'USD - US Dollar',
+    value: 'USD',
+  },
+  {
+    decimals: false,
+    label: 'UYU - Peso Uruguayo',
+    value: 'UYU',
+  },
+  {
+    decimals: true,
+    label: 'VES - Bolivar Soberano',
+    value: 'VES',
+  },
+  {
+    decimals: false,
+    label: 'VND - Dong',
+    value: 'VND',
+  },
+  {
+    decimals: false,
+    label: 'XOF - CFA Franc BCEAO',
+    value: 'XOF',
+  },
+  {
+    decimals: true,
+    label: 'ZAR - Rand',
+    value: 'ZAR',
   },
 ];

@@ -4,7 +4,15 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Colors from '../styles/colors';
 import {usePreferencesState} from '../context/preferences.provider';
 
-const Dropdown = ({id, data, placeholder, selectedValue, width = '100%'}) => {
+const Dropdown = ({
+  id,
+  data,
+  placeholder,
+  selectedValue,
+  width = '100%',
+  zIndex = 1000,
+  zIndexInverse = 1000,
+}) => {
   const [open, setOpen] = useState(false);
   const [item, setItem] = useState(null);
   const {currencySetup, languageSetup} = usePreferencesState();
@@ -21,8 +29,10 @@ const Dropdown = ({id, data, placeholder, selectedValue, width = '100%'}) => {
   };
 
   return (
-    <View style={[{width}, open ? {zIndex: 9, height: '100%'} : {zIndex: 1}]}>
+    <View style={[{width}]}>
       <DropDownPicker
+        zIndex={zIndex}
+        zIndexInverse={zIndexInverse}
         open={open}
         value={selectedValue}
         items={data}
@@ -30,6 +40,7 @@ const Dropdown = ({id, data, placeholder, selectedValue, width = '100%'}) => {
         setValue={setItem}
         placeholder={placeholder}
         onSelectItem={valueHandler}
+        autoScroll={true}
         {...dropdownStyles}
       />
     </View>
@@ -43,6 +54,7 @@ const dropdownStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.gray,
     backgroundColor: Colors.black,
+    flex: 1,
   },
   placeholderStyle: {
     color: Colors.gray,
