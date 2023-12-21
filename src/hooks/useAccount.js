@@ -6,7 +6,7 @@ import {
   Wordlists,
 } from '@dreson4/react-native-quick-bip39';
 
-import {getBalance, initNode} from '../breez';
+import {useBreezState} from '../context/breez.provider';
 
 const secureStore = async words => {
   await Keychain.setGenericPassword("words", words);
@@ -31,28 +31,14 @@ const secureReset = async () => {
 };
 
 export const useAccount = () => {
+  const {initNode} = useBreezState();
   const [account, setAccount] = useState(null);
-  const [balance, setBalance] = useState({
-    lightning: null,
-    btc: null,
-  });
   const [isSavingAccount, setIsSavingAccount] = useState(false);
   const [savingAccountError, setSavingAccountError] = useState('');
 
   useEffect(() => {
     loadAccount();
   }, []);
-
-  useEffect(() => {
-    if (!account) return;
-
-    async function fetchBalance() {
-      const nodeBalance = await getBalance();
-      setBalance(nodeBalance);
-    }
-
-    fetchBalance();
-  }, [account]);
 
   const saveAccount = async words => {
     setIsSavingAccount(true);
@@ -92,7 +78,6 @@ export const useAccount = () => {
 
   return {
     account,
-    balance,
     savingAccountError,
     isSavingAccount,
     clearSavingError,

@@ -5,11 +5,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../styles/colors';
 import {fiatConversion} from '../utils/parsing';
 import {useRate} from '../hooks/useRate';
-import {useAccountState} from '../context/account.provider';
+import {useBreezState} from '../context/breez.provider';
 import {usePreferencesState} from '../context/preferences.provider';
 
 const BalanceCard = () => {
-  const {balance} = useAccountState();
+  const {balance} = useBreezState();
   const {currency} = usePreferencesState();
   const {rate} = useRate(currency.value);
   const [isFiat, setIsFiat] = useState(false);
