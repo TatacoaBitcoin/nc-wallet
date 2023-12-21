@@ -57,7 +57,7 @@ export const useAccount = () => {
   const saveAccount = async words => {
     setIsSavingAccount(true);
     try {
-      const nodeIsOk = await initNode(words);
+      const nodeIsOk = await initNode(words, eventCallback);
       if (nodeIsOk) {
         await secureStore(words);
         setAccount(true);
@@ -75,7 +75,7 @@ export const useAccount = () => {
       return;
     }
 
-    const nodeIsOk = await initNode(words);
+    const nodeIsOk = await initNode(words, eventCallback);
     if (nodeIsOk) {
       setAccount(true);
     }
@@ -88,6 +88,10 @@ export const useAccount = () => {
 
   const clearSavingError = () => {
     setSavingAccountError('');
+  };
+
+  const eventCallback = event => {
+    console.log(event);
   };
 
   return {

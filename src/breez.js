@@ -14,11 +14,7 @@ import {
   DEVICE_KEY_BASE64,
 } from '@env';
 
-const initNode = async words => {
-  const onBreezEvent = event => {
-    console.log(`received event ${event.type}`);
-  };
-
+const initNode = async (words, eventCallback) => {
   const seed = await mnemonicToSeed(words);
 
   const greenlightCredentials = {
@@ -41,7 +37,7 @@ const initNode = async words => {
 
   try {
     // Connect to the Breez SDK make it ready for use
-    await connect(config, seed, onBreezEvent);
+    await connect(config, seed, eventCallback);
   } catch (error) {
     console.log(error);
     throw new Error('errors.initNode');
