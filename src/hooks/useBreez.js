@@ -3,6 +3,7 @@ import {
   connect,
   defaultConfig,
   EnvironmentType,
+  listPayments,
   mnemonicToSeed,
   NodeConfigVariant,
   nodeInfo,
@@ -20,6 +21,7 @@ export const useBreez = () => {
     lightning: null,
     btc: null,
   });
+  const [payments, setPayments] = useState();
 
   const getBalance = async () => {
     try {
@@ -27,7 +29,19 @@ export const useBreez = () => {
       const {channelsBalanceMsat, onchainBalanceMsat} = nodeInformation;
       setBalance({lightning: channelsBalanceMsat, btc: onchainBalanceMsat});
     } catch (error) {
-      console.log(error);
+      console.log("getBalance", error);
+    }
+  };
+
+  const getPayments = async () => {
+    try {
+      const paymentsData = await listPayments({
+        filter: ['sent', 'received'],
+        includeFailures: true,
+      });
+      setPayments(paymentsData);
+    } catch (error) {
+      console.log("getPayments", error);
     }
   };
 
@@ -60,6 +74,7 @@ export const useBreez = () => {
       // Connect to the Breez SDK make it ready for use
       await connect(config, seed, eventCallback);
       await getBalance();
+      await getPayments();
     } catch (error) {
       console.log("initNode", error);
       throw new Error('errors.initNode');
@@ -68,5 +83,5 @@ export const useBreez = () => {
     return true;
   };
 
-  return {balance, initNode};
+  return {balance, initNode, payments};
 };
