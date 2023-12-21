@@ -4,6 +4,7 @@ import {listPayments} from '@breeztech/react-native-breez-sdk';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
+import {useBreezState} from '../context/breez.provider';
 import {TxCard, Text} from '../atoms';
 import {padding} from '../styles/spacing';
 
@@ -14,30 +15,16 @@ const TxsList = ({list}) => {
 
 const History = () => {
   const {t} = useTranslation();
-  const [txs, setTxs] = useState([]);
+  const {payments}  = useBreezState();
   const navigation = useNavigation();
-
-  useEffect(() => {
-    fetchHistory();
-  }, []);
-
-  const fetchHistory = async () => {
-    try {
-      const response = await listPayments({
-        filter: ['sent', 'received'],
-        includeFailures: true,
-      });
-      setTxs(response);
-    } catch (error) {
-      console.log('fetch history error', error);
-    }
-  };
 
   return (
     <View style={styles.container}>
-      <TxsList list={txs} />
-      {txs.length > 5 && (
-        <Pressable onPress={() => navigation.navigate('List', {data: txs})}>
+      <TxsList list={payments} />
+      {payments.length > 5 && (
+        <Pressable
+          onPress={() => navigation.navigate('List', {data: payments})}
+        >
           <Text variant="title" align="center" size={20} style={styles.button}>
             {t('home.history.full')}
           </Text>

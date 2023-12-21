@@ -7,9 +7,9 @@ export const BreezContext = createContext();
 export const useBreezState = () => useContext(BreezContext);
 
 export const BreezProvider = ({children}) => {
-  const {balance, initNode} = useBreez();
+  const {balance, initNode, payments} = useBreez();
 
-  const state = {balance, initNode};
+  const state = {balance, initNode, payments};
 
   return (
     <BreezContext.Provider value={state}>{children}</BreezContext.Provider>
