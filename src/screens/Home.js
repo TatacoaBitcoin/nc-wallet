@@ -3,12 +3,12 @@ import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {BalanceCard, CircleIconButton, ScreenTemplate} from '../atoms';
-import {useAccountState} from '../context/account.provider';
+import {useBreezState} from '../context/breez.provider';
 import {History} from '../organisms';
 import colors from '../styles/colors';
 
 const Home = ({navigation}) => {
-  const {balance} = useAccountState();
+  const {balance} = useBreezState();
 
   return (
     <ScreenTemplate>

@@ -6,7 +6,7 @@ import {
   Wordlists,
 } from '@dreson4/react-native-quick-bip39';
 
-import {getBalance, initNode} from '../breez';
+import {useBreezState} from '../context/breez.provider';
 
 const secureStore = async words => {
   await Keychain.setGenericPassword("words", words);
@@ -31,11 +31,8 @@ const secureReset = async () => {
 };
 
 export const useAccount = () => {
+  const {initNode} = useBreezState();
   const [account, setAccount] = useState(null);
-  const [balance, setBalance] = useState({
-    lightning: null,
-    btc: null,
-  });
   const [isSavingAccount, setIsSavingAccount] = useState(false);
   const [savingAccountError, setSavingAccountError] = useState('');
 
@@ -43,20 +40,10 @@ export const useAccount = () => {
     loadAccount();
   }, []);
 
-  const fetchBalance = async () => {
-    const nodeBalance = await getBalance();
-    setBalance(nodeBalance);
-  };
-
-  useEffect(() => {
-    if (!account) return;
-    fetchBalance();
-  }, [account]);
-
   const saveAccount = async words => {
     setIsSavingAccount(true);
     try {
-      const nodeIsOk = await initNode(words, eventCallback);
+      const nodeIsOk = await initNode(words);
       if (nodeIsOk) {
         await secureStore(words);
         setAccount(true);
@@ -74,7 +61,7 @@ export const useAccount = () => {
       return;
     }
 
-    const nodeIsOk = await initNode(words, eventCallback);
+    const nodeIsOk = await initNode(words);
     if (nodeIsOk) {
       setAccount(true);
     }
@@ -89,15 +76,8 @@ export const useAccount = () => {
     setSavingAccountError('');
   };
 
-  const eventCallback = event => {
-    if (['invoicePaid', 'paymentSucceed'].includes(event.type)) {
-      fetchBalance();
-    }
-  };
-
   return {
     account,
-    balance,
     savingAccountError,
     isSavingAccount,
     clearSavingError,
