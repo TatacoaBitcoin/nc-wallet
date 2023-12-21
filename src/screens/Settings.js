@@ -32,6 +32,8 @@ const Settings = () => {
             data={CURRENCIES}
             placeholder={'Select currency'}
             selectedValue={currency.value}
+            zIndex={2000}
+            zIndexInverse={1000}
           />
           <Text variant="title">{t('settings.lang')}</Text>
           <Dropdown
@@ -39,6 +41,8 @@ const Settings = () => {
             data={LANGUAGES}
             placeholder={'Select language'}
             selectedValue={lang}
+            zIndex={1000}
+            zIndexInverse={2000}
           />
         </View>
         <View style={styles.buttonContainer}>
