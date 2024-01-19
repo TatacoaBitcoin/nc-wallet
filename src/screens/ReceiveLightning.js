@@ -63,15 +63,19 @@ const ReceiveLightning = ({navigation}) => {
                 variant={'title2'}
                 size={fonts.md}
                 align="center">
-                sats
+                {isFiat ? currency.value : 'sats'}
               </Text>
               <Text
                 style={styles.text}
                 variant={'primary'}
                 size={fonts.md}
                 align="center">
-                ~ {fiatConversion(amount, rate, currency.decimals)}{' '}
-                {currency.value}
+                ~{' '}
+                {isFiat
+                  ? `${satsConversion(amount, rate)} sats`
+                  : `${fiatConversion(amount, rate, currency.decimals)} ${
+                      currency.value
+                    }`}
               </Text>
             </View>
             <View style={styles.qrContainer}>
@@ -137,7 +141,13 @@ const ReceiveLightning = ({navigation}) => {
               <Button
                 text={t('receiveln.generatebtn')}
                 variant={isLoading ? 'loading' : 'primary'}
-                onPress={() => getInvoice(Number(amount))}
+                onPress={() =>
+                  getInvoice(
+                    isFiat
+                      ? Number(satsConversion(amount, rate))
+                      : Number(amount),
+                  )
+                }
                 disabled={isLoading || !amount}
               />
               <Button
