@@ -1,20 +1,30 @@
 import React, {useState} from 'react';
-import {View, TextInput, StyleSheet, Keyboard} from 'react-native';
+import {View, TextInput, StyleSheet, Keyboard, Pressable} from 'react-native';
 import {receivePayment} from '@breeztech/react-native-breez-sdk';
 import QRCode from 'react-native-qrcode-svg';
 import Clipboard from '@react-native-clipboard/clipboard';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {useLoading} from '../hooks/useLoading';
 import {ScreenTemplate, Button, Text} from '../atoms';
 import {margin, padding, fonts} from '../styles/spacing';
 import colors from '../styles/colors';
 import {useTranslation} from 'react-i18next';
+import {useRate} from '../hooks/useRate';
+import {usePreferencesState} from '../context/preferences.provider';
+import {fiatConversion, satsConversion} from '../utils/parsing';
+import Colors from '../styles/colors';
 
 const ReceiveLightning = ({navigation}) => {
   const {t} = useTranslation();
   const [isLoading, withLoading] = useLoading();
   const [invoice, setInvoice] = useState();
   const [amount, setAmount] = useState('');
+  const {currency} = usePreferencesState();
+  const {rate} = useRate(currency.value);
+  const [isFiat, setIsFiat] = useState(false);
+
+  const toggleCurrency = () => setIsFiat(!isFiat);
 
   const copyToClipboard = string => {
     Clipboard.setString(string);
@@ -53,7 +63,19 @@ const ReceiveLightning = ({navigation}) => {
                 variant={'title2'}
                 size={fonts.md}
                 align="center">
-                sats
+                {isFiat ? currency.value : 'sats'}
+              </Text>
+              <Text
+                style={styles.text}
+                variant={'primary'}
+                size={fonts.md}
+                align="center">
+                ~{' '}
+                {isFiat
+                  ? `${satsConversion(amount, rate)} sats`
+                  : `${fiatConversion(amount, rate, currency.decimals)} ${
+                      currency.value
+                    }`}
               </Text>
             </View>
             <View style={styles.qrContainer}>
@@ -77,7 +99,7 @@ const ReceiveLightning = ({navigation}) => {
           </>
         ) : (
           <>
-            <View style={styles.inputContainer}>
+            <Pressable style={styles.inputContainer} onPress={toggleCurrency}>
               <Text style={styles.text} align="center">
                 {t('receiveln.header')}
               </Text>
@@ -95,14 +117,37 @@ const ReceiveLightning = ({navigation}) => {
                 variant={'title2'}
                 size={fonts.md}
                 align="center">
-                sats
+                {isFiat ? currency.value : 'sats'}{' '}
+                <Icon
+                  name="swap-vertical-circle"
+                  color={Colors.purple}
+                  size={fonts.md}
+                />
               </Text>
-            </View>
+              <Text
+                style={styles.text}
+                variant={'primary'}
+                size={fonts.md}
+                align="center">
+                ~{' '}
+                {isFiat
+                  ? `${satsConversion(amount, rate)} sats`
+                  : `${fiatConversion(amount, rate, currency.decimals)} ${
+                      currency.value
+                    }`}
+              </Text>
+            </Pressable>
             <View style={styles.btnContainer}>
               <Button
                 text={t('receiveln.generatebtn')}
                 variant={isLoading ? 'loading' : 'primary'}
-                onPress={() => getInvoice(Number(amount))}
+                onPress={() =>
+                  getInvoice(
+                    isFiat
+                      ? Number(satsConversion(amount, rate))
+                      : Number(amount),
+                  )
+                }
                 disabled={isLoading || !amount}
               />
               <Button

@@ -7,6 +7,9 @@ import {ScreenTemplate, Text, Button} from '../atoms';
 import {useLoading} from '../hooks/useLoading';
 import {fonts, margin} from '../styles/spacing';
 import {parseTime, invoiceDuration} from '../utils/parsing';
+import {fiatConversion} from '../utils/parsing';
+import {usePreferencesState} from '../context/preferences.provider';
+import {useRate} from '../hooks/useRate';
 
 const SendLightning = ({navigation, route}) => {
   const {t} = useTranslation();
@@ -14,6 +17,8 @@ const SendLightning = ({navigation, route}) => {
   const [isLoading, withLoading] = useLoading();
   const [pending, setPending] = useState(true);
   const isExpired = Date.now() / 1000 - data.timestamp > data.expiry;
+  const {currency} = usePreferencesState();
+  const {rate} = useRate(currency.value);
 
   const payInvoice = () =>
     withLoading(async () => {
@@ -37,6 +42,19 @@ const SendLightning = ({navigation, route}) => {
                 </Text>
                 <Text variant="title2" size={50} align="center">
                   {data.amountMsat / 1000} sats
+                </Text>
+                <Text
+                  style={styles.text}
+                  variant={'primary'}
+                  size={fonts.md}
+                  align="center">
+                  ~{' '}
+                  {fiatConversion(
+                    data.amountMsat / 1000,
+                    rate,
+                    currency.decimals,
+                  )}{' '}
+                  {currency.value}
                 </Text>
                 <Text size={fonts.md} align="center">
                   {data.note ? data.description : t('sendln.nodescription')}
