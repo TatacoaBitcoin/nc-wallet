@@ -29,3 +29,11 @@ export const fiatConversion = (amount, rate, useDecimals) => {
 
   return '0';
 };
+
+export const satsConversion = (amount, rate) => {
+  if (amount) {
+    return parseFiat(((amount * 100000000) / rate).toFixed(0));
+  }
+
+  return '0';
+};

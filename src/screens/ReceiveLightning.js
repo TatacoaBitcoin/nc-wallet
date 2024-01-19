@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {View, TextInput, StyleSheet, Keyboard} from 'react-native';
+import {View, TextInput, StyleSheet, Keyboard, Pressable} from 'react-native';
 import {receivePayment} from '@breeztech/react-native-breez-sdk';
 import QRCode from 'react-native-qrcode-svg';
 import Clipboard from '@react-native-clipboard/clipboard';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {useLoading} from '../hooks/useLoading';
 import {ScreenTemplate, Button, Text} from '../atoms';
@@ -11,7 +12,8 @@ import colors from '../styles/colors';
 import {useTranslation} from 'react-i18next';
 import {useRate} from '../hooks/useRate';
 import {usePreferencesState} from '../context/preferences.provider';
-import {fiatConversion} from '../utils/parsing';
+import {fiatConversion, satsConversion} from '../utils/parsing';
+import Colors from '../styles/colors';
 
 const ReceiveLightning = ({navigation}) => {
   const {t} = useTranslation();
@@ -20,6 +22,9 @@ const ReceiveLightning = ({navigation}) => {
   const [amount, setAmount] = useState('');
   const {currency} = usePreferencesState();
   const {rate} = useRate(currency.value);
+  const [isFiat, setIsFiat] = useState(false);
+
+  const toggleCurrency = () => setIsFiat(!isFiat);
 
   const copyToClipboard = string => {
     Clipboard.setString(string);
@@ -90,7 +95,7 @@ const ReceiveLightning = ({navigation}) => {
           </>
         ) : (
           <>
-            <View style={styles.inputContainer}>
+            <Pressable style={styles.inputContainer} onPress={toggleCurrency}>
               <Text style={styles.text} align="center">
                 {t('receiveln.header')}
               </Text>
@@ -108,17 +113,26 @@ const ReceiveLightning = ({navigation}) => {
                 variant={'title2'}
                 size={fonts.md}
                 align="center">
-                sats
+                {isFiat ? currency.value : 'sats'}{' '}
+                <Icon
+                  name="swap-vertical-circle"
+                  color={Colors.purple}
+                  size={fonts.md}
+                />
               </Text>
               <Text
                 style={styles.text}
                 variant={'primary'}
                 size={fonts.md}
                 align="center">
-                ~ {fiatConversion(amount, rate, currency.decimals)}{' '}
-                {currency.value}
+                ~{' '}
+                {isFiat
+                  ? `${satsConversion(amount, rate)} sats`
+                  : `${fiatConversion(amount, rate, currency.decimals)} ${
+                      currency.value
+                    }`}
               </Text>
-            </View>
+            </Pressable>
             <View style={styles.btnContainer}>
               <Button
                 text={t('receiveln.generatebtn')}
