@@ -9,12 +9,17 @@ import {ScreenTemplate, Button, Text} from '../atoms';
 import {margin, padding, fonts} from '../styles/spacing';
 import colors from '../styles/colors';
 import {useTranslation} from 'react-i18next';
+import {useRate} from '../hooks/useRate';
+import {usePreferencesState} from '../context/preferences.provider';
+import {fiatConversion} from '../utils/parsing';
 
 const ReceiveLightning = ({navigation}) => {
   const {t} = useTranslation();
   const [isLoading, withLoading] = useLoading();
   const [invoice, setInvoice] = useState();
   const [amount, setAmount] = useState('');
+  const {currency} = usePreferencesState();
+  const {rate} = useRate(currency.value);
 
   const copyToClipboard = string => {
     Clipboard.setString(string);
@@ -54,6 +59,14 @@ const ReceiveLightning = ({navigation}) => {
                 size={fonts.md}
                 align="center">
                 sats
+              </Text>
+              <Text
+                style={styles.text}
+                variant={'primary'}
+                size={fonts.md}
+                align="center">
+                ~ {fiatConversion(amount, rate, currency.decimals)}{' '}
+                {currency.value}
               </Text>
             </View>
             <View style={styles.qrContainer}>
@@ -96,6 +109,14 @@ const ReceiveLightning = ({navigation}) => {
                 size={fonts.md}
                 align="center">
                 sats
+              </Text>
+              <Text
+                style={styles.text}
+                variant={'primary'}
+                size={fonts.md}
+                align="center">
+                ~ {fiatConversion(amount, rate, currency.decimals)}{' '}
+                {currency.value}
               </Text>
             </View>
             <View style={styles.btnContainer}>

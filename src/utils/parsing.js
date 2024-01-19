@@ -21,7 +21,7 @@ export const parseFiat = amount =>
   amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 export const fiatConversion = (amount, rate, useDecimals) => {
-  const decimals = useDecimals === 'true' ? 2 : 0;
+  const decimals = useDecimals ? 2 : 0;
 
   if (amount) {
     return parseFiat(((amount / 100000000) * rate).toFixed(decimals));
