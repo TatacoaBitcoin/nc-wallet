@@ -9,54 +9,47 @@ import {useBreezState} from '../context/breez.provider';
 import {usePreferencesState} from '../context/preferences.provider';
 
 const BalanceCard = () => {
-  const {balance} = useBreezState();
+  const {balance: {lightning, btc}} = useBreezState();
   const {currency} = usePreferencesState();
   const {rate} = useRate(currency.value);
   const [isFiat, setIsFiat] = useState(false);
-  const lnBalance = balance.lightning / 1000;
-  const btcBalance = balance.btc / 1000;
-  const totalBalance = lnBalance + btcBalance;
+
+  const lnSatsBalance = lightning / 1000;
+  const btcStasBalance = btc / 1000;
+  const totalStasBalance = lnSatsBalance + btcStasBalance;
 
   const toggleCurrency = () => setIsFiat(!isFiat);
 
-  const getTotalBalance = () => {
-    return isFiat
-      ? fiatConversion(totalBalance, rate, currency.decimals)
-      : totalBalance.toFixed(0);
-  };
+  const totalBalance = isFiat
+    ? fiatConversion(totalStasBalance, rate, currency.decimals)
+    : totalStasBalance.toFixed(0);
 
-  const getLnBalance = () => {
-    return isFiat
-      ? fiatConversion(lnBalance, rate, currency.decimals)
-      : lnBalance.toFixed(0);
-  };
+  const lnBalance = isFiat
+    ? fiatConversion(lnSatsBalance, rate, currency.decimals)
+    : lnSatsBalance.toFixed(0);
 
-  const getBtcBalance = () => {
-    return isFiat
-      ? fiatConversion(btcBalance, rate, currency.decimals)
-      : btcBalance.toFixed(0);
-  };
+  const btcBalance = isFiat
+    ? fiatConversion(btcStasBalance, rate, currency.decimals)
+    : btcStasBalance.toFixed(0);
 
-  const getUnit = () => {
-    return isFiat ? currency.value : 'sats';
-  };
+  const unit = isFiat ? currency.value : 'sats';
 
   return (
     <View style={styles.container}>
       <Pressable style={styles.totalBalanceContainer} onPress={toggleCurrency}>
         <Icon name="swap-vertical" color={colors.yellow} size={20} />
         <>
-          <Text style={styles.totalAmount}>{getTotalBalance()}</Text>
-          <Text style={styles.amount}>{getUnit()}</Text>
+          <Text style={styles.totalAmount}>{totalBalance}</Text>
+          <Text style={styles.amount}>{unit}</Text>
         </>
       </Pressable>
       <View style={styles.balanceContainer}>
         <Icon name="lightning-bolt-circle" color={colors.yellow} size={20} />
-        <Text style={styles.amount}>{`${getLnBalance()} ${getUnit()}`}</Text>
+        <Text style={styles.amount}>{`${lnBalance} ${unit}`}</Text>
       </View>
       <View style={styles.balanceContainer}>
         <Icon name="bitcoin" color={colors.yellow} size={20} />
-        <Text style={styles.amount}>{`${getBtcBalance()} ${getUnit()}`}</Text>
+        <Text style={styles.amount}>{`${btcBalance} ${unit}`}</Text>
       </View>
     </View>
   );
