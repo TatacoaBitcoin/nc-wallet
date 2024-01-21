@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useState} from 'react';
 import {
   connect,
   defaultConfig,
@@ -15,6 +15,9 @@ import {
   DEVICE_CERTIFICATE_BASE64,
   DEVICE_KEY_BASE64,
 } from '@env';
+
+// Events
+const SYNCED = 'synced';
 
 export const useBreez = () => {
   const [balance, setBalance] = useState({
@@ -45,8 +48,13 @@ export const useBreez = () => {
     }
   };
 
-  const eventCallback = newEvent => {
-    console.log(newEvent);
+  const eventCallback = async newEvent => {
+    const {type} = newEvent;
+
+    if (type === SYNCED) {
+      await getBalance();
+      await getPayments();
+    }
   };
 
   const initNode = async words => {
@@ -76,7 +84,7 @@ export const useBreez = () => {
       await getBalance();
       await getPayments();
     } catch (error) {
-      console.log("initNode", error);
+      console.error("initNode", error);
       throw new Error('errors.initNode');
     }
 
