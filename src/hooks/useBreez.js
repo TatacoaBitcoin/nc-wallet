@@ -2,6 +2,7 @@ import {useCallback, useState} from 'react';
 import {
   connect,
   defaultConfig,
+  disconnect,
   EnvironmentType,
   listPayments,
   mnemonicToSeed,
@@ -91,5 +92,9 @@ export const useBreez = () => {
     return true;
   };
 
-  return {balance, initNode, payments};
+  const disconnectNode = async () => {
+    await disconnect();
+  };
+
+  return {balance, disconnectNode, initNode, payments};
 };

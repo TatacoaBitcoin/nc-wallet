@@ -31,7 +31,7 @@ const secureReset = async () => {
 };
 
 export const useAccount = () => {
-  const {initNode} = useBreezState();
+  const {initNode, disconnectNode} = useBreezState();
   const [account, setAccount] = useState(null);
   const [isSavingAccount, setIsSavingAccount] = useState(false);
   const [savingAccountError, setSavingAccountError] = useState('');
@@ -68,6 +68,7 @@ export const useAccount = () => {
   };
 
   const resetAccount = async () => {
+    await disconnectNode();
     await secureReset();
     setAccount(null);
   };
