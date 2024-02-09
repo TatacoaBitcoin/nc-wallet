@@ -52,7 +52,8 @@
     "expired": "Factura vencida",
     "expiry": "Expiración",
     "paybtn": "Pagar",
-    "cancelbtn": "Cancelar"
+    "cancelbtn": "Cancelar",
+    "success": "Pago exitoso",
   },
   "receiveln": {
     "header": "Ingresar cantidad",
@@ -80,8 +81,5 @@
     "btn": {
       "recover": "Recuperar",
     },
-  },
-  "payments": {
-    "success": "Pago exitoso",
   },
 }

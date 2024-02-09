@@ -52,7 +52,8 @@
     "expired": "Expired",
     "expiry": "Expiry",
     "paybtn": "Pay invoice",
-    "cancelbtn": "Cancel"
+    "cancelbtn": "Cancel",
+    "success": "Successful payment",
   },
   "receiveln": {
     "header": "Enter amount",
@@ -80,8 +81,5 @@
     "btn": {
       "recover": "Recover",
     },
-  },
-  "payments": {
-    "success": "Successful payment",
   },
 }
