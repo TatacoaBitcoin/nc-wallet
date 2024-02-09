@@ -52,14 +52,16 @@
     "expired": "Expired",
     "expiry": "Expiry",
     "paybtn": "Pay invoice",
-    "cancelbtn": "Cancel"
+    "cancelbtn": "Cancel",
+    "success": "Successful payment",
   },
   "receiveln": {
     "header": "Enter amount",
     "generatebtn": "Generate invoice",
     "cancelbtn": "Cancel",
     "copybtn": "Copy",
-    "sharebtn": "Share"
+    "sharebtn": "Share",
+    "success": "Payment received",
   },
   "history": {
     "details": {
@@ -79,8 +81,5 @@
     "btn": {
       "recover": "Recover",
     },
-  },
-  "payments": {
-    "success": "Successful payment",
   },
 }

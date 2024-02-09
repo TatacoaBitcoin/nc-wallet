@@ -1,27 +1,24 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useTranslation} from 'react-i18next';
 
 import {Modal, Text} from '../atoms';
 import {fonts, margin} from '../styles/spacing';
 
-const PaymentModal = ({isVisible, onClose, message}) => {
-  const {t} = useTranslation();
-
+const SuccessModal = ({isVisible, onClose, message}) => {
   return (
     <Modal isVisible={isVisible} onClose={onClose} size="xs">
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <Icon name="check-decagram-outline" color={'green'} size={fonts.xxxl} />
         <Text size={fonts.md} align="center">
-          {t('payments.success')}
+          {message}
         </Text>
-      </View>
+      </ScrollView>
     </Modal>
   );
 };
 
-export {PaymentModal};
+export {SuccessModal};
 
 const styles = StyleSheet.create({
   container: {

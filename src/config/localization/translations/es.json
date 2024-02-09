@@ -52,14 +52,16 @@
     "expired": "Factura vencida",
     "expiry": "Expiración",
     "paybtn": "Pagar",
-    "cancelbtn": "Cancelar"
+    "cancelbtn": "Cancelar",
+    "success": "Pago exitoso",
   },
   "receiveln": {
     "header": "Ingresar cantidad",
     "generatebtn": "Generar factura",
     "cancelbtn": "Cancelar",
     "copybtn": "Copiar",
-    "sharebtn": "Compartir"
+    "sharebtn": "Compartir",
+    "success": "Pago recibido",
   },
   "history": {
     "details": {
@@ -79,8 +81,5 @@
     "btn": {
       "recover": "Recuperar",
     },
-  },
-  "payments": {
-    "success": "Pago exitoso",
   },
 }

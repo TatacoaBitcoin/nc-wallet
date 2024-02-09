@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, TextInput, StyleSheet, Keyboard, Pressable} from 'react-native';
 import {receivePayment} from '@breeztech/react-native-breez-sdk';
 import QRCode from 'react-native-qrcode-svg';
@@ -7,22 +7,35 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {useLoading} from '../hooks/useLoading';
 import {ScreenTemplate, Button, Text} from '../atoms';
+import {SuccessModal} from '../molecules';
 import {margin, padding, fonts} from '../styles/spacing';
 import colors from '../styles/colors';
 import {useTranslation} from 'react-i18next';
 import {useRate} from '../hooks/useRate';
+import {useBreezState} from '../context/breez.provider';
 import {usePreferencesState} from '../context/preferences.provider';
 import {fiatConversion, satsConversion} from '../utils/parsing';
 import Colors from '../styles/colors';
 
 const ReceiveLightning = ({navigation}) => {
   const {t} = useTranslation();
+  const {lastPaidInvoice} = useBreezState();
   const [isLoading, withLoading] = useLoading();
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [invoice, setInvoice] = useState();
   const [amount, setAmount] = useState('');
   const {currency} = usePreferencesState();
   const {rate} = useRate(currency.value);
   const [isFiat, setIsFiat] = useState(false);
+
+  useEffect(() => {
+    if (!invoice) {
+      return
+    }
+    if (lastPaidInvoice === invoice.paymentHash) {
+      setIsModalVisible(true);
+    }
+  }, [lastPaidInvoice, invoice]);
 
   const toggleCurrency = () => setIsFiat(!isFiat);
 
@@ -38,11 +51,16 @@ const ReceiveLightning = ({navigation}) => {
           amountMsat: sats * 1000,
           description: `Invoice for ${sats} sats`,
         });
-        setInvoice(response['lnInvoice']['bolt11']);
+        setInvoice(response['lnInvoice']);
       } catch (error) {
-        console.log('get invoice error: ', error);
+        console.error('get invoice error: ', error);
       }
     });
+  };
+
+  const onClose = () => {
+    setIsModalVisible(false);
+    navigation.goBack();
   };
 
   return (
@@ -80,14 +98,18 @@ const ReceiveLightning = ({navigation}) => {
             </View>
             <View style={styles.qrContainer}>
               <View style={styles.qrBox}>
-                <QRCode value={invoice} size={300} backgroundColor="white" />
+                <QRCode
+                  value={invoice.bolt11}
+                  size={300}
+                  backgroundColor="white"
+                />
               </View>
             </View>
             <View style={styles.btnContainer}>
               <Button
                 text={t('receiveln.copybtn')}
                 variant="primary"
-                onPress={() => copyToClipboard(invoice)}
+                onPress={() => copyToClipboard(invoice.bolt11)}
               />
               {/* TODO: implement share button */}
               <Button
@@ -159,6 +181,11 @@ const ReceiveLightning = ({navigation}) => {
           </>
         )}
       </View>
+      <SuccessModal
+        isVisible={isModalVisible}
+        onClose={onClose}
+        message={t('receiveln.success')}
+      />
     </ScreenTemplate>
   );
 };

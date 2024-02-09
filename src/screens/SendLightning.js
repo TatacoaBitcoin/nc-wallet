@@ -4,7 +4,7 @@ import {sendPayment} from '@breeztech/react-native-breez-sdk';
 import {useTranslation} from 'react-i18next';
 
 import {ScreenTemplate, Text, Button} from '../atoms';
-import {PaymentModal} from '../molecules';
+import {SuccessModal} from '../molecules';
 import {useLoading} from '../hooks/useLoading';
 import {fonts, margin} from '../styles/spacing';
 import {parseTime, invoiceDuration} from '../utils/parsing';
@@ -92,7 +92,11 @@ const SendLightning = ({navigation, route}) => {
           </>
         )}
       </View>
-      <PaymentModal isVisible={isModalVisible} onClose={onClose} />
+      <SuccessModal
+        isVisible={isModalVisible}
+        onClose={onClose}
+        message={t('sendln.success')}
+      />
     </ScreenTemplate>
   );
 };
