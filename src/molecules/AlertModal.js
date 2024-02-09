@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTranslation} from 'react-i18next';
 
@@ -11,12 +11,12 @@ const AlertModal = ({isVisible, onClose, message}) => {
 
   return (
     <Modal isVisible={isVisible} onClose={onClose} size="xs">
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <Icon name="alert-decagram-outline" color={'red'} size={fonts.xxxl} />
         <Text size={fonts.md} align="center">
           {t(message)}
         </Text>
-      </View>
+      </ScrollView>
     </Modal>
   );
 };
