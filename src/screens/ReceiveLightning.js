@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {useLoading} from '../hooks/useLoading';
 import {ScreenTemplate, Button, Text} from '../atoms';
+import {SuccessModal} from '../molecules';
 import {margin, padding, fonts} from '../styles/spacing';
 import colors from '../styles/colors';
 import {useTranslation} from 'react-i18next';
@@ -20,6 +21,7 @@ const ReceiveLightning = ({navigation}) => {
   const {t} = useTranslation();
   const {lastPaidInvoice} = useBreezState();
   const [isLoading, withLoading] = useLoading();
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [invoice, setInvoice] = useState();
   const [amount, setAmount] = useState('');
   const {currency} = usePreferencesState();
@@ -31,7 +33,7 @@ const ReceiveLightning = ({navigation}) => {
       return
     }
     if (lastPaidInvoice === invoice.paymentHash) {
-      console.log("lastPaidInvoice", lastPaidInvoice);
+      setIsModalVisible(true);
     }
   }, [lastPaidInvoice, invoice]);
 
@@ -54,6 +56,11 @@ const ReceiveLightning = ({navigation}) => {
         console.error('get invoice error: ', error);
       }
     });
+  };
+
+  const onClose = () => {
+    setIsModalVisible(false);
+    navigation.goBack();
   };
 
   return (
@@ -174,6 +181,11 @@ const ReceiveLightning = ({navigation}) => {
           </>
         )}
       </View>
+      <SuccessModal
+        isVisible={isModalVisible}
+        onClose={onClose}
+        message={t('receiveln.success')}
+      />
     </ScreenTemplate>
   );
 };

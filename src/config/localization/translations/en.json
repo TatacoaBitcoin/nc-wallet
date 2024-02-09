@@ -59,7 +59,8 @@
     "generatebtn": "Generate invoice",
     "cancelbtn": "Cancel",
     "copybtn": "Copy",
-    "sharebtn": "Share"
+    "sharebtn": "Share",
+    "success": "Payment received",
   },
   "history": {
     "details": {

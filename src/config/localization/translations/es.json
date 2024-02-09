@@ -59,7 +59,8 @@
     "generatebtn": "Generar factura",
     "cancelbtn": "Cancelar",
     "copybtn": "Copiar",
-    "sharebtn": "Compartir"
+    "sharebtn": "Compartir",
+    "success": "Pago recibido",
   },
   "history": {
     "details": {
