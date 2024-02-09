@@ -4,6 +4,7 @@ import {sendPayment} from '@breeztech/react-native-breez-sdk';
 import {useTranslation} from 'react-i18next';
 
 import {ScreenTemplate, Text, Button} from '../atoms';
+import {PaymentModal} from '../molecules';
 import {useLoading} from '../hooks/useLoading';
 import {fonts, margin} from '../styles/spacing';
 import {parseTime, invoiceDuration} from '../utils/parsing';
@@ -15,7 +16,8 @@ const SendLightning = ({navigation, route}) => {
   const {t} = useTranslation();
   const {data} = route.params;
   const [isLoading, withLoading] = useLoading();
-  const [pending, setPending] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [error, setError] = useState('');
   const isExpired = Date.now() / 1000 - data.timestamp > data.expiry;
   const {currency} = usePreferencesState();
   const {rate} = useRate(currency.value);
@@ -24,14 +26,20 @@ const SendLightning = ({navigation, route}) => {
     withLoading(async () => {
       try {
         const response = await sendPayment({bolt11: data.bolt11});
-        setPending(response.pending);
+        setIsModalVisible(true);
       } catch (error) {
-        console.log('invoice payment error: ', error);
+        setError(error);
+        console.error('invoice payment error: ', error);
       }
     });
 
+  const onClose = () => {
+    setIsModalVisible(false);
+    navigation.goBack();
+  };
+
   return (
-    <ScreenTemplate>
+    <ScreenTemplate clearError={() => setError('')} error={error}>
       <View style={styles.container}>
         {data && (
           <>
@@ -80,11 +88,11 @@ const SendLightning = ({navigation, route}) => {
                 variant="outline"
                 onPress={() => navigation.goBack()}
               />
-              {!pending && <Text>Payment successful</Text>}
             </View>
           </>
         )}
       </View>
+      <PaymentModal isVisible={isModalVisible} onClose={onClose} />
     </ScreenTemplate>
   );
 };

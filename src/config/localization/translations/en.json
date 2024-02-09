@@ -80,4 +80,7 @@
       "recover": "Recover",
     },
   },
+  "payments": {
+    "success": "Successful payment",
+  },
 }
