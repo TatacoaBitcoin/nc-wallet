@@ -20,6 +20,7 @@ import {
 
 // Events
 const SYNCED = 'synced';
+const INVOICE_PAID = 'invoicePaid';
 
 export const useBreez = () => {
   const [balance, setBalance] = useState({
@@ -28,6 +29,7 @@ export const useBreez = () => {
   });
   const [payments, setPayments] = useState();
   const [workingDir, setWorkingDir] = useState();
+  const [lastPaidInvoice, setLastPaidInvoice] = useState();
 
   const getBalance = async () => {
     try {
@@ -57,6 +59,9 @@ export const useBreez = () => {
     if (type === SYNCED) {
       await getBalance();
       await getPayments();
+    };
+    if (type === INVOICE_PAID) {
+      setLastPaidInvoice(newEvent.details.paymentHash);
     }
   };
 
@@ -104,5 +109,5 @@ export const useBreez = () => {
     }
   };
 
-  return {balance, disconnectNode, initNode, payments};
+  return {balance, disconnectNode, initNode, lastPaidInvoice, payments};
 };
