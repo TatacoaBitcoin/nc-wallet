@@ -53,7 +53,7 @@
     "expiry": "Expiry",
     "paybtn": "Pay invoice",
     "cancelbtn": "Cancel",
-    "success": "Successful payment",
+    "success": "Successful payment"
   },
   "receiveln": {
     "header": "Enter amount",
@@ -62,6 +62,7 @@
     "copybtn": "Copy",
     "sharebtn": "Share",
     "success": "Payment received",
+    "toast": "Copied"
   },
   "history": {
     "details": {
@@ -79,7 +80,7 @@
   },
   "recovery": {
     "btn": {
-      "recover": "Recover",
-    },
-  },
+      "recover": "Recover"
+    }
+  }
 }
