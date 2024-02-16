@@ -20,6 +20,14 @@ export const invoiceDuration = seconds => {
 export const parseFiat = amount =>
   amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+export const parseSats = amount => {
+  const amountNum = amount / 1000;
+  return amountNum
+    .toFixed(0)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
 export const fiatConversion = (amount, rate, useDecimals) => {
   const decimals = useDecimals ? 2 : 0;
 

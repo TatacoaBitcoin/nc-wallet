@@ -15,7 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {useLoading} from '../hooks/useLoading';
 import {ScreenTemplate, Button, Text} from '../atoms';
-import {SuccessModal} from '../molecules';
+import {SuccessModal, OpenChannelFeeModal} from '../molecules';
 import {margin, padding, fonts} from '../styles/spacing';
 import colors from '../styles/colors';
 import {useTranslation} from 'react-i18next';
@@ -30,6 +30,7 @@ const ReceiveLightning = ({navigation}) => {
   const {lastPaidInvoice} = useBreezState();
   const [isLoading, withLoading] = useLoading();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isFeeModalVisible, setIsFeeModalVisible] = useState(true);
   const [invoice, setInvoice] = useState();
   const [amount, setAmount] = useState('');
   const {currency} = usePreferencesState();
@@ -70,6 +71,10 @@ const ReceiveLightning = ({navigation}) => {
   const onClose = () => {
     setIsModalVisible(false);
     navigation.goBack();
+  };
+
+  const onFeeModalClose = () => {
+    setIsFeeModalVisible(false);
   };
 
   const onShare = async () => {
@@ -193,6 +198,10 @@ const ReceiveLightning = ({navigation}) => {
                 onPress={() => navigation.goBack()}
               />
             </View>
+            <OpenChannelFeeModal
+              isVisible={isFeeModalVisible}
+              onClose={onFeeModalClose}
+            />
           </>
         )}
       </View>

@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View, Pressable} from 'react-native';
-import {listPayments} from '@breeztech/react-native-breez-sdk';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
@@ -15,7 +14,7 @@ const TxsList = ({list}) => {
 
 const History = () => {
   const {t} = useTranslation();
-  const {payments}  = useBreezState();
+  const {payments} = useBreezState();
   const navigation = useNavigation();
 
   return (
@@ -23,8 +22,7 @@ const History = () => {
       <TxsList list={payments} />
       {payments.length > 5 && (
         <Pressable
-          onPress={() => navigation.navigate('List', {data: payments})}
-        >
+          onPress={() => navigation.navigate('List', {data: payments})}>
           <Text variant="title" align="center" size={20} style={styles.button}>
             {t('home.history.full')}
           </Text>
