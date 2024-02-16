@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, TextInput, StyleSheet, Keyboard, Pressable} from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Keyboard,
+  Pressable,
+  Share,
+} from 'react-native';
 import {receivePayment} from '@breeztech/react-native-breez-sdk';
 import QRCode from 'react-native-qrcode-svg';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -30,7 +37,7 @@ const ReceiveLightning = ({navigation}) => {
 
   useEffect(() => {
     if (!invoice) {
-      return
+      return;
     }
     if (lastPaidInvoice === invoice.paymentHash) {
       setIsModalVisible(true);
@@ -61,6 +68,13 @@ const ReceiveLightning = ({navigation}) => {
   const onClose = () => {
     setIsModalVisible(false);
     navigation.goBack();
+  };
+
+  const onShare = async () => {
+    await Share.share({
+      title: 'Tatacoa Wallet Invoice',
+      message: invoice.bolt11,
+    });
   };
 
   return (
@@ -111,11 +125,10 @@ const ReceiveLightning = ({navigation}) => {
                 variant="primary"
                 onPress={() => copyToClipboard(invoice.bolt11)}
               />
-              {/* TODO: implement share button */}
               <Button
                 text={t('receiveln.sharebtn')}
                 variant="outline"
-                onPress={() => {}}
+                onPress={onShare}
               />
             </View>
           </>
