@@ -6,6 +6,7 @@ import {
   Keyboard,
   Pressable,
   Share,
+  ToastAndroid,
 } from 'react-native';
 import {receivePayment} from '@breeztech/react-native-breez-sdk';
 import QRCode from 'react-native-qrcode-svg';
@@ -46,8 +47,9 @@ const ReceiveLightning = ({navigation}) => {
 
   const toggleCurrency = () => setIsFiat(!isFiat);
 
-  const copyToClipboard = string => {
-    Clipboard.setString(string);
+  const copyToClipboard = () => {
+    Clipboard.setString(invoice.bolt11);
+    ToastAndroid.show(t('receiveln.toast'), ToastAndroid.SHORT);
   };
 
   const getInvoice = async sats => {
@@ -123,7 +125,7 @@ const ReceiveLightning = ({navigation}) => {
               <Button
                 text={t('receiveln.copybtn')}
                 variant="primary"
-                onPress={() => copyToClipboard(invoice.bolt11)}
+                onPress={copyToClipboard}
               />
               <Button
                 text={t('receiveln.sharebtn')}
