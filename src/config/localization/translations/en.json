@@ -53,7 +53,9 @@
     "expiry": "Expiry",
     "paybtn": "Pay invoice",
     "cancelbtn": "Cancel",
-    "success": "Successful payment"
+    "success": "Successful payment",
+    "invoiceFound": "Invoice found in clipboard:",
+    "useInvoice": "use",
   },
   "receiveln": {
     "header": "Enter amount",
