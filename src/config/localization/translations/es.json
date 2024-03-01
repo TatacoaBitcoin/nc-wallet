@@ -76,7 +76,8 @@
     }
   },
   "errors": {
-    "initNode": "No se pudo conectar al nodo"
+    "initNode": "No se pudo conectar al nodo",
+    "minFee": "La cantidad debe ser mayor a la comisión de apertura de canal: {{minFee}} sats"
   },
   "recovery": {
     "btn": {
