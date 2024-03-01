@@ -11,12 +11,7 @@ import {
 } from '@breeztech/react-native-breez-sdk';
 import {toByteArray} from 'react-native-quick-base64';
 import RNFetchBlob from 'rn-fetch-blob';
-
-import {
-  BREEZ_API_KEY,
-  DEVICE_CERTIFICATE_BASE64,
-  DEVICE_KEY_BASE64,
-} from '@env';
+import Config from "react-native-config";
 
 // Events
 const SYNCED = 'synced';
@@ -69,8 +64,8 @@ export const useBreez = () => {
     const seed = await mnemonicToSeed(words);
 
     const greenlightCredentials = {
-      deviceKey: Array.from(toByteArray(DEVICE_KEY_BASE64)),
-      deviceCert: Array.from(toByteArray(DEVICE_CERTIFICATE_BASE64)),
+      deviceKey: Array.from(toByteArray(Config.DEVICE_KEY_BASE64)),
+      deviceCert: Array.from(toByteArray(Config.DEVICE_CERTIFICATE_BASE64)),
     };
 
     const nodeConfig = {
@@ -82,7 +77,7 @@ export const useBreez = () => {
 
     let config = await defaultConfig(
       EnvironmentType.PRODUCTION,
-      BREEZ_API_KEY,
+      Config.BREEZ_API_KEY,
       nodeConfig,
     );
 
