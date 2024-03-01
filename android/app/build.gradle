@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -90,12 +91,10 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('TATACOA_UPLOAD_STORE_FILE')) {
-                storeFile file(TATACOA_UPLOAD_STORE_FILE)
-                storePassword TATACOA_UPLOAD_STORE_PASSWORD
-                keyAlias TATACOA_UPLOAD_KEY_ALIAS
-                keyPassword TATACOA_UPLOAD_KEY_PASSWORD
-            }
+            storeFile file(project.env.get('TATACOA_UPLOAD_STORE_FILE'))
+            storePassword project.env.get('TATACOA_UPLOAD_STORE_PASSWORD')
+            keyAlias project.env.get('TATACOA_UPLOAD_KEY_ALIAS')
+            keyPassword project.env.get('TATACOA_UPLOAD_KEY_PASSWORD')
         }
     }
     buildTypes {
