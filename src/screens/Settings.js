@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import VersionCheck from 'react-native-version-check';
 
 import {ScreenTemplate, Dropdown, Text, Button} from '../atoms';
 import {LANGUAGES} from '../config/localization/languages';
@@ -14,6 +15,7 @@ const Settings = () => {
   const {t} = useTranslation();
   const [isExitModalVisible, setIsExitModalVisible] = useState(false);
   const [isSeedModalVisible, setIsSeedModalVisible] = useState(false);
+  const version = `${VersionCheck.getCurrentVersion()}(${VersionCheck.getCurrentBuildNumber()})`;
 
   const openExitModal = () => setIsExitModalVisible(true);
   const closeExitModal = () => setIsExitModalVisible(false);
@@ -44,6 +46,9 @@ const Settings = () => {
             zIndex={1000}
             zIndexInverse={2000}
           />
+          <Text variant="title" align="center">
+            v{version}
+          </Text>
         </View>
         <View style={styles.buttonContainer}>
           <Button
