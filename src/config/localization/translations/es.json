@@ -53,7 +53,9 @@
     "expiry": "Expiración",
     "paybtn": "Pagar",
     "cancelbtn": "Cancelar",
-    "success": "Pago exitoso"
+    "success": "Pago exitoso",
+    "invoiceFound": "Hay una factura en el portapapeles:",
+    "useInvoice": "usar",
   },
   "receiveln": {
     "header": "Ingresar cantidad",
