@@ -36,6 +36,7 @@ const ReceiveLightning = ({navigation}) => {
   const {currency} = usePreferencesState();
   const {rate} = useRate(currency.value);
   const [isFiat, setIsFiat] = useState(false);
+  const [error, setError] = useState();
 
   useEffect(() => {
     if (!invoice) {
@@ -62,8 +63,9 @@ const ReceiveLightning = ({navigation}) => {
           description: `Invoice for ${sats} sats`,
         });
         setInvoice(response['lnInvoice']);
-      } catch (error) {
-        console.error('get invoice error: ', error);
+      } catch (err) {
+        console.log('get invoice error: ', err);
+        setError(err);
       }
     });
   };
@@ -84,8 +86,10 @@ const ReceiveLightning = ({navigation}) => {
     });
   };
 
+  const clearError = () => setError();
+
   return (
-    <ScreenTemplate>
+    <ScreenTemplate error={error} clearError={clearError}>
       <View style={styles.container}>
         {invoice ? (
           <>

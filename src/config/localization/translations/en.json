@@ -76,7 +76,8 @@
     }
   },
   "errors": {
-    "initNode": "Cannot stablish a connection with the node"
+    "initNode": "Cannot stablish a connection with the node",
+    "minFee": "Amount should be more than the channel openning fee: {{minFee}} sats"
   },
   "recovery": {
     "btn": {
