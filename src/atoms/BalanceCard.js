@@ -3,7 +3,7 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import colors from '../styles/colors';
-import {fiatConversion} from '../utils/parsing';
+import {fiatConversion, parseSats} from '../utils/parsing';
 import {useRate} from '../hooks/useRate';
 import {useBreezState} from '../context/breez.provider';
 import {usePreferencesState} from '../context/preferences.provider';
@@ -16,23 +16,23 @@ const BalanceCard = () => {
   const {rate} = useRate(currency.value);
   const [isFiat, setIsFiat] = useState(false);
 
-  const lnSatsBalance = lightning / 1000;
-  const btcStasBalance = btc / 1000;
+  const lnSatsBalance = lightning;
+  const btcStasBalance = btc;
   const totalStasBalance = lnSatsBalance + btcStasBalance;
 
   const toggleCurrency = () => setIsFiat(!isFiat);
 
   const totalBalance = isFiat
     ? fiatConversion(totalStasBalance, rate, currency.decimals)
-    : totalStasBalance.toFixed(0);
+    : parseSats(totalStasBalance);
 
   const lnBalance = isFiat
     ? fiatConversion(lnSatsBalance, rate, currency.decimals)
-    : lnSatsBalance.toFixed(0);
+    : parseSats(lnSatsBalance);
 
   const btcBalance = isFiat
     ? fiatConversion(btcStasBalance, rate, currency.decimals)
-    : btcStasBalance.toFixed(0);
+    : parseSats(btcStasBalance);
 
   const unit = isFiat ? currency.value : 'sats';
 

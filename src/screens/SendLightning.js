@@ -7,7 +7,7 @@ import {ScreenTemplate, Text, Button} from '../atoms';
 import {SuccessModal} from '../molecules';
 import {useLoading} from '../hooks/useLoading';
 import {fonts, margin} from '../styles/spacing';
-import {parseTime, invoiceDuration} from '../utils/parsing';
+import {parseTime, invoiceDuration, parseSats} from '../utils/parsing';
 import {fiatConversion} from '../utils/parsing';
 import {usePreferencesState} from '../context/preferences.provider';
 import {useRate} from '../hooks/useRate';
@@ -49,7 +49,7 @@ const SendLightning = ({navigation, route}) => {
                   {parseTime(data.timestamp)}
                 </Text>
                 <Text variant="title2" size={50} align="center">
-                  {data.amountMsat / 1000} sats
+                  {parseSats(data.amountMsat)} sats
                 </Text>
                 <Text
                   style={styles.text}

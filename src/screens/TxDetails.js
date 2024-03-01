@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {parseTime} from '../utils/parsing';
+import {parseSats, parseTime} from '../utils/parsing';
 import {ScreenTemplate, Text} from '../atoms';
 import {fonts, padding} from '../styles/spacing';
 
@@ -25,7 +25,7 @@ const TxDetails = ({route}) => {
         <View>
           <Text variant="title" size={fonts.xl} align="center">
             {paymentType === 'received' ? '+' : '-'}
-            {amountMsat / 1000}
+            {parseSats(amountMsat)}
           </Text>
           <Text variant="title" align="center" size={fonts.md}>
             sats
@@ -42,7 +42,7 @@ const TxDetails = ({route}) => {
           {details.type === 'ln' ? 'Lightning Network' : 'Bitcoin'}
         </Text>
         <Text>
-          {t('history.details.fee')}: {feeMsat / 1000} sats
+          {t('history.details.fee')}: {parseSats(feeMsat)} sats
         </Text>
         <Text>
           {t('history.details.note')}: {description}

@@ -3,7 +3,7 @@ import {StyleSheet, View, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
-import {parseDate} from '../utils/parsing';
+import {parseDate, parseSats} from '../utils/parsing';
 import {Text} from './Text';
 import colors from '../styles/colors';
 
@@ -32,7 +32,7 @@ const TxCard = ({data}) => {
       <View style={styles.content}>
         <Text>
           {paymentType === 'received' ? '+' : '-'}
-          {amountMsat / 1000} sats
+          {parseSats(amountMsat)} sats
         </Text>
         <Icon
           name={
