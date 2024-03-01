@@ -54,7 +54,7 @@
     "paybtn": "Pagar",
     "cancelbtn": "Cancelar",
     "success": "Pago exitoso",
-    "invoiceFound": "Hay un factura en el portapapeles:",
+    "invoiceFound": "Hay una factura en el portapapeles:",
     "useInvoice": "usar",
   },
   "receiveln": {
