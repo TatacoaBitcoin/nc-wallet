@@ -25,11 +25,11 @@ const SendLightning = ({navigation, route}) => {
   const payInvoice = () =>
     withLoading(async () => {
       try {
-        const response = await sendPayment({bolt11: data.bolt11});
+        await sendPayment({bolt11: data.bolt11});
         setIsModalVisible(true);
-      } catch (error) {
-        setError(error);
-        console.error('invoice payment error: ', error);
+      } catch (err) {
+        setError(err);
+        console.log('invoice payment error: ', err);
       }
     });
 

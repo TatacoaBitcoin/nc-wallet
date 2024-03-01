@@ -16,7 +16,7 @@ const WordsInput = ({words, setWords}) => {
 
   const isValidWord = word => {
     // TODO: add support for spanish words
-    if (Wordlists['en'].includes(word)) {
+    if (Wordlists.en.includes(word)) {
       return true;
     } else {
       return false;

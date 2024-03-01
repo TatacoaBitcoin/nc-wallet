@@ -9,7 +9,9 @@ import {useBreezState} from '../context/breez.provider';
 import {usePreferencesState} from '../context/preferences.provider';
 
 const BalanceCard = () => {
-  const {balance: {lightning, btc}} = useBreezState();
+  const {
+    balance: {lightning, btc},
+  } = useBreezState();
   const {currency} = usePreferencesState();
   const {rate} = useRate(currency.value);
   const [isFiat, setIsFiat] = useState(false);
