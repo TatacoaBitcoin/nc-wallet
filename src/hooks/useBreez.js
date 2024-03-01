@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useState} from 'react';
 import {
   connect,
   defaultConfig,
@@ -10,7 +10,7 @@ import {
   nodeInfo,
 } from '@breeztech/react-native-breez-sdk';
 import {toByteArray} from 'react-native-quick-base64';
-import RNFetchBlob from "rn-fetch-blob";
+import RNFetchBlob from 'rn-fetch-blob';
 
 import {
   BREEZ_API_KEY,
@@ -37,7 +37,7 @@ export const useBreez = () => {
       const {channelsBalanceMsat, onchainBalanceMsat} = nodeInformation;
       setBalance({lightning: channelsBalanceMsat, btc: onchainBalanceMsat});
     } catch (error) {
-      console.error("getBalance", error);
+      console.error('getBalance', error);
     }
   };
 
@@ -49,7 +49,7 @@ export const useBreez = () => {
       });
       setPayments(paymentsData);
     } catch (error) {
-      console.error("getPayments", error);
+      console.error('getPayments', error);
     }
   };
 
@@ -59,7 +59,7 @@ export const useBreez = () => {
     if (type === SYNCED) {
       await getBalance();
       await getPayments();
-    };
+    }
     if (type === INVOICE_PAID) {
       setLastPaidInvoice(newEvent.details.paymentHash);
     }
@@ -93,7 +93,7 @@ export const useBreez = () => {
       await getPayments();
       setWorkingDir(config.workingDir);
     } catch (error) {
-      console.error("initNode", error);
+      console.error('initNode', error);
       throw new Error('errors.initNode');
     }
 
@@ -103,7 +103,7 @@ export const useBreez = () => {
   const disconnectNode = async () => {
     try {
       await disconnect();
-      await RNFetchBlob.fs.unlink(workingDir)
+      await RNFetchBlob.fs.unlink(workingDir);
     } catch (error) {
       console.error('disconnectNode', error);
     }

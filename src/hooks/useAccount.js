@@ -1,15 +1,10 @@
 import {useEffect, useState} from 'react';
 import * as Keychain from 'react-native-keychain';
-import {
-  mnemonicToSeedHex,
-  entropyToMnemonic,
-  Wordlists,
-} from '@dreson4/react-native-quick-bip39';
 
 import {useBreezState} from '../context/breez.provider';
 
 const secureStore = async words => {
-  await Keychain.setGenericPassword("words", words);
+  await Keychain.setGenericPassword('words', words);
 };
 
 const secureRetrieve = async () => {
